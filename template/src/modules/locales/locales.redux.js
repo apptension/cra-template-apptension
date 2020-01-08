@@ -8,11 +8,11 @@ const INITIAL_STATE = {
   language: null,
 };
 
-export const setLanguageHandler = (state, { payload }) => {
+const setLanguageHandler = (state, { payload }) => {
   state.language = payload;
 };
 
-export const HANDLERS = {
+const HANDLERS = {
   [setLanguage]: setLanguageHandler,
 };
 

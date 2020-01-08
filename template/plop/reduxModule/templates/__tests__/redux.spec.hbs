@@ -1,9 +1,7 @@
-import Immutable from 'seamless-immutable';
-
-import { reducer as {{ camelCase name }}Reducer, {{ pascalCase name }}Actions, {{ pascalCase name }}Types } from '../{{ camelCase name }}.redux';
+import { reducer as {{ camelCase name }}Reducer } from '../{{ camelCase name }}.redux';
 
 describe('{{ pascalCase name }}: redux', () => {
-  const defaultState = Immutable({});
+  const defaultState = {};
 
   describe('reducer', () => {
     it('should return initial state', () => {

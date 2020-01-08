@@ -4,6 +4,8 @@ const createAction = actionCreator('{{ constantCase name }}');
 
 export const noop = createAction('NOOP');
 
-export const INITIAL_STATE = {};
+const INITIAL_STATE = {};
 
-export const reducer = createImmutableReducer(INITIAL_STATE, {});
+const HANDLERS = {};
+
+export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);
