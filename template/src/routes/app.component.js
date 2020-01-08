@@ -22,11 +22,11 @@ export const App = ({ children }) => {
   useEffect(() => {
     dispatch(StartupActions.startup());
     initializeFontFace();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(LocalesActions.setLanguage(match.params.lang || DEFAULT_LOCALE));
-  }, [match]);
+  }, [match, dispatch]);
 
   if (!language) {
     return null;
