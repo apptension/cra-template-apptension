@@ -1,0 +1,19 @@
+import { expectSaga } from 'redux-saga-test-plan';
+import Immutable from 'seamless-immutable';
+
+import { watch{{ pascalCase name }} } from '../{{ camelCase name }}.sagas';
+import { {{ pascalCase name }}Actions, {{ pascalCase name }}Types } from '../{{ camelCase name }}.redux';
+
+describe('{{ pascalCase name }}: sagas', () => {
+  const defaultState = Immutable({});
+
+  it('should implement a test', async () => {
+    await expectSaga(watchStartup)
+      .withState(defaultState)
+      .put({{ pascalCase name }}Actions.noop())
+      .dispatch(StartupActions.startup())
+      .silentRun();
+
+    expect(sagaTester.getCalledActions()).to.deep.equal([{{ pascalCase name }}Actions.noop()]);
+  });
+});

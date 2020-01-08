@@ -7,7 +7,7 @@
     "template",
     "Apptension"
   ],
-  "description": "The Apptension template for Create React App.",
+  "description": "Template for Create React App made by Apptension",
   "main": "template.json",
   "license": "MIT",
   "engines": {

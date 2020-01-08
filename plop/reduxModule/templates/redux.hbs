@@ -1,0 +1,14 @@
+import { createActions, createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+
+export const { Types: {{ pascalCase name }}Types, Creators: {{ pascalCase name }}Actions } = createActions(
+  {
+    noop: null, // TODO: remove this action
+  },
+  { prefix: '{{ constantCase name }}/' }
+);
+
+export const INITIAL_STATE = new Immutable({});
+
+export const reducer = createReducer(INITIAL_STATE, {
+});
