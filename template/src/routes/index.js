@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { hot } from 'react-hot-loader/root';
 
@@ -11,14 +10,19 @@ import { NotFound } from './notFound';
 import { ROUTES } from './app.constants';
 //<-- IMPORT ROUTE -->
 
-const MatchedLanguageComponent = ({ match }) => {
+const MatchedLanguageComponent = () => {
+  const match = useRouteMatch();
   return (
     <App>
       <Switch>
-        <Route exact path={`${match.path}${ROUTES.home}`} component={Home} />
+        <Route exact path={`${match.path}${ROUTES.home}`}>
+          <Home />
+        </Route>
         {/* <-- INJECT ROUTE --> */}
 
-        <Route component={NotFound} />
+        <Route>
+          <NotFound />
+        </Route>
       </Switch>
     </App>
   );
@@ -27,17 +31,19 @@ const MatchedLanguageComponent = ({ match }) => {
 export default hot(() => {
   return (
     <Switch>
-      <Route exact path="/" render={() => <Redirect to={DEFAULT_LOCALE} />} />
+      <Route exact path="/">
+        <Redirect to={DEFAULT_LOCALE} />
+      </Route>
 
-      <Route path={`/:lang(${appLocales.join('|')})`} component={MatchedLanguageComponent} />
+      <Route path={`/:lang(${appLocales.join('|')})`}>
+        <MatchedLanguageComponent />
+      </Route>
 
       <IntlProvider locale={DEFAULT_LOCALE} messages={translationMessages[DEFAULT_LOCALE]}>
-        <Route component={NotFound} />
+        <Route>
+          <NotFound />
+        </Route>
       </IntlProvider>
     </Switch>
   );
 });
-
-MatchedLanguageComponent.propTypes = {
-  match: PropTypes.object.isRequired,
-};
