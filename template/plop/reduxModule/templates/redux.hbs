@@ -1,11 +1,9 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { actionCreator } from '../helpers';
-import Immutable from 'seamless-immutable';
+import { actionCreator, createImmutableReducer } from '../helpers';
 
 const createAction = actionCreator('{{ constantCase name }}');
 
-export const noop = createAction('noop');
+export const noop = createAction('NOOP');
 
-export const INITIAL_STATE = new Immutable({});
+export const INITIAL_STATE = {};
 
-export const reducer = createReducer(INITIAL_STATE, {});
+export const reducer = createImmutableReducer(INITIAL_STATE, {});

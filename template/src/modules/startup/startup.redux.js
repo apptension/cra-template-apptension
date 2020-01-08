@@ -1,11 +1,9 @@
-import Immutable from 'seamless-immutable';
-import { createReducer } from '@reduxjs/toolkit';
-import { actionCreator } from '../helpers';
+import { actionCreator, createImmutableReducer } from '../helpers';
 
 const createAction = actionCreator('STARTUP');
 
-export const startup = createAction('STARTUP');
+export const startup = createAction('startup');
 
-export const INITIAL_STATE = new Immutable({});
+export const INITIAL_STATE = {};
 
-export const reducer = createReducer(INITIAL_STATE, {});
+export const reducer = createImmutableReducer(INITIAL_STATE, {});

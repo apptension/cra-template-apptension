@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import 'isomorphic-fetch';
 import 'jest-enzyme';
 import Enzyme from 'enzyme';
