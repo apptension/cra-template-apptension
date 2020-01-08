@@ -1,5 +1,3 @@
-This is the Apptension base template for Create React App.
-
 # Create React App Template (by Apptension) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/apptension/react-scripts-apptension/pulls)
 
 [create-react-app](https://github.com/facebook/create-react-app) scripts customised for Apptension projects.
