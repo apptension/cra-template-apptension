@@ -1,8 +1,8 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { StartupTypes } from './startup.redux';
+import { startup } from './startup.redux';
 
-export function* startup() {}
+export function* handleStartup() {}
 
 export function* watchStartup() {
-  yield all([takeLatest(StartupTypes.STARTUP, startup)]);
+  yield all([takeLatest(startup, handleStartup)]);
 }

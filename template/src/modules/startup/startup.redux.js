@@ -1,12 +1,10 @@
-import { createActions, createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
+import { createReducer } from '@reduxjs/toolkit';
+import { actionCreator } from '../helpers';
 
-export const { Types: StartupTypes, Creators: StartupActions } = createActions(
-  {
-    startup: [],
-  },
-  { prefix: 'STARTUP/' }
-);
+const createAction = actionCreator('STARTUP');
+
+export const startup = createAction('STARTUP');
 
 export const INITIAL_STATE = new Immutable({});
 

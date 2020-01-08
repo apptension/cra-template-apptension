@@ -9,10 +9,11 @@ import { ResponsiveThemeProvider as ThemeProvider } from '../shared/components/r
 import { translationMessages, DEFAULT_LOCALE } from '../i18n';
 import { GlobalStyle } from '../theme/global';
 import messages from './app.messages';
-import { LocalesActions, selectLocalesLanguage } from '../modules/locales';
-import { StartupActions } from '../modules/startup';
+import { selectLocalesLanguage } from '../modules/locales';
 import initializeFontFace from '../theme/initializeFontFace';
 import theme from '../theme/theme';
+import { startup } from '../modules/startup/startup.redux';
+import { setLanguage } from '../modules/locales/locales.redux';
 
 export const App = ({ children }) => {
   const language = useSelector(selectLocalesLanguage);
@@ -20,12 +21,12 @@ export const App = ({ children }) => {
   const { lang } = useParams();
 
   useEffect(() => {
-    dispatch(StartupActions.startup());
+    dispatch(startup());
     initializeFontFace();
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(LocalesActions.setLanguage(lang || DEFAULT_LOCALE));
+    dispatch(setLanguage(lang || DEFAULT_LOCALE));
   }, [lang, dispatch]);
 
   if (!language) {

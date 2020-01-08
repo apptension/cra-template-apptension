@@ -61,7 +61,6 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-saga": "^1.0.2",
     "redux-saga-test-plan": "4.0.0-beta.2",
-    "reduxsauce": "^1.0.1",
     "regenerator-runtime": "^0.13.3",
     "require-context.macro": "^1.0.4",
     "reselect": "^4.0.0",
@@ -75,6 +74,8 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-custom-processor-loader": "^0.6.0",
     "stylelint-processor-styled-components": "^1.6.0",
-    "ua-parser-js": "^0.7.19"
+    "ua-parser-js": "^0.7.19",
+    "use-react-router": "^1.0.7",
+    "@reduxjs/toolkit": "^1.2.1"
   }
 }

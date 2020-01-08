@@ -1,6 +1,6 @@
 import Immutable from 'seamless-immutable';
 
-import { reducer as localesReducer, LocalesActions, LocalesTypes } from '../locales.redux';
+import { reducer as localesReducer, setLanguage } from '../locales.redux';
 
 describe('Locales: redux', () => {
   const defaultState = Immutable({
@@ -19,19 +19,19 @@ describe('Locales: redux', () => {
     it('should set data on SET_LANGUAGE', () => {
       const language = 'en';
       const expectedState = defaultState.set('language', language);
-      const action = { language, type: LocalesTypes.SET_LANGUAGE };
+      const action = setLanguage(language);
       expect(localesReducer(defaultState, action)).toEqual(expectedState);
     });
   });
 
   describe('setLanguage', () => {
     it('should return correct type', () => {
-      expect(LocalesActions.setLanguage().type).toEqual(LocalesTypes.SET_LANGUAGE);
+      expect(setLanguage().type).toEqual(setLanguage.toString());
     });
 
     it('should return proper payload', () => {
       const language = 'en';
-      expect(LocalesActions.setLanguage(language).language).toEqual(language);
+      expect(setLanguage(language).payload).toEqual(language);
     });
   });
 });

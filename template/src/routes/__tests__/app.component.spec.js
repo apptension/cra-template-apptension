@@ -4,9 +4,9 @@ import { clone } from 'ramda';
 import { DEFAULT_LOCALE, LOCALES } from '../../i18n';
 import { App } from '../app.component';
 import { store } from '../../../fixtures/store';
-import { StartupActions } from '../../modules/startup';
-import { LocalesActions } from '../../modules/locales';
 import initializeFonts from '../../theme/initializeFontFace';
+import { setLanguage } from '../../modules/locales';
+import { startup } from '../../modules/startup';
 
 const mockDispatch = jest.fn();
 let mockStore = clone(store);
@@ -55,13 +55,13 @@ describe('App: Component', () => {
   it('should set proper language based on url', () => {
     mount(component());
 
-    expect(mockDispatch).toHaveBeenCalledWith(LocalesActions.setLanguage(LOCALES.POLISH));
+    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(LOCALES.POLISH));
   });
 
   it('should set default language based on url when url is not matched', () => {
     mount(component());
 
-    expect(mockDispatch).toHaveBeenCalledWith(LocalesActions.setLanguage(DEFAULT_LOCALE));
+    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(DEFAULT_LOCALE));
   });
 
   it('should set proper language when url changes', () => {
@@ -72,13 +72,13 @@ describe('App: Component', () => {
     // force enzyme to re-render using new hook values
     wrapper.setProps({});
 
-    expect(mockDispatch).toHaveBeenCalledWith(LocalesActions.setLanguage(LOCALES.ENGLISH));
+    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(LOCALES.ENGLISH));
   });
 
   it('should call startup on mount', () => {
     mount(component());
 
-    expect(mockDispatch).toHaveBeenCalledWith(StartupActions.startup());
+    expect(mockDispatch).toHaveBeenCalledWith(startup());
   });
 
   it('should initialize fonts on mount', () => {
