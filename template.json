@@ -16,6 +16,7 @@
     "inquirer-directory": "^2.1.0",
     "plop": "^2.2.0",
     "prettier": "^1.16.4",
+    "babel-core": "^6.26.3",
     "@babel/polyfill": "^7.2.5",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
