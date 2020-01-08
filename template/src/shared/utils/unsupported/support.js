@@ -1,16 +1,17 @@
+import { DEFAULT_LOCALE, translationMessages } from '../../../i18n';
+
 require('es5-shim');
 require('es5-shim/es5-sham');
 
 //eslint-disable-next-line import/first
-import UnsupportedBrowserDetection from './shared/utils/unsupportedBrowserDetection';
+import UnsupportedBrowserDetection from './unsupportedBrowserDetection';
 //eslint-disable-next-line import/first
-import { DEFAULT_LOCALE, translationMessages } from './i18n';
 //eslint-disable-next-line import/first
 import messages from './support.messages';
 
 const detection = new UnsupportedBrowserDetection();
 
-window.onload = () => {
+export const setUnsupportedClasses = () => {
   document.documentElement.className += ` device-${detection.deviceType}`;
 
   if (detection.isInAppBrowser) {

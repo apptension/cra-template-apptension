@@ -12,8 +12,9 @@ import FontFaceObserver from 'fontfaceobserver';
 import 'normalize.css/normalize.css';
 import './theme/global';
 import configureStore from './modules/store';
-import UnsupportedBrowserDetection from './shared/utils/unsupportedBrowserDetection';
 import browserHistory from './shared/utils/history';
+import UnsupportedBrowserDetection from './shared/utils/unsupported/unsupportedBrowserDetection';
+import { setUnsupportedClasses } from './shared/utils/unsupported/support';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -44,11 +45,11 @@ if (process.env.NODE_ENV === 'development') {
     window.document.body.appendChild(devToolsRoot);
 
     ReactDOM.render(
-      <Provider store={store}>
-        <DevToolsComponent />
+    <Provider store={store}>
+      <DevToolsComponent />
       </Provider>,
-      devToolsRoot
-    );
+    devToolsRoot
+  );
   }
 }
 
@@ -56,18 +57,19 @@ const render = () => {
   const NextApp = require('./routes').default;
 
   ReactDOM.render(
-    <Provider store={store}>
-      <Router history={browserHistory}>
-        <NextApp />
-      </Router>
+  <Provider store={store}>
+    <Router history={browserHistory}>
+    <NextApp />
+    </Router>
     </Provider>,
-    document.getElementById('app')
-  );
+  document.getElementById('app')
+);
 };
 
 const initApp = async () => {
   const detection = new UnsupportedBrowserDetection();
   if (!detection.isSupported()) {
+    setUnsupportedClasses();
     return;
   }
 
