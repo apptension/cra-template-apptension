@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
+import { hot } from 'react-hot-loader/root';
 
 import { App } from './app.component';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
@@ -23,7 +24,7 @@ const MatchedLanguageComponent = ({ match }) => {
   );
 };
 
-export default () => {
+export default hot(() => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Redirect to={DEFAULT_LOCALE} />} />
@@ -35,7 +36,7 @@ export default () => {
       </IntlProvider>
     </Switch>
   );
-};
+});
 
 MatchedLanguageComponent.propTypes = {
   match: PropTypes.object.isRequired,
