@@ -10,8 +10,6 @@ jest.mock('react-redux', () => ({
   useSelector: selector => selector(mockStore),
 }));
 
-jest.mock('use-react-router');
-
 describe('LanguageSwitcher: Component', () => {
   const defaultProps = {
     language: DEFAULT_LOCALE,
