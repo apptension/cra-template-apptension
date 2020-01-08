@@ -94,7 +94,11 @@ describe('theme/getters', () => {
 
     it('should return null when prop doesnt equal expected value', () => {
       const expectedPropValue = 'prop-value';
-      const value = styleWhenEquals('test', expectedPropValue, 'styles-content')({
+      const value = styleWhenEquals(
+        'test',
+        expectedPropValue,
+        'styles-content'
+      )({
         theme: { test: 'unexpected-value' },
       });
       expect(value).toBeNull;

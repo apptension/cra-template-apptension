@@ -30,10 +30,7 @@ export default function configureStore(initialState = {}) {
   const store = createStore(
     createReducer(),
     Immutable(initialState),
-    compose(
-      applyMiddleware(...middlewares),
-      ...enhancers
-    )
+    compose(applyMiddleware(...middlewares), ...enhancers)
   );
 
   sagaMiddleware.run(rootSaga);

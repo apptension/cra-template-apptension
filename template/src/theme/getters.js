@@ -4,35 +4,15 @@ import { renderWhenTrue } from '../shared/utils/rendering';
 
 const ensureArray = ifElse(Array.isArray, identity, flip(append)([]));
 
-export const fromTheme = compose(
-  path,
-  concat(['theme']),
-  ensureArray
-);
+export const fromTheme = compose(path, concat(['theme']), ensureArray);
 
-export const themeColor = compose(
-  fromTheme,
-  concat(['color']),
-  ensureArray
-);
+export const themeColor = compose(fromTheme, concat(['color']), ensureArray);
 
-export const themeBorder = compose(
-  fromTheme,
-  concat(['border']),
-  ensureArray
-);
+export const themeBorder = compose(fromTheme, concat(['border']), ensureArray);
 
-export const themeShadow = compose(
-  fromTheme,
-  concat(['shadow']),
-  ensureArray
-);
+export const themeShadow = compose(fromTheme, concat(['shadow']), ensureArray);
 
-export const themeZIndex = compose(
-  fromTheme,
-  concat(['zIndex']),
-  ensureArray
-);
+export const themeZIndex = compose(fromTheme, concat(['zIndex']), ensureArray);
 
 export const themeColorWithOpacity = (colorId, alpha) =>
   compose(
@@ -43,28 +23,14 @@ export const themeColorWithOpacity = (colorId, alpha) =>
     themeColor(colorId)
   );
 
-export const themeFont = compose(
-  fromTheme,
-  concat(['font']),
-  ensureArray
-);
+export const themeFont = compose(fromTheme, concat(['font']), ensureArray);
 
-export const themeSize = compose(
-  fromTheme,
-  concat(['size']),
-  ensureArray
-);
+export const themeSize = compose(fromTheme, concat(['size']), ensureArray);
 
 export const styleWhenTrue = curry((propName, string) =>
-  compose(
-    renderWhenTrue(always(string)),
-    pathEq(['theme', propName], true)
-  )
+  compose(renderWhenTrue(always(string)), pathEq(['theme', propName], true))
 );
 
 export const styleWhenEquals = curry((propName, value, string) =>
-  compose(
-    renderWhenTrue(always(string)),
-    pathEq(['theme', propName], value)
-  )
+  compose(renderWhenTrue(always(string)), pathEq(['theme', propName], value))
 );
