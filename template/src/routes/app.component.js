@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
-import useRouter from 'use-react-router';
+import { useParams } from 'react-router-dom';
 import { ResponsiveThemeProvider as ThemeProvider } from '../shared/components/responsiveThemeProvider';
 
 import { translationMessages, DEFAULT_LOCALE } from '../i18n';
@@ -17,7 +17,7 @@ import theme from '../theme/theme';
 export const App = ({ children }) => {
   const language = useSelector(selectLocalesLanguage);
   const dispatch = useDispatch();
-  const { match } = useRouter();
+  const { lang } = useParams();
 
   useEffect(() => {
     dispatch(StartupActions.startup());
@@ -25,8 +25,8 @@ export const App = ({ children }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(LocalesActions.setLanguage(match.params.lang || DEFAULT_LOCALE));
-  }, [match, dispatch]);
+    dispatch(LocalesActions.setLanguage(lang || DEFAULT_LOCALE));
+  }, [lang, dispatch]);
 
   if (!language) {
     return null;
