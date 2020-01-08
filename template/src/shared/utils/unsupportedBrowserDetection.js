@@ -76,6 +76,12 @@ export default class UnsupportedBrowserDetection {
     return this.ua.indexOf('FBAN') > -1 || this.ua.indexOf('FBAV') > -1 || this.ua.indexOf('Twitter') > -1;
   }
 
+  get isCrawler() {
+    return ['Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot', 'Baiduspider', 'YandexBot'].some(
+      crawlerName => this.ua.indexOf(crawlerName) > -1
+    );
+  }
+
   get device() {
     return this.parser.getDevice();
   }
@@ -106,6 +112,10 @@ export default class UnsupportedBrowserDetection {
   }
 
   isSupported() {
+    if (this.isCrawler) {
+      return true;
+    }
+
     if (this.isInAppBrowser) {
       return this.isInAppBrowserSupported;
     }
