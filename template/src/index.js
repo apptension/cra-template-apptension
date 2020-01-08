@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 // Import all the third party stuff
 import { Provider } from 'react-redux';
