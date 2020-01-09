@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
 import { createStore } from 'redux';
 import { identity } from 'ramda';
@@ -22,7 +23,7 @@ export const spiedHistory = (route = '/') => {
   };
 };
 
-export const makeContextRenderer = component => (props = {}, context = {}) => {
+export const ProvidersWrapper = ({ children, context = {} }) => {
   const { router = {}, store = fixturesStore, messages } = context;
   const { url = `/${DEFAULT_LOCALE}`, routePath = '/:lang/', history } = router;
 
@@ -33,7 +34,7 @@ export const makeContextRenderer = component => (props = {}, context = {}) => {
     messages: messages ?? translationMessages[DEFAULT_LOCALE],
   };
 
-  const Wrapper = ({ children }) => (
+  return (
     <Router history={routerHistory}>
       <IntlProvider {...intlProviderMockProps}>
         <Provider store={createStore(identity, store)}>
@@ -42,10 +43,23 @@ export const makeContextRenderer = component => (props = {}, context = {}) => {
       </IntlProvider>
     </Router>
   );
-
-  return render(component(props), {
-    wrapper: Wrapper,
-  });
 };
+
+ProvidersWrapper.propTypes = {
+  context: PropTypes.shape({
+    router: PropTypes.shape({
+      url: PropTypes.string,
+      routePath: PropTypes.string,
+      history: PropTypes.object,
+    }),
+    store: PropTypes.object,
+    messages: PropTypes.object,
+  }),
+};
+
+export const makeContextRenderer = component => (props = {}, context = {}) =>
+  render(component(props), {
+    wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
+  });
 
 export const makePropsRenderer = component => (props = {}) => render(component(props));
