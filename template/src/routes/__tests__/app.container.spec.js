@@ -1,7 +1,7 @@
 import React from 'react';
+import { makePropsRenderer, PLACEHOLDER_CONTENT } from 'utils/testUtils';
 import { DEFAULT_LOCALE, LOCALES } from '../../i18n';
 import initializeFonts from '../../theme/initializeFontFace';
-import { makePropsRenderer } from '../../shared/utils/testUtils';
 import { store as mockStore } from '../../../fixtures/store';
 import { setLanguage } from '../../modules/locales';
 import { startup } from '../../modules/startup';
@@ -11,7 +11,7 @@ const mockDispatch = jest.fn();
 const mockParams = jest.fn();
 
 const defaultProps = {
-  children: <div className="app__children">Children</div>,
+  children: PLACEHOLDER_CONTENT,
 };
 
 jest.mock('react-router-dom', () => ({

@@ -1,10 +1,10 @@
 import React from 'react';
-import { makePropsRenderer } from '../../shared/utils/testUtils';
+import { makePropsRenderer, PLACEHOLDER_CONTENT } from '../../shared/utils/testUtils';
 import { AppComponent } from '../app.component';
 import { DEFAULT_LOCALE } from '../../i18n';
 
 const defaultProps = {
-  children: <div className="app__children">Children</div>,
+  children: PLACEHOLDER_CONTENT,
   language: DEFAULT_LOCALE,
 };
 

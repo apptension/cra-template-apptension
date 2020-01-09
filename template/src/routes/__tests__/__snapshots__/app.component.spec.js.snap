@@ -2,10 +2,10 @@
 
 exports[`App: Component should render App when language is set 1`] = `
 <div>
-  <div
-    class="app__children"
+  <span
+    data-testid="content"
   >
-    Children
-  </div>
+    content
+  </span>
 </div>
 `;
