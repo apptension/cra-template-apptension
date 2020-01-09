@@ -227,9 +227,8 @@ Here's a curated list of packages that you should have knowledge of, before star
 - [ ] [React Helmet](https://github.com/nfl/react-helmet)
 - [ ] [Redux](http://redux.js.org/)
 - [ ] [Redux Saga](https://redux-saga.github.io/redux-saga/)
-- [ ] [Redux Sauce](https://github.com/skellock/reduxsauce/)
 - [ ] [Reselect](https://github.com/reactjs/reselect)
-- [ ] [Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)
+- [ ] [Immer](https://github.com/immerjs/immer)
 - [ ] [Ramda](https://github.com/ramda/ramda)
 - [ ] [Axios](https://github.com/axios/axios)
 
@@ -249,7 +248,7 @@ Here's a curated list of packages that you should have knowledge of, before star
 #### Testing
 
 - [ ] [Jest](https://facebook.github.io/jest/)
-- [ ] [Enzyme](https://github.com/airbnb/enzyme)
+- [ ] [React Testing Library](https://github.com/testing-library/react-testing-library)
 - [ ] [Redux Saga Test Plan](http://redux-saga-test-plan.jeremyfairbank.com/)
 
 #### Linting
