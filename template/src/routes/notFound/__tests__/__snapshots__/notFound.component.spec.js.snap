@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotFound: Component should render correctly 1`] = `
-<div
-  class="sc-bdVaJa bDWFJH"
->
-  <h1
-    class="sc-bwzfXH cZAMCx"
+<div>
+  <div
+    class="sc-bdVaJa bDWFJH"
   >
-    Error: 404
-  </h1>
+    <h1
+      class="sc-bwzfXH cZAMCx"
+    >
+      Error: 404
+    </h1>
+  </div>
 </div>
 `;

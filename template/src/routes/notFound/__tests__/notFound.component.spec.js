@@ -11,6 +11,6 @@ describe('NotFound: Component', () => {
 
   it('should render correctly', () => {
     const { container } = render();
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

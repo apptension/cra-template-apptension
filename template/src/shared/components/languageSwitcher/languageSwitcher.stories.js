@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { withRedux, withRouter } from '../../../.storybook/decorators';
 import { store } from '../../../../fixtures/store';
-import { LanguageSwitcherComponent } from './languageSwitcher.component';
+import { LanguageSwitcher } from '.';
 
 const renderComponent = (props = {}) => {
   const defaultProps = {
@@ -11,7 +11,7 @@ const renderComponent = (props = {}) => {
     history: {},
   };
 
-  return <LanguageSwitcherComponent {...defaultProps} {...props} />;
+  return <LanguageSwitcher {...defaultProps} {...props} />;
 };
 
 const stories = storiesOf('Shared|LanguageSwitcher', module)

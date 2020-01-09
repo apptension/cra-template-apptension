@@ -1,27 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import messages from './home.messages';
 import { LanguageSwitcher } from '../../shared/components/languageSwitcher';
 import { Container, Logo } from './home.styles';
 import { H1 } from '../../theme/typography';
 
-export const HomeComponent = ({ formatMessage }) => (
-  <Container>
-    <Helmet title={formatMessage(messages.pageTitle)} />
+export const HomeComponent = () => {
+  const { formatMessage } = useIntl();
 
-    <H1>
-      <FormattedMessage {...messages.welcome} />
-    </H1>
+  return (
+    <Container>
+      <Helmet title={formatMessage(messages.pageTitle)} />
 
-    <Logo />
+      <H1>
+        <FormattedMessage {...messages.welcome} />
+      </H1>
 
-    <LanguageSwitcher />
-  </Container>
-);
+      <Logo />
 
-HomeComponent.propTypes = {
-  formatMessage: PropTypes.func.isRequired,
+      <LanguageSwitcher />
+    </Container>
+  );
 };

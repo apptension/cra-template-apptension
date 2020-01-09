@@ -16,7 +16,7 @@ describe('Locales: redux', () => {
 
     it('should set data on SET_LANGUAGE', () => {
       const language = 'en';
-      const expectedState = defaultState.set('language', language);
+      const expectedState = { ...defaultState, language };
       const action = setLanguage(language);
       expect(localesReducer(defaultState, action)).toEqual(expectedState);
     });

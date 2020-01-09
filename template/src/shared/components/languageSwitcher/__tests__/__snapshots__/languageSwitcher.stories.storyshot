@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots LanguageSwitcher Default 1`] = `
+exports[`Storyshots Shared|LanguageSwitcher Default 1`] = `
 <div>
   <select
-    className="sc-bwzfXH uTxCW"
-    onChange={[Function]}
-    value="en"
+    class="sc-bwzfXH uTxCW"
+    data-testid="select"
   >
     <option
       value="en"

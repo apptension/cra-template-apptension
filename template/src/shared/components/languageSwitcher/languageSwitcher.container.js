@@ -7,13 +7,12 @@ import { selectLocalesLanguage } from '../../../modules/locales/locales.selector
 import { LanguageSwitcherComponent } from './languageSwitcher.component';
 
 export const LanguageSwitcherContainer = () => {
-  const { lang } = useParams();
   const match = useRouteMatch();
   const history = useHistory();
   const language = useSelector(selectLocalesLanguage);
 
   const handleChange = e => {
-    history.push(match.url.replace(lang, e.target.value));
+    history.push(match.url.replace(match.params.lang, e.target.value));
   };
 
   const componentProps = {
