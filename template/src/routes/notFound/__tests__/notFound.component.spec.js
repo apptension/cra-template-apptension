@@ -1,15 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 
 import { NotFound } from '../notFound.component';
+import { makeContextRenderer } from 'utils/testUtils';
 
 describe('NotFound: Component', () => {
   const defaultProps = {};
 
   const component = props => <NotFound {...defaultProps} {...props} />;
+  const render = makeContextRenderer(component);
 
   it('should render correctly', () => {
-    const wrapper = shallow(component());
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

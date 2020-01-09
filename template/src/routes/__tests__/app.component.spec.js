@@ -1,15 +1,13 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { clone } from 'ramda';
 import { DEFAULT_LOCALE, LOCALES } from '../../i18n';
 import { App } from '../app.component';
-import { store } from '../../../fixtures/store';
 import initializeFonts from '../../theme/initializeFontFace';
+import { makePropsRenderer } from '../../shared/utils/testUtils';
+import { store as mockStore } from '../../../fixtures/store';
 import { setLanguage } from '../../modules/locales';
 import { startup } from '../../modules/startup';
 
 const mockDispatch = jest.fn();
-let mockStore = clone(store);
 
 jest.mock('react-redux', () => ({
   useSelector: selector => selector(mockStore),
@@ -17,7 +15,6 @@ jest.mock('react-redux', () => ({
 }));
 
 jest.mock('../../theme/initializeFontFace');
-
 jest.mock('../../theme/theme', () => ({
   color: {
     white: '#fffffff',
@@ -31,36 +28,30 @@ describe('App: Component', () => {
   const children = <div className="app__children">Children</div>;
 
   const component = props => <App {...props}>{children}</App>;
+  const render = makePropsRenderer(component);
 
   afterEach(() => {
-    mockStore = clone(store);
     mockDispatch.mockClear();
     initializeFonts.mockClear();
   });
 
   it('should not render App when language is not set', () => {
-    mockStore.locales.language = undefined;
-
-    const wrapper = shallow(component({ language: undefined }));
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render App when language is set', () => {
-    mockStore.locales.language = 'en';
-
-    const wrapper = shallow(component());
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should set proper language based on url', () => {
-    mount(component());
-
+    render();
     expect(mockDispatch).toHaveBeenCalledWith(setLanguage(LOCALES.POLISH));
   });
 
   it('should set default language based on url when url is not matched', () => {
-    mount(component());
-
+    render();
     expect(mockDispatch).toHaveBeenCalledWith(setLanguage(DEFAULT_LOCALE));
   });
 
@@ -76,14 +67,12 @@ describe('App: Component', () => {
   });
 
   it('should call startup on mount', () => {
-    mount(component());
-
+    render();
     expect(mockDispatch).toHaveBeenCalledWith(startup());
   });
 
   it('should initialize fonts on mount', () => {
-    mount(component());
-
+    render();
     expect(initializeFonts).toHaveBeenCalled();
   });
 });

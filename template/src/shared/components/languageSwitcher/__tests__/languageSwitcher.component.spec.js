@@ -1,31 +1,23 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 
+import { fireEvent, makeContextRenderer, spiedHistory } from 'utils/testUtils';
 import { LanguageSwitcher } from '../languageSwitcher.component';
-import { Select } from '../languageSwitcher.styles';
 import { DEFAULT_LOCALE } from '../../../../i18n';
-import { store as mockStore } from '../../../../../fixtures/store';
-
-jest.mock('react-redux', () => ({
-  useSelector: selector => selector(mockStore),
-}));
 
 describe('LanguageSwitcher: Component', () => {
-  const defaultProps = {
-    language: DEFAULT_LOCALE,
-  };
+  const defaultProps = {};
 
   const component = props => <LanguageSwitcher {...defaultProps} {...props} />;
+  const render = makeContextRenderer(component);
 
   it('should redirect after option click', () => {
-    const pushSpy = jest.fn();
+    const { history, pushSpy } = spiedHistory(`/${DEFAULT_LOCALE}/`);
+    const { container } = render({ history });
 
-    const wrapper = shallow(component());
-
-    const event = { target: { value: 'not-default' } };
-    wrapper.find(Select).prop('onChange')(event);
+    const event = { target: { value: 'something-else' } };
+    fireEvent.change(container.firstChild, event);
 
     expect(pushSpy).toHaveBeenCalledTimes(1);
-    expect(pushSpy).toHaveBeenCalledWith('/not-default/some/custom/url');
+    expect(pushSpy).toHaveBeenCalledWith('/something-else/some/custom/url');
   });
 });

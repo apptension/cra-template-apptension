@@ -1,17 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 
 import { {{ pascalCase name }} } from '../{{ camelCase name }}.component';
+import { makePropsRenderer } from 'utils/testUtils';
 
 describe('{{ pascalCase name }}: Component', () => {
   const defaultProps = {};
 
   const component = props => <{{ pascalCase name }} {...defaultProps} {...props} />;
-
-  const render = (props = {}) => shallow(component(props));
+  const render = makePropsRenderer(component);
 
   it('should render correctly', () => {
-    const wrapper = render();
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

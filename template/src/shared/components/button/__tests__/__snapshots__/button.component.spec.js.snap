@@ -1,16 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button: Component should render correctly 1`] = `
-<ThemeProvider
-  theme={
-    Object {
-      "disabled": undefined,
-      "mode": "primary",
-    }
-  }
->
-  <styled.button
-    onClick={[Function]}
+<div>
+  <button
+    class="sc-bdVaJa bzmRJN"
   />
-</ThemeProvider>
+</div>
 `;

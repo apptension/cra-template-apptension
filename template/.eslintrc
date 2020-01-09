@@ -43,6 +43,7 @@
     "redux-saga/no-unhandled-errors": 0,
     // https://github.com/pke/eslint-plugin-redux-saga/issues/15
     "no-unused-expressions": 0,
+    "react/prop-types": [2, { "ignore": ["children"] }],
     // https://github.com/eslint/eslint/issues/2102
     "import/no-extraneous-dependencies": [
       "error",

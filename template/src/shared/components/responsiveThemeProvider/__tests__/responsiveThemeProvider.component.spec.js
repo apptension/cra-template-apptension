@@ -1,46 +1,41 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { ThemeProvider } from 'styled-components';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { ResponsiveThemeProvider } from '../responsiveThemeProvider.component';
+import { makePropsRenderer, screen, getNodeText } from '../../../utils/testUtils';
+
+const ThemeConsumer = () => {
+  const theme = useContext(ThemeContext);
+  return <div data-testid="content">{theme.foo}</div>;
+};
 
 describe('ResponsiveThemeProvider: Component', () => {
   const defaultProps = {
+    children: <ThemeConsumer />,
     theme: {
-      children: 'content',
-      theme: {
-        foo: 'bar',
-      },
+      foo: 'bar',
     },
   };
 
   const component = props => <ResponsiveThemeProvider {...defaultProps} {...props} />;
-
-  const render = (props = {}) => shallow(component(props));
-
-  it('should render correctly', () => {
-    const wrapper = render();
-    expect(wrapper).toMatchSnapshot();
-  });
+  const render = makePropsRenderer(component);
 
   describe('theme only contains primitive types', () => {
-    it('should pass theme to provider', () => {
-      const wrapper = render();
-      expect(wrapper.find(ThemeProvider).prop('theme')).toEqual(defaultProps.theme);
+    it('should use theme in child elements', () => {
+      render();
+      const content = screen.getByTestId('content');
+      expect(getNodeText(content)).toEqual('bar');
     });
   });
 
   describe('theme contains functions', () => {
     const theme = {
-      foo: 'bar',
-      fn: () => 100,
+      foo: () => 100,
     };
 
     it('should pass function result to theme', () => {
-      const wrapper = render({ theme });
-      expect(wrapper.find(ThemeProvider).prop('theme')).toEqual({
-        foo: 'bar',
-        fn: 100,
-      });
+      render({ theme });
+      const content = screen.getByTestId('content');
+      expect(getNodeText(content)).toEqual('100');
     });
   });
 });

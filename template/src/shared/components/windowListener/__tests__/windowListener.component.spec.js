@@ -1,29 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { empty } from 'ramda';
-import Immutable from 'seamless-immutable';
 import throttle from 'lodash.throttle';
 import { WindowListener } from '../windowListener.component';
+import { makePropsRenderer } from '../../../utils/testUtils';
 
 jest.mock('lodash.throttle', () => jest.fn().mockImplementation(fn => fn));
 
 describe('WindowListener: Component', () => {
-  const defaultProps = Immutable({
+  const defaultProps = {
     throttle: 100,
     onEvent: empty,
     eventType: 'scroll',
     options: { foo: 'bar' },
-  });
+  };
 
   const component = props => <WindowListener {...defaultProps} {...props} />;
-
-  const render = (props = {}) => shallow(component(props));
+  const render = makePropsRenderer(component);
 
   const addEventListenerSpy = jest.spyOn(global.window, 'addEventListener');
   const removeEventListenerSpy = jest.spyOn(global.window, 'removeEventListener');
 
   it('should render nothing', () => {
-    expect(render().type()).toBe(null);
+    const { container } = render();
+    expect(container.firstChild).toBe(null);
   });
 
   it('should call addEventListener with proper eventType on mount', () => {
