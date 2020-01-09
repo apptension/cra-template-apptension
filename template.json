@@ -4,7 +4,7 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "lint:css": "stylelint './src/**/*.js'",
     "lint:js": "eslint .",
-    "storybook": "start-storybook --config-dir './src/.storybook'",
+    "storybook": "start-storybook --config-dir './src/.storybook' --port 4000",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "prettier": "^1.16.4",
     "babel-core": "^6.26.3",
     "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-knobs": "^5.2.8",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addon-storyshots": "^5.0.6",
     "@storybook/react": "^5.0.6",

@@ -5,12 +5,17 @@ import { withRedux, withRouter } from '../../../.storybook/decorators';
 import { store } from '../../../../fixtures/store';
 import { LanguageSwitcher } from './languageSwitcher.component';
 
-const defaultProps = {
-  match: {},
-  history: {},
+const renderComponent = (props = {}) => {
+  const defaultProps = {
+    match: {},
+    history: {},
+  };
+
+  return <LanguageSwitcher {...defaultProps} {...props} />;
 };
 
-storiesOf('LanguageSwitcher', module)
+const stories = storiesOf('Shared|LanguageSwitcher', module)
   .addDecorator(withRedux(store))
   .addDecorator(withRouter())
-  .add('Default', () => <LanguageSwitcher {...defaultProps} />);
+
+stories.add('Default', () => renderComponent());

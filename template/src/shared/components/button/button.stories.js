@@ -1,18 +1,43 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 import { Button } from './button.component';
-import { BUTTON_TYPE_SECONDARY } from './button.constants';
+import { BUTTON_TYPE_SECONDARY, BUTTON_TYPES, BUTTON_TYPE_PRIMARY } from './button.constants';
 
-const defaultProps = {
-  children: 'Press me',
-  onClick: action('Clicked me'),
+const knobs = {
+  disabled: defaultValue => boolean('disabled', defaultValue),
+  mode: defaultValue => select('mode', BUTTON_TYPES, defaultValue),
 };
 
-storiesOf('Button', module).add('Primary', () => <Button {...defaultProps} />);
-storiesOf('Button', module).add('Primary - Disabled', () => <Button {...defaultProps} disabled />);
-storiesOf('Button', module).add('Secondary', () => <Button {...defaultProps} mode={BUTTON_TYPE_SECONDARY} />);
-storiesOf('Button', module).add('Secondary - Disabled', () => (
-  <Button {...defaultProps} disabled mode={BUTTON_TYPE_SECONDARY} />
-));
+const renderComponent = (props = {}) => {
+  const defaultProps = {
+    children: 'Press me',
+    onClick: action('Clicked me'),
+    disabled: knobs.disabled(false),
+    mode: knobs.mode(BUTTON_TYPE_PRIMARY),
+  };
+
+  return <Button {...defaultProps} {...props} />;
+};
+
+const stories = storiesOf('Shared|Button', module).addDecorator(withKnobs);
+
+stories.add('Primary', () => renderComponent());
+stories.add('Primary - Disabled', () =>
+  renderComponent({
+    disabled: knobs.disabled(true),
+  })
+);
+stories.add('Secondary', () =>
+  renderComponent({
+    mode: knobs.mode(BUTTON_TYPE_SECONDARY),
+  })
+);
+stories.add('Secondary - Disabled', () =>
+  renderComponent({
+    mode: knobs.mode(BUTTON_TYPE_SECONDARY),
+    disabled: knobs.disabled(true),
+  })
+);

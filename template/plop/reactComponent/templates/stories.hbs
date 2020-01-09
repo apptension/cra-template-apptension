@@ -1,8 +1,27 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withKnobs, text } from '@storybook/addon-knobs';
 
 import { {{ pascalCase name }} } from './{{ camelCase name }}.component';
 
-const defaultProps = {};
+const knobs = {
+  title: defaultValue => text('title', defaultValue),
+};
 
-storiesOf('{{ pascalCase name }}', module).add('Default', () => <{{ pascalCase name }} {...defaultProps} />);
+const renderComponent = (props = {}) => {
+  const defaultProps = {
+    title: knobs.title('Title'),
+  };
+
+  return <{{ pascalCase name }} {...defaultProps} {...props} />;
+};
+
+const stories = storiesOf('{{ pascalCase name }}', module).addDecorator(withKnobs);
+
+stories.add('Default', () => renderComponent());
+stories.add('Different title', () =>
+  renderComponent({
+    title: knobs.title('Different title'),
+  })
+);
