@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { makePropsRenderer } from 'utils/testUtils';
 
 import { {{ pascalCase name }}Component } from '../{{ camelCase name }}.component';
 
@@ -7,11 +7,10 @@ describe('{{ pascalCase name }}: Component', () => {
   const defaultProps = {};
 
   const component = props => <{{ pascalCase name }}Component {...defaultProps} {...props} />;
-
-  const render = (props = {}) => shallow(component(props));
+  const render = makePropsRenderer(component);
 
   it('should render correctly', () => {
-    const wrapper = render();
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render();
+    expect(container).toMatchSnapshot();
   });
 });

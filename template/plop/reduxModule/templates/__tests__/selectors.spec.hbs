@@ -1,11 +1,9 @@
-import Immutable from 'seamless-immutable';
-
 import { select{{ pascalCase name }}Domain } from '../{{ camelCase name }}.selectors';
 
 describe('{{ pascalCase name }}: selectors', () => {
-  const defaultState = Immutable({
+  const defaultState = {
     {{ camelCase name }}: {},
-  });
+  }
 
   describe('select{{ pascalCase name }}Domain', () => {
     it('should select a domain', () => {

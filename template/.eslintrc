@@ -60,7 +60,8 @@
       "asyncArrow": "always"
     }],
     "import/newline-after-import": ["error", { "count": 1 }],
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/extensions": ["error", "ignorePackages", {"js": "never"}]
   },
   "settings": {
     "import/core-modules": [
@@ -69,7 +70,8 @@
       "report-error",
       "json-server",
       "nock",
-      "inquirer-directory"
+      "inquirer-directory",
+      "utils/testUtils"
     ]
   }
 }
