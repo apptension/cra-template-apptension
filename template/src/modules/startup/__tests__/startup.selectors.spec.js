@@ -1,11 +1,7 @@
-import Immutable from 'seamless-immutable';
-
 import { selectStartupDomain } from '../startup.selectors';
 
 describe('Startup: selectors', () => {
-  const defaultState = Immutable({
-    startup: {},
-  });
+  const defaultState = {};
 
   describe('selectStartupDomain', () => {
     it('should select a domain', () => {

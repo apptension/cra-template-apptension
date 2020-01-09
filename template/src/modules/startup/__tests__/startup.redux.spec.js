@@ -1,9 +1,7 @@
-import Immutable from 'seamless-immutable';
-
 import { reducer as startupReducer } from '../startup.redux';
 
 describe('Startup: redux', () => {
-  const defaultState = Immutable({});
+  const defaultState = {};
 
   describe('reducer', () => {
     it('should return initial state', () => {

@@ -1,11 +1,9 @@
-import Immutable from 'seamless-immutable';
-
 import { reducer as localesReducer, setLanguage } from '../locales.redux';
 
 describe('Locales: redux', () => {
-  const defaultState = Immutable({
+  const defaultState = {
     language: null,
-  });
+  };
 
   describe('reducer', () => {
     it('should return initial state', () => {

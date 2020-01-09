@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import Immutable from 'seamless-immutable';
 import createSagaMiddleware from 'redux-saga';
+import produce from 'immer';
+import { identity } from 'ramda';
 import createReducer from './reducers';
 import rootSaga from './sagas';
 
@@ -23,13 +24,13 @@ export default function configureStore(initialState = {}) {
 
     Array.prototype.push.apply(enhancers, [
       require('../shared/utils/devtools.component').default.instrument(),
-      persistState(getDebugSessionKey(), state => Immutable(state)),
+      persistState(getDebugSessionKey(), produce(identity)),
     ]);
   }
 
   const store = createStore(
     createReducer(),
-    Immutable(initialState),
+    produce(initialState, identity),
     compose(applyMiddleware(...middlewares), ...enhancers)
   );
 
