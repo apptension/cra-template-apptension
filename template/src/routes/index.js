@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { hot } from 'react-hot-loader/root';
 
-import { App } from './app.component';
+import { AppContainer as App } from './app.container';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
 import { Home } from './home';
 import { NotFound } from './notFound';

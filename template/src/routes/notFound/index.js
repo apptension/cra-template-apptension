@@ -1,1 +1,1 @@
-export { NotFound } from './notFound.component';
+export { NotFoundContainer as NotFound } from './notFound.container';

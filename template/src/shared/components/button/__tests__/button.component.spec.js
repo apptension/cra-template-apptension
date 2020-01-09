@@ -1,6 +1,6 @@
 import React from 'react';
 import { makePropsRenderer, fireEvent, screen } from 'utils/testUtils';
-import { Button } from '../button.component';
+import { ButtonComponent as Button } from '../button.component';
 
 describe('Button: Component', () => {
   const defaultProps = {};

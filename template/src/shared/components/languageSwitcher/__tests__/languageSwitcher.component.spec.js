@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { fireEvent, makeContextRenderer, spiedHistory } from 'utils/testUtils';
-import { LanguageSwitcher } from '../languageSwitcher.component';
+import { LanguageSwitcherComponent as LanguageSwitcher } from '../languageSwitcher.component';
 import { DEFAULT_LOCALE } from '../../../../i18n';
 
 describe('LanguageSwitcher: Component', () => {

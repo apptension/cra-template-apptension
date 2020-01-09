@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NotFound } from '../notFound.component';
+import { NotFoundComponent as NotFound } from '../notFound.component';
 import { makeContextRenderer } from 'utils/testUtils';
 
 describe('NotFound: Component', () => {

@@ -1,28 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory, useRouteMatch, useParams } from 'react-router';
+import PropTypes from 'prop-types';
 
 import { Select } from './languageSwitcher.styles';
-import { appLocales } from '../../../i18n';
-import { selectLocalesLanguage } from '../../../modules/locales/locales.selectors';
 
-export const LanguageSwitcher = () => {
-  const { lang } = useParams();
-  const match = useRouteMatch();
-  const history = useHistory();
-  const language = useSelector(selectLocalesLanguage);
+export const LanguageSwitcherComponent = ({ language, locales, handleChange }) => (
+  <Select value={language} onChange={handleChange}>
+    {locales.map(locale => (
+      <option key={locale} value={locale}>
+        {locale}
+      </option>
+    ))}
+  </Select>
+);
 
-  const handleChange = e => {
-    history.push(match.url.replace(lang, e.target.value));
-  };
-
-  return (
-    <Select value={language} onChange={handleChange}>
-      {appLocales.map((locale, index) => (
-        <option key={index} value={locale}>
-          {locale}
-        </option>
-      ))}
-    </Select>
-  );
+LanguageSwitcherComponent.propTypes = {
+  language: PropTypes.string.isRequired,
+  locales: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from '../home.component';
+import { HomeComponent as Home } from '../home.component';
 import { makeContextRenderer } from '../../../shared/utils/testUtils';
 
 describe('Home: Component', () => {

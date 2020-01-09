@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
-import { Button } from './button.component';
+import { ButtonComponent } from './button.component';
 import { BUTTON_TYPE_SECONDARY, BUTTON_TYPES, BUTTON_TYPE_PRIMARY } from './button.constants';
 
 const knobs = {
@@ -19,7 +19,7 @@ const renderComponent = (props = {}) => {
     mode: knobs.mode(BUTTON_TYPE_PRIMARY),
   };
 
-  return <Button {...defaultProps} {...props} />;
+  return <ButtonComponent {...defaultProps} {...props} />;
 };
 
 const stories = storiesOf('Shared|Button', module).addDecorator(withKnobs);

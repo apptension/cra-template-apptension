@@ -6,7 +6,7 @@ import { empty } from 'ramda';
 import { Container } from './button.styles';
 import { BUTTON_TYPES, BUTTON_TYPE_PRIMARY } from './button.constants';
 
-export const Button = ({ children, className, disabled, mode, onClick, ...other }) => (
+export const ButtonComponent = ({ children, className, disabled, mode, onClick, ...other }) => (
   <ThemeProvider theme={{ mode, disabled }}>
     <Container onClick={onClick} className={className} disabled={disabled} {...other}>
       {children}
@@ -14,7 +14,7 @@ export const Button = ({ children, className, disabled, mode, onClick, ...other 
   </ThemeProvider>
 );
 
-Button.propTypes = {
+ButtonComponent.propTypes = {
   children: PropTypes.any,
   className: PropTypes.any,
   disabled: PropTypes.bool,
@@ -22,7 +22,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
 };
 
-Button.defaultProps = {
+ButtonComponent.defaultProps = {
   mode: BUTTON_TYPE_PRIMARY,
   onClick: empty,
 };
