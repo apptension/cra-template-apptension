@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, useRouteMatch, useParams } from 'react-router';
+import { useHistory, useRouteMatch } from 'react-router';
 
 import { appLocales } from '../../../i18n';
 import { selectLocalesLanguage } from '../../../modules/locales/locales.selectors';

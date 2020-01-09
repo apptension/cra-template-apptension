@@ -11,6 +11,8 @@ import { store as fixturesStore } from '../../../fixtures/store';
 
 export * from '@testing-library/react';
 
+export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
+
 export const spiedHistory = (route = '/') => {
   const history = createMemoryHistory({ initialEntries: [route] });
   const pushSpy = jest.spyOn(history, 'push');
