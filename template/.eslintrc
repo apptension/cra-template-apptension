@@ -38,7 +38,8 @@
     }],
     "import/newline-after-import": ["error", { "count": 1 }],
     "prettier/prettier": "error",
-    "import/extensions": ["error", "ignorePackages", {"js": "never"}]
+    "import/extensions": ["error", "ignorePackages", {"js": "never"}],
+    "import/dynamic-import-chunkname": 0
   },
   "settings": {
     "import/core-modules": [
