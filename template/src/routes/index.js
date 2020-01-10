@@ -5,10 +5,12 @@ import { hot } from 'react-hot-loader/root';
 
 import { AppContainer as App } from './app.container';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
-import { Home } from './home';
-import { NotFound } from './notFound';
 import { ROUTES } from './app.constants';
+import { asyncComponent } from '../shared/utils/asyncComponent';
 //<-- IMPORT ROUTE -->
+
+const Home = asyncComponent(() => import('./home'), 'Home');
+const NotFound = asyncComponent(() => import('./notFound'), 'NotFound');
 
 const MatchedLanguageComponent = () => {
   const match = useRouteMatch();
