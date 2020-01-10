@@ -1,1 +1,4 @@
-export { {{ pascalCase name }}Component as {{ pascalCase name }} } from './{{ camelCase name }}.component';
+import { hot } from 'react-hot-loader/root';
+import { {{ pascalCase name }}Component } from './{{ camelCase name }}.component';
+
+export const {{ pascalCase name }} = hot({{ pascalCase name }}Component);
