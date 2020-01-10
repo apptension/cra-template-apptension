@@ -16,7 +16,6 @@ exports[`Home: Component should render correctly 1`] = `
   </svg>
   <select
     class="sc-bdVaJa bDWFJH"
-    data-testid="select"
   >
     <option
       value="en"

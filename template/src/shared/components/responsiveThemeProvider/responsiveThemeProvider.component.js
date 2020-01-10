@@ -28,9 +28,7 @@ export class ResponsiveThemeProvider extends PureComponent {
     return (
       <Fragment>
         <WindowListener eventType="resize" throttle={200} onEvent={this.handleResize} />
-        <ThemeProvider data-testid="provider" theme={this.state.theme}>
-          {this.props.children}
-        </ThemeProvider>
+        <ThemeProvider theme={this.state.theme}>{this.props.children}</ThemeProvider>
       </Fragment>
     );
   }

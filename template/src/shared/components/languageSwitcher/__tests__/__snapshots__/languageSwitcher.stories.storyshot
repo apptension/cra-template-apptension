@@ -4,7 +4,6 @@ exports[`Storyshots Shared|LanguageSwitcher Default 1`] = `
 <div>
   <select
     class="sc-bwzfXH uTxCW"
-    data-testid="select"
   >
     <option
       value="en"
