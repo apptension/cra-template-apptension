@@ -59,9 +59,9 @@ Use the best bits of ES6 and CSS to style your apps without stress.
 
 Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.
 
-### **_Jest & Enzyme_**
+### **_Jest & React Testing Library_**
 
-Use **_Jest_** for running tests, mocking, assertions and snapshots. Take advantage of **_Enzyme_** for rendering and interacting with **_React_** components.
+Use **_Jest_** for running tests, mocking, assertions and snapshots. Take advantage of **_React Testing Library_** for rendering and interacting with **_React_** components.
 
 ### **_Git pre-hooks_**
 
