@@ -3,7 +3,7 @@
 exports[`Storyshots Shared|LanguageSwitcher Default 1`] = `
 <div>
   <select
-    class="sc-bwzfXH uTxCW"
+    class=""
   >
     <option
       value="en"

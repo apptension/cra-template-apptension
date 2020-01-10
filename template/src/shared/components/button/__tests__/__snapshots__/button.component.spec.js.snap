@@ -1,9 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button: Component should render correctly 1`] = `
+.c0 {
+  padding: px px;
+}
+
 <div>
   <button
-    class="sc-bdVaJa bzmRJN"
+    class="c0"
   />
 </div>
 `;

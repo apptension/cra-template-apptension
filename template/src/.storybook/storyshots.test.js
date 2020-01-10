@@ -1,22 +1,22 @@
-import initStoryshots, { multiSnapshotWithOptions, Stories2SnapsConverter } from '@storybook/addon-storyshots';
-import { render } from "@testing-library/react";
 import React from 'react';
+import initStoryshots, { Stories2SnapsConverter } from '@storybook/addon-storyshots';
+import { addSerializer } from 'jest-specific-snapshot';
+import { styleSheetSerializer } from 'jest-styled-components/serializer';
+import { render } from '@testing-library/react';
 
-const reactTestingLibrarySerializer = {
-  print: (val, serialize, indent) => serialize(val.container),
-  test: (val) => val && val.hasOwnProperty("container")
-};
+addSerializer(styleSheetSerializer);
 
 initStoryshots({
   configPath: './src/.storybook',
   framework: 'react',
-  shallowSnapshot: true,
-  snapshotSerializers: [reactTestingLibrarySerializer],
-  test: multiSnapshotWithOptions({
-    renderer: render
-  }),
+  test: ({ story, context }) => {
+    const converter = new Stories2SnapsConverter({
+      snapshotsDirName: './__tests__/__snapshots__',
+    });
+    const snapshotFilename = converter.getSnapshotFileName(context);
+    const storyElement = story.render(context);
 
-  stories2snapsConverter: new Stories2SnapsConverter({
-    snapshotsDirName: './__tests__/__snapshots__',
-  }),
+    const {container} = render(storyElement)
+    expect(container).toMatchSpecificSnapshot(snapshotFilename);
+  },
 });
