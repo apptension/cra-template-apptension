@@ -1,5 +1,6 @@
 import React from 'react';
-import { makePropsRenderer, fireEvent, screen } from 'utils/testUtils';
+import { makePropsRenderer } from 'utils/testUtils';
+import { screen, fireEvent } from '@testing-library/react';
 import { Button } from '../index';
 
 describe('Button: Component', () => {

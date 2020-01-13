@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { fireEvent, makeContextRenderer, spiedHistory, screen } from 'utils/testUtils';
+import { makeContextRenderer, spiedHistory } from 'utils/testUtils';
+import { screen, fireEvent } from '@testing-library/react';
 import { LanguageSwitcher } from '../index';
 import { DEFAULT_LOCALE } from '../../../../i18n';
 
