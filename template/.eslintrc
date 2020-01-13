@@ -51,6 +51,11 @@
       "nock",
       "inquirer-directory",
       "utils/testUtils"
-    ]
+    ],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
