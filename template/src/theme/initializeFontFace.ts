@@ -2,8 +2,8 @@
 import { font } from './theme';
 
 function fontFace(
-  name,
-  src,
+  name: string,
+  src: string,
   fontWeight = 'normal',
   fontStyle = 'normal',
   extensions = ['woff2', 'woff', 'ttf'],

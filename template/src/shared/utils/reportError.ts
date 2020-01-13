@@ -4,7 +4,7 @@
  * @param error
  * @returns {null}
  */
-export default error => {
+export default (error: any): void => {
   console.error(error); //eslint-disable-line
   return null;
 };

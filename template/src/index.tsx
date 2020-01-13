@@ -9,6 +9,7 @@ import 'regenerator-runtime/runtime';
 // Import all the third party stuff
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
+// @ts-ignore
 import FontFaceObserver from 'fontfaceobserver';
 import 'normalize.css/normalize.css';
 import './theme/global';
@@ -39,6 +40,7 @@ const initialState = {};
 const store = configureStore(initialState);
 
 if (process.env.NODE_ENV === 'development') {
+  // @ts-ignore
   if (!window.__REDUX_DEVTOOLS_EXTENSION__) {
     const DevToolsComponent = require('./shared/utils/devtools.component').default;
     const devToolsRoot = window.document.createElement('div');
