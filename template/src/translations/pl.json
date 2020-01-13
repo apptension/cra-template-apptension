@@ -5,5 +5,6 @@
   "notFound.pageTitle": "Brak strony!",
   "notFound.title": "Błąd: 404",
   "unsupported.pageTitle": "Niewspierana przeglądarka",
-  "unsupported.title": "Niewspierana przeglądarka"
+  "unsupported.title": "Niewspierana przeglądarka",
+  "users.fetchUsers": "Pobierz użytkowników"
 }

@@ -1,3 +1,4 @@
 import nock from 'nock';
+import api from '../services/api';
 
-export default nock('http://localhost');
+export const mockApi = nock(api.defaults.baseURL);

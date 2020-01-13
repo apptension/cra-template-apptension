@@ -4,6 +4,9 @@ import '@testing-library/jest-dom/extend-expect';
 import 'isomorphic-fetch';
 import 'jest-styled-components';
 import nock from 'nock';
+import axios from 'axios';
+
+axios.defaults.adapter = require('axios/lib/adapters/http');
 
 nock.disableNetConnect();
 
