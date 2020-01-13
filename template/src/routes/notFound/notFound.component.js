@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import messages from './notFound.messages';

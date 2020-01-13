@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { HelmetProvider } from 'react-helmet-async';
 import { render } from '@testing-library/react';
 import { createStore } from 'redux';
 import { identity } from 'ramda';
@@ -36,11 +37,13 @@ export const ProvidersWrapper = ({ children, context = {} }) => {
 
   return (
     <Router history={routerHistory}>
-      <IntlProvider {...intlProviderMockProps}>
-        <Provider store={createStore(identity, store)}>
-          <Route path={routePath}>{children}</Route>
-        </Provider>
-      </IntlProvider>
+      <HelmetProvider>
+        <IntlProvider {...intlProviderMockProps}>
+          <Provider store={createStore(identity, store)}>
+            <Route path={routePath}>{children}</Route>
+          </Provider>
+        </IntlProvider>
+      </HelmetProvider>
     </Router>
   );
 };
