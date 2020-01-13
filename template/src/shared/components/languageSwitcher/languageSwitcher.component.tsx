@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Select } from './languageSwitcher.styles';
 
-export const LanguageSwitcherComponent = ({ language, locales, handleChange }) => (
+interface LanguageSwitcherProps {
+  language: string;
+  locales: string[];
+  handleChange?: React.ChangeEventHandler;
+}
+
+export const LanguageSwitcherComponent = ({ language, locales, handleChange }: LanguageSwitcherProps) => (
   <Select value={language} onChange={handleChange}>
     {locales.map(locale => (
       <option key={locale} value={locale}>

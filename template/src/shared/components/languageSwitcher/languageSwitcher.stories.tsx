@@ -6,10 +6,7 @@ import { store } from '../../../../fixtures/store';
 import { LanguageSwitcher } from '.';
 
 const renderComponent = (props = {}) => {
-  const defaultProps = {
-    match: {},
-    history: {},
-  };
+  const defaultProps = {};
 
   return <LanguageSwitcher {...defaultProps} {...props} />;
 };

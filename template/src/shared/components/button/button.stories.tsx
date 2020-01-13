@@ -7,8 +7,8 @@ import { ButtonComponent } from './button.component';
 import { BUTTON_TYPE_SECONDARY, BUTTON_TYPES, BUTTON_TYPE_PRIMARY } from './button.constants';
 
 const knobs = {
-  disabled: defaultValue => boolean('disabled', defaultValue),
-  mode: defaultValue => select('mode', BUTTON_TYPES, defaultValue),
+  disabled: (defaultValue: boolean) => boolean('disabled', defaultValue),
+  mode: (defaultValue: string) => select('mode', BUTTON_TYPES, defaultValue),
 };
 
 const renderComponent = (props = {}) => {

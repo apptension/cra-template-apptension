@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { empty } from 'ramda';
@@ -6,7 +6,15 @@ import { empty } from 'ramda';
 import { Container } from './button.styles';
 import { BUTTON_TYPES, BUTTON_TYPE_PRIMARY } from './button.constants';
 
-export const ButtonComponent = ({ children, className, disabled, mode, onClick, ...other }) => (
+interface ButtonComponentProps {
+  children?: ReactNode;
+  className?: string;
+  disabled?: boolean;
+  mode?: string;
+  onClick?: MouseEventHandler;
+}
+
+export const ButtonComponent = ({ children, className, disabled, mode, onClick, ...other }: ButtonComponentProps) => (
   <ThemeProvider theme={{ mode, disabled }}>
     <Container onClick={onClick} className={className} disabled={disabled} {...other}>
       {children}

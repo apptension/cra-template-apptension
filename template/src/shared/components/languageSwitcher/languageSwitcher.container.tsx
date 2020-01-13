@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router';
 
 import { appLocales } from '../../../i18n';
-import { selectLocalesLanguage } from '../../../modules/locales/locales.selectors';
+import { selectLocalesLanguage } from '../../../modules/locales';
 import { LanguageSwitcherComponent } from './languageSwitcher.component';
 
 export const LanguageSwitcherContainer = () => {
-  const match = useRouteMatch();
+  const match = useRouteMatch<{ lang: string }>();
   const history = useHistory();
   const language = useSelector(selectLocalesLanguage);
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     history.push(match.url.replace(match.params.lang, e.target.value));
   };
 
