@@ -9,6 +9,9 @@
   ],
   "description": "Template for Create React App made by Apptension",
   "main": "template.json",
+  "scripts": {
+    "auto-changelog": "auto-changelog -p --starting-commit c9d292d"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=8"
@@ -16,5 +19,8 @@
   "files": [
     "template",
     "template.json"
-  ]
+  ],
+  "dependencies": {
+    "auto-changelog": "^1.16.2"
+  }
 }
