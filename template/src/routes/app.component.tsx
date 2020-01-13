@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { FC, Fragment, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { IntlProvider, FormattedMessage } from 'react-intl';
@@ -11,10 +11,10 @@ import theme from '../theme/theme';
 
 interface AppComponentProps {
   language: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-export const AppComponent = ({ language, children }: AppComponentProps) => (
+export const AppComponent: FC<AppComponentProps> = ({ language, children }) => (
   <IntlProvider key={language} locale={language} messages={translationMessages[language]}>
     <HelmetProvider>
       <ThemeProvider theme={theme}>

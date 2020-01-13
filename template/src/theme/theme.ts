@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { Breakpoints, responsiveValue } from './media';
+import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
 export const color = {
@@ -17,7 +17,7 @@ export const font = {
 };
 
 export const border = {
-  [Border.REGULAR]: `1px solid ${color.border}`,
+  [Border.REGULAR]: `1px solid ${color[Color.BORDER]}`,
 };
 
 export const shadow = {
@@ -28,15 +28,15 @@ export const shadow = {
 
 export const size = {
   [Size.HEADER]: 80,
-  [Size.CONTENT_HORIZONTAL_PADDING]: responsiveValue(16, { [Breakpoints.TABLET]: 24 }),
-  [Size.CONTENT_VERTICAL_PADDING]: responsiveValue(8, { [Breakpoints.TABLET]: 16 }),
+  [Size.CONTENT_HORIZONTAL_PADDING]: responsiveValue(16, { [Breakpoint.TABLET]: 24 }),
+  [Size.CONTENT_VERTICAL_PADDING]: responsiveValue(8, { [Breakpoint.TABLET]: 16 }),
 };
 
-export const activeBreakpoint = responsiveValue(Breakpoints.MOBILE, {
-  [Breakpoints.DESKTOP_FULL]: Breakpoints.DESKTOP_FULL,
-  [Breakpoints.DESKTOP_WIDE]: Breakpoints.DESKTOP_WIDE,
-  [Breakpoints.DESKTOP]: Breakpoints.DESKTOP,
-  [Breakpoints.TABLET]: Breakpoints.TABLET,
+export const activeBreakpoint = responsiveValue(Breakpoint.MOBILE, {
+  [Breakpoint.DESKTOP_FULL]: Breakpoint.DESKTOP_FULL,
+  [Breakpoint.DESKTOP_WIDE]: Breakpoint.DESKTOP_WIDE,
+  [Breakpoint.DESKTOP]: Breakpoint.DESKTOP,
+  [Breakpoint.TABLET]: Breakpoint.TABLET,
 });
 
 export const zIndex = {

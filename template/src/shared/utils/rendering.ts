@@ -1,4 +1,4 @@
-import { always, Arity0Fn, Arity1Fn, complement, equals, ifElse, isNil } from 'ramda';
+import { always, Arity0Fn, complement, equals, ifElse, isNil } from 'ramda';
 
 export const renderWhen = (pred: (arg: any) => boolean, fn: Arity0Fn) => ifElse(pred, fn, always(null));
 

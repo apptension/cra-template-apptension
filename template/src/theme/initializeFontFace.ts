@@ -1,5 +1,6 @@
 /* eslint-disable import/no-dynamic-require */
 import { font } from './theme';
+import { Font } from './theme.constants';
 
 function fontFace(
   name: string,
@@ -8,7 +9,7 @@ function fontFace(
   fontStyle = 'normal',
   extensions = ['woff2', 'woff', 'ttf'],
   formats = ['woff2', 'woff', 'truetype']
-) {
+): string {
   const sources = extensions
     .map((ext, index) => `url(${require('../fonts/' + src + `.${ext}`)}) format("${formats[index]}")`)
     .join(',');
@@ -25,9 +26,9 @@ function fontFace(
 }
 /* eslint-enable import/no-dynamic-require */
 
-const generateFontsString = () => [fontFace(font.primary, 'OpenSans')].join('\n');
+const generateFontsString = (): string => [fontFace(font[Font.PRIMARY], 'OpenSans')].join('\n');
 
-export default () => {
+export default (): void => {
   const style = document.createElement('style');
   style.innerHTML = generateFontsString();
   document.head.appendChild(style);

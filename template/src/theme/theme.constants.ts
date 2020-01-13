@@ -1,33 +1,33 @@
-export const Color = {
-  WHITE: 'white',
-  BLACK: 'black',
-  BORDER: 'border',
-  DISABLED: 'disabled',
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  ERROR: 'error',
-};
+export enum Color {
+  WHITE,
+  BLACK,
+  BORDER,
+  DISABLED,
+  PRIMARY,
+  SECONDARY,
+  ERROR,
+}
 
-export const Font = {
-  PRIMARY: 'primary',
-};
+export enum Font {
+  PRIMARY,
+}
 
-export const Border = {
-  REGULAR: 'regular',
-};
+export enum Border {
+  REGULAR,
+}
 
-export const Shadow = {
-  PRIMARY: 'primary',
-};
+export enum Shadow {
+  PRIMARY,
+}
 
-export const Size = {
-  HEADER: 'header',
-  CONTENT_HORIZONTAL_PADDING: 'contentHorizontalPadding',
-  CONTENT_VERTICAL_PADDING: 'contentVerticalPadding',
-};
+export enum Size {
+  HEADER,
+  CONTENT_HORIZONTAL_PADDING,
+  CONTENT_VERTICAL_PADDING,
+}
 
-export const ZIndex = {
-  CONTENT: 'content',
-  HEADER: 'header',
-  OVERLAY: 'overlay',
-};
+export enum ZIndex {
+  CONTENT,
+  HEADER,
+  OVERLAY,
+}

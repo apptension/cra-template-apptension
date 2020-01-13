@@ -2,7 +2,8 @@
   "extends": [
     "react-app",
     "plugin:prettier/recommended",
-    "@apptension/eslint-config-react"
+    "@apptension/eslint-config-react",
+    "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "browser": true,
@@ -40,7 +41,10 @@
     "prettier/prettier": "error",
     "import/extensions": ["error", "ignorePackages", {"js": "never"}],
     "import/dynamic-import-chunkname": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/explicit-function-return-type": 0
   },
   "settings": {
     "import/core-modules": [

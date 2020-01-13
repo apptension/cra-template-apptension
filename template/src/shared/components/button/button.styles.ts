@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SECONDARY } from './button.constants';
 import { styleWhenTrue, themeBorder, themeColor, themeSize } from '../../../theme/getters';
-import { Color, Size } from '../../../theme/theme.constants';
+import { Border, Color, Size } from '../../../theme/theme.constants';
 
 const primaryButtonStyle = css`
   background: ${themeColor(Color.PRIMARY)};
@@ -22,7 +22,7 @@ const disabledButtonStyle = css`
 
 export const Container = styled.button`
   padding: ${themeSize(Size.CONTENT_VERTICAL_PADDING)}px ${themeSize(Size.CONTENT_HORIZONTAL_PADDING)}px;
-  border: ${themeBorder('regular')};
+  border: ${themeBorder(Border.REGULAR)};
   ${theme('mode', {
     [BUTTON_TYPE_PRIMARY]: primaryButtonStyle,
     [BUTTON_TYPE_SECONDARY]: secondaryButtonStyle,

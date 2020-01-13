@@ -10,6 +10,8 @@ import { Route, Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE, translationMessages } from '../../i18n';
 import { store as fixturesStore } from '../../../fixtures/store';
+import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
+import * as defaultTheme from '../../theme/theme';
 
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
 
@@ -23,7 +25,7 @@ export const spiedHistory = (route = '/') => {
 };
 
 export const ProvidersWrapper = ({ children, context = {} }) => {
-  const { router = {}, store = fixturesStore, messages } = context;
+  const { router = {}, store = fixturesStore, messages, theme = defaultTheme } = context;
   const { url = `/${DEFAULT_LOCALE}`, routePath = '/:lang/', history } = router;
 
   const routerHistory = history ?? createMemoryHistory({ initialEntries: [url] });
@@ -35,13 +37,15 @@ export const ProvidersWrapper = ({ children, context = {} }) => {
 
   return (
     <Router history={routerHistory}>
-      <HelmetProvider>
-        <IntlProvider {...intlProviderMockProps}>
-          <Provider store={createStore(identity, store)}>
-            <Route path={routePath}>{children}</Route>
-          </Provider>
-        </IntlProvider>
-      </HelmetProvider>
+      <ResponsiveThemeProvider theme={theme}>
+        <HelmetProvider>
+          <IntlProvider {...intlProviderMockProps}>
+            <Provider store={createStore(identity, store)}>
+              <Route path={routePath}>{children}</Route>
+            </Provider>
+          </IntlProvider>
+        </HelmetProvider>
+      </ResponsiveThemeProvider>
     </Router>
   );
 };

@@ -4,8 +4,6 @@ const createAction = actionCreator('STARTUP');
 
 export const startup = createAction<void>('startup');
 
-export interface StartupState {}
-
-const INITIAL_STATE: StartupState = {};
+const INITIAL_STATE = {};
 
 export const reducer = createImmutableReducer(INITIAL_STATE, {});

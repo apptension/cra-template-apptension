@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import produce from 'immer';
 import { identity } from 'ramda';
@@ -7,7 +7,7 @@ import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore(initialState = {}) {
+export default function configureStore(initialState = {}): Store {
   const middlewares = [sagaMiddleware];
 
   const enhancers: any = [];
@@ -17,6 +17,7 @@ export default function configureStore(initialState = {}) {
     // @ts-ignore
     enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   } else if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { persistState } = require('redux-devtools');
 
     const getDebugSessionKey = () => {

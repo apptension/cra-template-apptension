@@ -7,7 +7,7 @@ import { LanguageSwitcher } from '../../shared/components/languageSwitcher';
 import { Container, Logo } from './home.styles';
 import { H1 } from '../../theme/typography';
 
-export const HomeComponent = () => {
+export const HomeComponent: React.FC = () => {
   const { formatMessage } = useIntl();
 
   return (

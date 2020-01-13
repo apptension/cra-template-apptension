@@ -56,7 +56,7 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-const render = () => {
+const render = (): void => {
   const NextApp = require('./routes').default;
 
   ReactDOM.render(
@@ -69,7 +69,7 @@ const render = () => {
   );
 };
 
-const initApp = async () => {
+const initApp = async (): Promise<void> => {
   const detection = new UnsupportedBrowserDetection();
   if (!detection.isSupported()) {
     setUnsupportedClasses();
@@ -79,6 +79,7 @@ const initApp = async () => {
   // Chunked polyfill for browsers without Intl support
   if (!window.Intl) {
     new Promise(resolve => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       resolve(require('intl'));
     })
       .then(() => Promise.all([require('intl/locale-data/jsonp/en.js'), require('intl/locale-data/jsonp/pl.js')]))

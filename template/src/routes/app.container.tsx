@@ -10,7 +10,7 @@ import { startup } from '../modules/startup';
 import { AppComponent } from './app.component';
 
 interface AppContainerProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const AppContainer = ({ children }: AppContainerProps) => {
