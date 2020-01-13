@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
+import { screen, getNodeText } from '@testing-library/react';
 import { ResponsiveThemeProvider } from '../responsiveThemeProvider.component';
-import { makePropsRenderer, screen, getNodeText } from '../../../utils/testUtils';
+import { makePropsRenderer } from '../../../utils/testUtils';
 
 const ThemeConsumer = () => {
   const theme = useContext(ThemeContext);

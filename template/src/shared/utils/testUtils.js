@@ -11,8 +11,6 @@ import { IntlProvider } from 'react-intl';
 import { DEFAULT_LOCALE, translationMessages } from '../../i18n';
 import { store as fixturesStore } from '../../../fixtures/store';
 
-export * from '@testing-library/react';
-
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
 
 export const spiedHistory = (route = '/') => {
