@@ -9,7 +9,12 @@ import { GlobalStyle } from '../theme/global';
 import messages from './app.messages';
 import theme from '../theme/theme';
 
-export const AppComponent = ({ language, children }) => (
+interface AppComponentProps {
+  language: string;
+  children: Node;
+}
+
+export const AppComponent = ({ language, children }: AppComponentProps) => (
   <IntlProvider key={language} locale={language} messages={translationMessages[language]}>
     <HelmetProvider>
       <ThemeProvider theme={theme}>

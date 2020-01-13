@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LOCALE } from '../i18n';
-import { selectLocalesLanguage } from '../modules/locales';
+import { selectLocalesLanguage, setLanguage } from '../modules/locales';
 import initializeFontFace from '../theme/initializeFontFace';
-import { startup } from '../modules/startup/startup.redux';
-import { setLanguage } from '../modules/locales/locales.redux';
+import { startup } from '../modules/startup';
 import { AppComponent } from './app.component';
 
-export const AppContainer = ({ children }) => {
+interface AppContainerProps {
+  children: Node;
+}
+
+export const AppContainer = ({ children }: AppContainerProps) => {
   const language = useSelector(selectLocalesLanguage);
   const dispatch = useDispatch();
   const { lang } = useParams();

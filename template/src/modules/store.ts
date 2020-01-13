@@ -10,9 +10,11 @@ const sagaMiddleware = createSagaMiddleware();
 export default function configureStore(initialState = {}) {
   const middlewares = [sagaMiddleware];
 
-  const enhancers = [];
+  const enhancers: any = [];
 
+  // @ts-ignore
   if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    // @ts-ignore
     enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   } else if (process.env.NODE_ENV === 'development') {
     const { persistState } = require('redux-devtools');
@@ -39,6 +41,7 @@ export default function configureStore(initialState = {}) {
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const createReducers = require('./reducers').default;
+      // @ts-ignore
       const nextReducers = createReducers(store.asyncReducers);
 
       store.replaceReducer(nextReducers);

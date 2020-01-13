@@ -74,6 +74,11 @@
     "immer": "5.1.0",
     "react-test-renderer": "^16.12.0",
     "@loadable/component": "^5.12.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "@types/ramda": "^0.26.39",
+    "@types/react-redux": "^7.1.5",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/styled-components": "^4.4.2"
   }
 }
