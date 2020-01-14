@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
@@ -22,22 +21,24 @@ const renderComponent = (props = {}) => {
   return <ButtonComponent {...defaultProps} {...props} />;
 };
 
-const stories = storiesOf('Shared|Button', module).addDecorator(withKnobs);
+export default {
+  title: 'Shared|Button',
+  decorators: [withKnobs],
+};
 
-stories.add('Primary', () => renderComponent());
-stories.add('Primary - Disabled', () =>
+export const Primary = () => renderComponent();
+export const PrimaryDisabled = () =>
   renderComponent({
     disabled: knobs.disabled(true),
-  })
-);
-stories.add('Secondary', () =>
+  });
+
+export const Secondary = () =>
   renderComponent({
     mode: knobs.mode(BUTTON_TYPE_SECONDARY),
-  })
-);
-stories.add('Secondary - Disabled', () =>
+  });
+
+export const SecondaryDisabled = () =>
   renderComponent({
     mode: knobs.mode(BUTTON_TYPE_SECONDARY),
     disabled: knobs.disabled(true),
-  })
-);
+  });

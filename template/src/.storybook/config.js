@@ -5,9 +5,9 @@ import { withIntl, withTheme } from './decorators';
 import theme from '../theme/theme';
 
 function loadStories() {
-  // automatically import all story js files that end with *.stories.js
-  const req = requireContext('../', true, /\.stories\.js$/);
-  req.keys().forEach(filename => req(filename));
+  // automatically import all story js files that end with *.stories.tsx
+  const req = requireContext('../', true, /\.stories\.tsx$/);
+  return req.keys().map(filename => req(filename));
 }
 
 addDecorator(withIntl);
