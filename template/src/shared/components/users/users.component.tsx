@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { Container } from './users.styles.ts';
+import { Container } from './users.styles';
 import messages from './users.messages';
+import { User } from '../../../modules/users/users.redux';
 
-export const UsersComponent = ({ users, fetchUsers }) => {
+interface UsersComponentProps {
+  users: User[];
+  fetchUsers: () => {};
+}
+
+export const UsersComponent: FC<UsersComponentProps> = ({ users, fetchUsers }) => {
   return (
     <Container>
       <button type="button" onClick={fetchUsers}>
@@ -22,6 +28,6 @@ export const UsersComponent = ({ users, fetchUsers }) => {
 };
 
 UsersComponent.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  users: PropTypes.array.isRequired,
   fetchUsers: PropTypes.func.isRequired,
 };

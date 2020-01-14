@@ -9,7 +9,7 @@ export const USERS_URL = '/users';
 function* fetchUsers() {
   try {
     const { data } = yield api.get(USERS_URL);
-    yield put(usersActions.fetchUsersSuccess({ users: data }));
+    yield put(usersActions.fetchUsersSuccess(data));
   } catch (error) {
     reportError(error);
   }
