@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate project
+      run: npx create-react-app tmp --template file:.
+    - name: Run tests
+      run: |
+        cd tmp
+        yarn test
