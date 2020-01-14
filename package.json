@@ -10,7 +10,8 @@
   "description": "Template for Create React App made by Apptension",
   "main": "template.json",
   "scripts": {
-    "auto-changelog": "auto-changelog -p --starting-commit c9d292d"
+    "auto-changelog": "auto-changelog -p -l false",
+    "version": "yarn auto-changelog && git add CHANGELOG.md"
   },
   "license": "MIT",
   "engines": {
