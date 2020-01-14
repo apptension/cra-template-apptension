@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResponsiveThemeProvider: Component should render correctly 1`] = `
+<Fragment>
+  <WindowListener
+    eventType="resize"
+    onEvent={[Function]}
+    throttle={200}
+  />
+  <ThemeProvider
+    theme={
+      Object {
+        "children": "content",
+        "theme": Object {
+          "foo": "bar",
+        },
+      }
+    }
+  />
+</Fragment>
+`;

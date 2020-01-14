@@ -1,0 +1,20 @@
+{
+  "name": "cra-template-apptension",
+  "version": "1.0.0",
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "Apptension"
+  ],
+  "description": "The Apptension template for Create React App.",
+  "main": "template.json",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "template",
+    "template.json"
+  ]
+}

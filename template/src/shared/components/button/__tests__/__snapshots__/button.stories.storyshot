@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button Primary - Disabled 1`] = `
+<div>
+  <button
+    className="sc-bdVaJa jSSijY"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Button Primary 1`] = `
+<div>
+  <button
+    className="sc-bdVaJa cGLHtR"
+    onClick={[Function]}
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Button Secondary - Disabled 1`] = `
+<div>
+  <button
+    className="sc-bdVaJa idDHeH"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Button Secondary 1`] = `
+<div>
+  <button
+    className="sc-bdVaJa VYyUk"
+    onClick={[Function]}
+  >
+    Press me
+  </button>
+</div>
+`;
