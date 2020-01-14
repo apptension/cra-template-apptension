@@ -259,6 +259,15 @@ Here's a curated list of packages that you should have knowledge of, before star
 
 - [ ] [Plop](https://github.com/amwmedia/plop)
 
+
+## Release notes
+
+[CHANGELOG.md](./CHANGELOG.md)
+
+## Development & Contributing
+
+[CONTRIBUTING.md](CONTRIBUTING.md)
+
 ## License
 
 This project is licensed under the MIT license, Copyright (c) 2017 Apptension. For more information see LICENSE.md.
