@@ -1,4 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { prop } from 'ramda';
 
-export const select{{ pascalCase name }}Domain = prop('{{ camelCase name }}');
+import { {{ pascalCase name }}State } from './{{ camelCase name }}.redux';
+
+export const select{{ pascalCase name }}Domain = prop<string, any>('{{ camelCase name }}');
+
+export const select{{ pascalCase name }} = createSelector<any, {{ pascalCase name }}State, any>(select{{ pascalCase name }}Domain, prop('{{ camelCase name }}'));

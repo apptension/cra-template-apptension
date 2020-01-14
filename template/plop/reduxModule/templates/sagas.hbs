@@ -1,8 +1,18 @@
 import { all, put, takeLatest } from 'redux-saga/effects';
-import reportError from '../../shared/utils/reportError';
 
-import { {{ pascalCase name }}Types, {{ pascalCase name }}Actions } from './{{ camelCase name }}.redux';
+import reportError from '../../shared/utils/reportError';
+import { {{ camelCase name }}Actions } from '.';
+import api from '../../shared/services/api';
+
+function* fetch{{ pascalCase name }}() {
+  try {
+    const { data } = yield api.get('/');
+    yield put({{ camelCase name }}Actions.fetch{{ pascalCase name }}Success(data));
+  } catch (error) {
+    reportError(error);
+  }
+}
 
 export function* watch{{ pascalCase name }}() {
-  yield all([]);
+  yield all([takeLatest({{ camelCase name }}Actions.fetch{{ pascalCase name }}, fetch{{ pascalCase name }})]);
 }
