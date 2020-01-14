@@ -28,9 +28,7 @@ describe('Users: Component', () => {
       }
     );
 
-    users.map(user => {
-      expect(screen.getByText(user.name)).toBeInTheDocument;
-    });
+    users.map(user => expect(screen.getByText(user.name)).toBeInTheDocument);
   });
 
   it('should call dispatch on button click', () => {

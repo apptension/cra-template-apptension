@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { withRedux, withRouter } from '../../../../.storybook/decorators';
 import { store } from '../../../../fixtures/store';
@@ -11,8 +10,10 @@ const renderComponent = (props = {}) => {
   return <Users {...defaultProps} {...props} />;
 };
 
-const stories = storiesOf('Shared|Users', module)
-  .addDecorator(withRedux(store))
-  .addDecorator(withRouter());
+export default {
+  title: 'Shared|Users',
+  component: Users,
+  decorators: [withRedux(store), withRouter()]
+}
 
-stories.add('Default', () => renderComponent());
+export const Default = () => renderComponent();

@@ -8,12 +8,12 @@ import { usersMock } from '../../../../fixtures/users';
 describe('Users: sagas', () => {
   const defaultState = {};
 
-  it('should implement a test', async () => {
+  it('should fetch users', async () => {
     mockApi.get(USERS_URL).reply(200, usersMock);
 
     await expectSaga(watchUsers)
       .withState(defaultState)
-      .put(usersActions.fetchUsersSuccess({ users: usersMock }))
+      .put(usersActions.fetchUsersSuccess(usersMock))
       .dispatch(usersActions.fetchUsers())
       .silentRun();
   });
