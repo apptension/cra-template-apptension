@@ -1,13 +1,14 @@
-import { select{{ pascalCase name }}Domain } from '../{{ camelCase name }}.selectors';
+import { {{ camelCase name }}Selectors } from '..';
+import { INITIAL_STATE } from '../{{ camelCase name }}.redux';
 
 describe('{{ pascalCase name }}: selectors', () => {
   const defaultState = {
-    {{ camelCase name }}: {},
-  }
+    {{ camelCase name }}: INITIAL_STATE,
+  };
 
   describe('select{{ pascalCase name }}Domain', () => {
     it('should select a domain', () => {
-      expect(select{{ pascalCase name }}Domain(defaultState)).toEqual(defaultState.{{ camelCase name }});
+      expect({{ camelCase name }}Selectors.select{{ pascalCase name }}Domain(defaultState)).toEqual(defaultState.{{ camelCase name }});
     });
   });
 });

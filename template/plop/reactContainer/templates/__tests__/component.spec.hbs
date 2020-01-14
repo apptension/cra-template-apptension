@@ -1,13 +1,13 @@
 import React from 'react';
-import { makePropsRenderer } from 'utils/testUtils';
+import { makeContextRenderer } from 'utils/testUtils';
 
-import { {{ pascalCase name }}Component } from '../{{ camelCase name }}.component';
+import { {{ pascalCase name }}Container } from '../{{ camelCase name }}.container';
 
-describe('{{ pascalCase name }}: Component', () => {
+describe('{{ pascalCase name }}: Container', () => {
   const defaultProps = {};
 
   const component = props => <{{ pascalCase name }}Component {...defaultProps} {...props} />;
-  const render = makePropsRenderer(component);
+  const render = makeContextRenderer(component);
 
   it('should render correctly', () => {
     const { container } = render();

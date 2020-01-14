@@ -12,19 +12,23 @@ module.exports = (plop) => {
     }],
     actions: [{
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/index.js',
+      path: 'src/modules/{{ camelCase name }}/index.ts',
       templateFile: path.join(templatesPath, 'index.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.redux.js',
+      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.actions.ts',
+      templateFile: path.join(templatesPath, 'actions.hbs'),
+    },{
+      type: 'add',
+      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.redux.ts',
       templateFile: path.join(templatesPath, 'redux.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.sagas.js',
+      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.sagas.ts',
       templateFile: path.join(templatesPath, 'sagas.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.selectors.js',
+      path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.selectors.ts',
       templateFile: path.join(templatesPath, 'selectors.hbs'),
     }, {
       type: 'add',
@@ -40,22 +44,22 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, '__tests__/selectors.spec.hbs'),
     }, {
       type: 'modify',
-      path: 'src/modules/reducers.js',
+      path: 'src/modules/reducers.ts',
       pattern: /(\/\/<-- IMPORT MODULE REDUCER -->)/g,
       template: 'import { reducer as {{ camelCase name }}Reducer } from \'./{{ camelCase name }}/{{ camelCase name }}.redux\';\n$1',
     }, {
       type: 'modify',
-      path: 'src/modules/reducers.js',
+      path: 'src/modules/reducers.ts',
       pattern: /(\/\/<-- INJECT MODULE REDUCER -->)/g,
       template: '{{ camelCase name }}: {{ camelCase name }}Reducer,\n    $1',
     }, {
       type: 'modify',
-      path: 'src/modules/sagas.js',
+      path: 'src/modules/sagas.ts',
       pattern: /(\/\/<-- IMPORT MODULE SAGA -->)/g,
       template: 'import { watch{{ pascalCase name }} } from \'./{{ camelCase name }}/{{ camelCase name }}.sagas\';\n$1',
     }, {
       type: 'modify',
-      path: 'src/modules/sagas.js',
+      path: 'src/modules/sagas.ts',
       pattern: /(\/\/<-- INJECT MODULE SAGA -->)/g,
       template: 'fork(watch{{ pascalCase name }}),\n      $1',
     }],
