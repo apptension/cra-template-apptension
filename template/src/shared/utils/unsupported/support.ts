@@ -23,8 +23,8 @@ export const setUnsupportedClasses = () => {
 
     const translation = translationMessages[DEFAULT_LOCALE];
 
-    const unsupportedPageElement = document.querySelector('.unsupported-page');
-    const appElement = document.querySelector('#app');
+    const unsupportedPageElement: HTMLElement = document.querySelector('.unsupported-page');
+    const appElement: HTMLElement = document.querySelector('#app');
 
     unsupportedPageElement.style.display = 'block';
     appElement.style.display = 'none';

@@ -1,7 +1,30 @@
-import UAParser from 'ua-parser-js';
+import { UAParser } from 'ua-parser-js';
 import semverCompare from 'semver-compare';
+import { pickBy } from 'ramda';
 
-const DEFAULT_SUPPORTED_BROWSERS_CONFIG = {
+type Platform = 'desktop' | 'tablet' | 'mobile';
+
+type BrowserVersion = number | string;
+
+type RequirementType = 'browser' | 'minversion' | 'versions' | 'os' | 'minos';
+
+interface BrowserRequirement {
+  browser: string;
+  minversion?: BrowserVersion;
+  versions?: BrowserVersion[];
+  os?: string;
+  minos?: string;
+}
+
+type BrowserCheckResults = {
+  [K in RequirementType]: boolean;
+};
+
+type BrowserConfig = {
+  [K in Platform]: BrowserRequirement[];
+};
+
+const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
   desktop: [
     {
       browser: 'firefox',
@@ -66,6 +89,8 @@ const DEFAULT_SUPPORTED_BROWSERS_CONFIG = {
 
 export default class UnsupportedBrowserDetection {
   parser = new UAParser();
+  private supportedBrowsersConfig: BrowserConfig;
+  private readonly isInAppBrowserSupported: boolean;
 
   constructor(config = DEFAULT_SUPPORTED_BROWSERS_CONFIG, isInAppBrowserSupported = true) {
     this.supportedBrowsersConfig = config;
@@ -98,14 +123,14 @@ export default class UnsupportedBrowserDetection {
     return this.parser.getOS();
   }
 
-  get deviceType() {
+  get deviceType(): Platform {
     const { type = 'desktop' } = this.device;
-    return type;
+    return type as Platform;
   }
 
-  compareVersions(a, b) {
-    if (typeof a === 'string' || a instanceof String) {
-      return semverCompare(a, b) <= 0;
+  compareVersions(a: BrowserVersion, b: string) {
+    if (typeof a === 'string' || (a as any) instanceof String) {
+      return semverCompare(a as string, b) <= 0;
     }
 
     return a <= parseInt(b, 10);
@@ -122,13 +147,13 @@ export default class UnsupportedBrowserDetection {
 
     const { version: browserVersion } = this.browser;
 
-    return !this.supportedBrowsersConfig[this.deviceType].every(options => {
+    return this.supportedBrowsersConfig[this.deviceType].some((options: BrowserRequirement) => {
       const { os, minos, browser, minversion, versions } = options;
       const parsedVersion = isNaN(parseInt(browserVersion, 10))
         ? browserVersion.toLocaleLowerCase()
         : parseInt(browserVersion, 10);
 
-      const checked = {
+      const checked: BrowserCheckResults = {
         os: os === this.os.name.toLowerCase(),
         minos: this.compareVersions(minos, this.os.version),
         browser: browser === this.browser.name.toLowerCase(),
@@ -136,11 +161,8 @@ export default class UnsupportedBrowserDetection {
         versions: versions ? versions.indexOf(parsedVersion) >= 0 : false,
       };
 
-      return (
-        Object.keys(options)
-          .map(key => checked[key])
-          .indexOf(false) !== -1
-      );
+      const requiredChecks: BrowserCheckResults = pickBy((val, key) => Object.keys(options).includes(key), checked);
+      return !Object.values(requiredChecks).includes(false);
     });
   }
 }

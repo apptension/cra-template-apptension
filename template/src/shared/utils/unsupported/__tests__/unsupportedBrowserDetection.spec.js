@@ -90,7 +90,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
 
       const detector = component({ config });
 
-      expect(detector.isSupported()).toBeTruthy();
+      expect(detector.isSupported()).toBe(true);
     });
 
     it('should return false for unsupported browser', () => {
@@ -98,7 +98,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
 
       const detector = component({ config });
 
-      expect(detector.isSupported()).toBeFalsy();
+      expect(detector.isSupported()).toBe(false);
     });
 
     it('should return true when is in-app browser and isInAppBrowserSupported equals true', () => {
@@ -106,7 +106,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
 
       const detector = component({ config, isInAppBrowserSupported: true });
 
-      expect(detector.isSupported()).toBeTruthy();
+      expect(detector.isSupported()).toBe(true);
     });
 
     it('should return false when is in-app browser and isInAppBrowserSupported equals false', () => {
@@ -114,13 +114,13 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
 
       const detector = component({ config, isInAppBrowserSupported: false });
 
-      expect(detector.isSupported()).toBeFalsy();
+      expect(detector.isSupported()).toBe(false);
     });
 
     it('should return true for crawler bots', () => {
       setUserAgent(CRAWLER_UA);
       const detector = component({ config });
-      expect(detector.isSupported()).toBeTruthy();
+      expect(detector.isSupported()).toBe(true);
     });
   });
 });
