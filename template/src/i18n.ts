@@ -6,12 +6,14 @@ export const LOCALES = {
   POLISH: 'pl',
 };
 
+type MessagesObject = { [key: string]: string };
+
 export const DEFAULT_LOCALE = LOCALES.ENGLISH;
 
 export const appLocales = [LOCALES.ENGLISH, LOCALES.POLISH];
 
-export const formatTranslationMessages = (locale, messages) => {
-  const defaultFormattedMessages =
+export const formatTranslationMessages = (locale: string, messages: MessagesObject): MessagesObject => {
+  const defaultFormattedMessages: MessagesObject =
     locale !== DEFAULT_LOCALE ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages) : {};
   return Object.keys(messages).reduce((formattedMessages, key) => {
     const formattedMessage =
