@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Shared|LanguageSwitcher Default 1`] = `
+<div>
+  <select
+    class=""
+  >
+    <option
+      value="en"
+    >
+      en
+    </option>
+    <option
+      value="pl"
+    >
+      pl
+    </option>
+  </select>
+</div>
+`;

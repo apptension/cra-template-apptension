@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Shared|Button Primary 1`] = `
+.c0 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #42f272;
+}
+
+<div>
+  <button
+    class="c0"
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Shared|Button Primary Disabled 1`] = `
+.c0 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #42f272;
+  background: #DDDDE0;
+  color: #000000;
+}
+
+<div>
+  <button
+    class="c0"
+    disabled=""
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Shared|Button Secondary 1`] = `
+.c0 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #2249f9;
+}
+
+<div>
+  <button
+    class="c0"
+  >
+    Press me
+  </button>
+</div>
+`;
+
+exports[`Storyshots Shared|Button Secondary Disabled 1`] = `
+.c0 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #2249f9;
+  background: #DDDDE0;
+  color: #2249f9;
+}
+
+<div>
+  <button
+    class="c0"
+    disabled=""
+  >
+    Press me
+  </button>
+</div>
+`;
