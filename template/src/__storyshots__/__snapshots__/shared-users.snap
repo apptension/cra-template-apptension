@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Shared|Users Default 1`] = `
+<div>
+  <div
+    class=""
+  >
+    <button
+      type="button"
+    >
+      Fetch users
+    </button>
+    <ul>
+      <li>
+        Arielle Schultz
+      </li>
+      <li>
+        Geoffrey Mayer
+      </li>
+      <li>
+        Burnice Hirthe
+      </li>
+      <li>
+        Marques Bogisich
+      </li>
+      <li>
+        Andre Hackett
+      </li>
+      <li>
+        Gloria Reichel
+      </li>
+      <li>
+        Zoila Lowe
+      </li>
+      <li>
+        Everette Kihn
+      </li>
+      <li>
+        Araceli Fritsch
+      </li>
+      <li>
+        Vanessa Jast
+      </li>
+      <li>
+        Hanna Spencer
+      </li>
+      <li>
+        Jeff VonRueden
+      </li>
+      <li>
+        Raheem Zemlak
+      </li>
+      <li>
+        Arnoldo Effertz
+      </li>
+      <li>
+        Jacinthe Corwin
+      </li>
+      <li>
+        Nathaniel Kris
+      </li>
+      <li>
+        Nya Conn
+      </li>
+      <li>
+        Julianne Brekke
+      </li>
+      <li>
+        Margarete Keebler
+      </li>
+      <li>
+        Marcellus Dibbert
+      </li>
+      <li>
+        Cindy Schoen
+      </li>
+      <li>
+        Alberto Considine
+      </li>
+      <li>
+        Dorothy Stokes
+      </li>
+      <li>
+        Jordy Cartwright
+      </li>
+      <li>
+        Guy Herman
+      </li>
+      <li>
+        Colt Botsford
+      </li>
+      <li>
+        Jarrell Hackett
+      </li>
+      <li>
+        Jacky Schultz
+      </li>
+      <li>
+        Leonel Jast
+      </li>
+      <li>
+        Khalid Wunsch
+      </li>
+      <li>
+        Lila Price
+      </li>
+      <li>
+        Edwin Durgan
+      </li>
+      <li>
+        Javonte Dibbert
+      </li>
+      <li>
+        Eliane Bogan
+      </li>
+      <li>
+        Elton Lowe
+      </li>
+      <li>
+        Dave Tremblay
+      </li>
+      <li>
+        Trystan McDermott
+      </li>
+      <li>
+        Odell Hickle
+      </li>
+      <li>
+        Garth Dickens
+      </li>
+      <li>
+        Destany Brakus
+      </li>
+      <li>
+        Michael Fritsch
+      </li>
+      <li>
+        Clara Lebsack
+      </li>
+      <li>
+        Brittany Volkman
+      </li>
+      <li>
+        Joesph Bauch
+      </li>
+      <li>
+        Milo Carter
+      </li>
+      <li>
+        Frederik Price
+      </li>
+      <li>
+        Jeffry Gutmann
+      </li>
+      <li>
+        Wilber Crooks
+      </li>
+      <li>
+        Bernhard Rempel
+      </li>
+      <li>
+        Arlie Barton
+      </li>
+      <li>
+        Alvena Goldner
+      </li>
+      <li>
+        Cleta Goyette
+      </li>
+      <li>
+        Cheyenne Boyer
+      </li>
+      <li>
+        Estella Oberbrunner
+      </li>
+      <li>
+        Hubert Wisoky
+      </li>
+      <li>
+        Jaquan O'Hara
+      </li>
+      <li>
+        Cleora Hansen
+      </li>
+      <li>
+        Rodrigo Padberg
+      </li>
+      <li>
+        Eliezer Stiedemann
+      </li>
+      <li>
+        Manuel Davis
+      </li>
+      <li>
+        Evalyn Hudson
+      </li>
+      <li>
+        Cody Sporer
+      </li>
+      <li>
+        Mack McClure
+      </li>
+      <li>
+        Loy McKenzie
+      </li>
+      <li>
+        Holden Bradtke
+      </li>
+      <li>
+        Darron Ernser
+      </li>
+      <li>
+        Noelia Legros
+      </li>
+      <li>
+        Raymundo Bauch
+      </li>
+      <li>
+        Liana Sanford
+      </li>
+      <li>
+        Jaeden Haley
+      </li>
+      <li>
+        Pamela Carroll
+      </li>
+      <li>
+        Camden Langworth
+      </li>
+      <li>
+        Jensen Yost
+      </li>
+      <li>
+        Tyreek McKenzie
+      </li>
+      <li>
+        Jaunita Abernathy
+      </li>
+      <li>
+        Geovanny Bergnaum
+      </li>
+      <li>
+        Freda Treutel
+      </li>
+      <li>
+        Hector Bergnaum
+      </li>
+      <li>
+        Genoveva Hessel
+      </li>
+      <li>
+        Armani Funk
+      </li>
+      <li>
+        Janiya Collins
+      </li>
+      <li>
+        Mariela Gutkowski
+      </li>
+      <li>
+        Rusty Block
+      </li>
+      <li>
+        Michel Dare
+      </li>
+      <li>
+        Destini Miller
+      </li>
+      <li>
+        Reynold Tillman
+      </li>
+      <li>
+        Christop Smith
+      </li>
+      <li>
+        Heather Brekke
+      </li>
+      <li>
+        Prince Reichert
+      </li>
+      <li>
+        Jessica Witting
+      </li>
+      <li>
+        Kane Funk
+      </li>
+      <li>
+        Anderson Schiller
+      </li>
+      <li>
+        Trent Runolfsdottir
+      </li>
+      <li>
+        Madeline Collier
+      </li>
+      <li>
+        Alden Larson
+      </li>
+      <li>
+        Bailey Kihn
+      </li>
+      <li>
+        Veda Wiza
+      </li>
+      <li>
+        Javier Block
+      </li>
+      <li>
+        Scotty Dickens
+      </li>
+      <li>
+        Reva Heller
+      </li>
+    </ul>
+  </div>
+</div>
+`;
