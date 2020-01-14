@@ -17,4 +17,4 @@ jobs:
     - name: Run tests
       run: |
         cd tmp
-        yarn test
+        CI=true yarn test
