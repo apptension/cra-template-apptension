@@ -1,26 +1,18 @@
-import React, { FC } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { withRouter, withRedux } from '../../../../.storybook/decorators';
 
-import { Select } from './languageSwitcher.styles';
+import { store } from '../../../../fixtures/store';
+import { LanguageSwitcher } from '.';
 
-interface LanguageSwitcherProps {
-  language: string;
-  locales: string[];
-  handleChange?: React.ChangeEventHandler;
-}
+const renderComponent = (props = {}) => {
+  const defaultProps = {};
 
-export const LanguageSwitcherComponent: FC<LanguageSwitcherProps> = ({ language, locales, handleChange }) => (
-  <Select value={language} onChange={handleChange}>
-    {locales.map(locale => (
-      <option key={locale} value={locale}>
-        {locale}
-      </option>
-    ))}
-  </Select>
-);
-
-LanguageSwitcherComponent.propTypes = {
-  language: PropTypes.string.isRequired,
-  locales: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  return <LanguageSwitcher {...defaultProps} {...props} />;
 };
+
+export default {
+  title: 'Shared|LanguageSwitcher',
+  decorators: [withRedux(store), withRouter()],
+};
+
+export const Default = () => renderComponent();

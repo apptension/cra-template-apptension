@@ -5,7 +5,7 @@
     "lint": "yarn run lint:js && yarn run lint:css",
     "lint:css": "stylelint './src/**/*.js'",
     "lint:js": "eslint .",
-    "storybook": "start-storybook --config-dir './src/.storybook' --port 5000",
+    "storybook": "start-storybook --port 5000",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addon-storyshots": "^5.0.6",
     "@storybook/react": "^5.3.3",
+    "@storybook/preset-create-react-app": "^1.5.1",
     "@testing-library/react-hooks": "^2.0.1",
     "axios": "^0.18.0",
     "babel-loader": "8.0.5",

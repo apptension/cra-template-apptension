@@ -6,8 +6,8 @@ import { identity } from 'ramda';
 import { createStore } from 'redux';
 export { default as withRouter } from 'storybook-react-router';
 
-import { translationMessages, DEFAULT_LOCALE } from '../i18n';
-import { GlobalStyle } from '../theme/global';
+import { GlobalStyle } from '../src/theme/global';
+import { DEFAULT_LOCALE, translationMessages } from '../src/i18n';
 
 export const withTheme = theme => story =>
   <ThemeProvider theme={theme}>
