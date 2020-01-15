@@ -38,19 +38,21 @@ export const spiedHistory = (route = '/') => {
   };
 };
 
-type ProvidersWrapperProps = {
-  children: ReactNode;
-  context: {
-    router?: {
-      url?: string;
-      routePath?: string;
-      history?: MemoryHistory;
-    };
-    store?: GlobalState;
-    messages?: MessagesObject;
-    theme?: object;
+interface ContextData {
+  router?: {
+    url?: string;
+    routePath?: string;
+    history?: MemoryHistory;
   };
-};
+  store?: GlobalState;
+  messages?: MessagesObject;
+  theme?: object;
+}
+
+interface ProvidersWrapperProps {
+  children: ReactNode;
+  context: ContextData;
+}
 
 export const ProvidersWrapper: FC<ProvidersWrapperProps> = ({ children, context = {} }) => {
   const { router = {}, store = fixturesStore, messages, theme = defaultTheme } = context;
@@ -90,8 +92,11 @@ ProvidersWrapper.propTypes = {
   }),
 };
 
-export const makeContextRenderer = (component: (props: object) => ReactElement) => (props = {}, context = {}) =>
-  render(component(props), {
+export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (
+  props?: T,
+  context?: ContextData
+) =>
+  render(component(props ?? {}), {
     wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
   });
 
