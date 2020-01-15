@@ -1,5 +1,4 @@
 import React, { ReactNode, ReactElement, FC } from 'react';
-import PropTypes from 'prop-types';
 import { HelmetProvider } from 'react-helmet-async';
 import { render } from '@testing-library/react';
 import { createStore } from 'redux';
@@ -78,18 +77,6 @@ export const ProvidersWrapper: FC<ProvidersWrapperProps> = ({ children, context 
       </ResponsiveThemeProvider>
     </Router>
   );
-};
-
-ProvidersWrapper.propTypes = {
-  context: PropTypes.shape({
-    router: PropTypes.shape({
-      url: PropTypes.string,
-      routePath: PropTypes.string,
-      history: PropTypes.object,
-    }),
-    store: PropTypes.object,
-    messages: PropTypes.object,
-  }),
 };
 
 export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (

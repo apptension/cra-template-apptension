@@ -1,5 +1,4 @@
 import React, { FC, Fragment, ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { ResponsiveThemeProvider as ThemeProvider } from '../shared/components/responsiveThemeProvider';
@@ -30,8 +29,3 @@ export const AppComponent: FC<AppComponentProps> = ({ language, children }) => (
     </HelmetProvider>
   </IntlProvider>
 );
-
-AppComponent.propTypes = {
-  language: PropTypes.string.isRequired,
-  children: PropTypes.node,
-};

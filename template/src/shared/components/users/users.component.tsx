@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { Container } from './users.styles';
@@ -25,9 +24,4 @@ export const UsersComponent: FC<UsersComponentProps> = ({ users, fetchUsers }) =
       </ul>
     </Container>
   );
-};
-
-UsersComponent.propTypes = {
-  users: PropTypes.array.isRequired,
-  fetchUsers: PropTypes.func.isRequired,
 };
