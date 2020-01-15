@@ -9,11 +9,6 @@ describe('Button: Component', () => {
   const component = props => <Button {...defaultProps} {...props} />;
   const render = makePropsRenderer(component);
 
-  it('should render correctly', () => {
-    const { container } = render();
-    expect(container).toMatchSnapshot();
-  });
-
   it('should call onClick prop when clicked', () => {
     const onClick = jest.fn();
     render({ onClick });
