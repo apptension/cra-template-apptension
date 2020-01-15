@@ -6,7 +6,7 @@ export const LOCALES = {
   POLISH: 'pl',
 };
 
-type MessagesObject = { [key: string]: string };
+export type MessagesObject = Record<string, string>;
 
 export const DEFAULT_LOCALE = LOCALES.ENGLISH;
 

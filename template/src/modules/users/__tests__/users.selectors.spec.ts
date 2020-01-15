@@ -1,8 +1,11 @@
 import { usersSelectors } from '..';
 import { usersMock } from '../../../../fixtures/users';
+import { prepareState } from '../../../shared/utils/testUtils';
 
 describe('Users: selectors', () => {
-  const defaultState = {};
+  const defaultState = prepareState(state => {
+    state.startup = {};
+  });
 
   describe('selectUsersDomain', () => {
     it('should select a domain', () => {

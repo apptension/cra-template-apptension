@@ -1,7 +1,10 @@
 import { selectStartupDomain } from '../startup.selectors';
+import { prepareState } from '../../../shared/utils/testUtils';
 
 describe('Startup: selectors', () => {
-  const defaultState = {};
+  const defaultState = prepareState(state => {
+    state.startup = {};
+  });
 
   describe('selectStartupDomain', () => {
     it('should select a domain', () => {
