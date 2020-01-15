@@ -6,7 +6,7 @@ module.exports = (plop) => {
   const componentDirectory = 'src/{{ directory }}/{{ camelCase name }}';
 
   const projectPathAbsolute = plop.getDestBasePath();
-  const componentnDirectoryAbsolute = path.join(projectPathAbsolute, componentDirectory);
+  const componentDirectoryAbsolute = path.join(projectPathAbsolute, componentDirectory);
 
   plop.setGenerator('component', {
     description: 'Generate a React component',
@@ -42,7 +42,7 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
       data: {
         testUtilsPath: path.relative(
-          path.join(componentnDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.ts'),
+          path.join(componentDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.ts'),
           path.join(projectPathAbsolute, 'src/shared/utils/testUtils')
         ),
       }
