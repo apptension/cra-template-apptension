@@ -2,33 +2,22 @@ import React from 'react';
 import * as ReactRedux from 'react-redux';
 import { screen, fireEvent } from '@testing-library/react';
 
-import { makeContextRenderer } from 'utils/testUtils';
 import { Users } from '..';
 import { usersMock } from '../../../../../fixtures/users';
+import { makeContextRenderer, prepareState } from '../../../utils/testUtils';
 
 const dispatchSpy = jest.spyOn(ReactRedux, 'useDispatch');
 
 describe('Users: Component', () => {
-  const defaultProps = {};
-
-  const component = props => <Users {...defaultProps} {...props} />;
-  const render = makeContextRenderer(component);
+  const render = makeContextRenderer(() => <Users />);
 
   it('should render users', () => {
-    const users = usersMock;
+    const store = prepareState(defaultState => {
+      defaultState.users.users = usersMock;
+    });
+    render({}, { store });
 
-    render(
-      {},
-      {
-        store: {
-          users: {
-            users,
-          },
-        },
-      }
-    );
-
-    users.map(user => expect(screen.getByText(user.name)).toBeInTheDocument);
+    usersMock.map(user => expect(screen.getByText(user.name)).toBeInTheDocument);
   });
 
   it('should call dispatch on button click', () => {

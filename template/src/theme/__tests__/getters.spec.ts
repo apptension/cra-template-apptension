@@ -8,64 +8,65 @@ import {
   themeSize,
   themeZIndex,
 } from '../getters';
+import { Color, Font, Size, ZIndex } from '../theme.constants';
 
 describe('theme/getters', () => {
-  const defaultProps = {
+  const theme = {
     theme: {
       foo: 'bar',
       color: {
-        black: '#000000',
+        [Color.BLACK]: '#000000',
       },
       font: {
-        primary: 'primaryFont',
+        [Font.PRIMARY]: 'primaryFont',
       },
       size: {
-        header: 'headerSize',
+        [Size.HEADER]: 'headerSize',
       },
       zIndex: {
-        header: 5,
+        [ZIndex.HEADER]: 5,
       },
     },
   };
 
   describe('fromTheme', () => {
     it('should return theme property', () => {
-      expect(fromTheme('foo')(defaultProps)).toBe('bar');
+      expect(fromTheme('foo')(theme)).toBe('bar');
     });
 
     it('should return deep property when path is provided', () => {
-      expect(fromTheme(['color', 'black'])(defaultProps)).toBe('#000000');
+      expect(fromTheme(['color', Color.BLACK])(theme)).toBe('#000000');
     });
   });
 
   describe('themeColor', () => {
     it('should return theme color', () => {
-      expect(themeColor('black')(defaultProps)).toBe('#000000');
+      expect(themeColor(Color.BLACK)(theme)).toBe('#000000');
     });
   });
 
   describe('themeZIndex', () => {
     it('should return theme zIndex', () => {
-      expect(themeZIndex('header')(defaultProps)).toBe(5);
+      expect(themeZIndex(ZIndex.HEADER)(theme)).toBe(5);
     });
   });
 
   describe('themeColorWithOpacity', () => {
     it('should return theme color converted into rgba format with opacity applied', () => {
-      const selection = themeColorWithOpacity('black', 0.5)(defaultProps);
+      const selection = themeColorWithOpacity(Color.BLACK, 0.5)(theme);
       expect(selection).toBe('rgba(0, 0, 0, 0.5)');
     });
   });
 
   describe('themeFont', () => {
     it('should return theme font', () => {
-      expect(themeFont('primary')(defaultProps)).toBe('primaryFont');
+      expect(themeFont(Font.PRIMARY)(theme)).toBe('primaryFont');
     });
   });
 
   describe('themeSize', () => {
     it('should return theme size', () => {
-      expect(themeSize('header')(defaultProps)).toBe('headerSize');
+      expect(themeSize(Size.HEADER)(theme)).toBe('headerSize');
     });
   });
 
@@ -79,7 +80,7 @@ describe('theme/getters', () => {
 
     it('should return styles when prop equals true', () => {
       const value = styleWhenTrue('test', 'styles-content')({ theme: { test: false } });
-      expect(value).toBeNull;
+      expect(value).toBeNull();
     });
   });
 
@@ -101,7 +102,7 @@ describe('theme/getters', () => {
       )({
         theme: { test: 'unexpected-value' },
       });
-      expect(value).toBeNull;
+      expect(value).toBeNull();
     });
   });
 });

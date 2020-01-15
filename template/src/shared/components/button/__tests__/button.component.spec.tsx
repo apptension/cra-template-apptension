@@ -1,12 +1,12 @@
 import React from 'react';
-import { makePropsRenderer } from 'utils/testUtils';
 import { screen, fireEvent } from '@testing-library/react';
-import { Button } from '../index';
+import { ButtonComponentProps, ButtonComponent as Button } from '../button.component';
+import { makePropsRenderer } from '../../../utils/testUtils';
 
 describe('Button: Component', () => {
   const defaultProps = {};
 
-  const component = props => <Button {...defaultProps} {...props} />;
+  const component = (props: Partial<ButtonComponentProps>) => <Button {...defaultProps} {...props} />;
   const render = makePropsRenderer(component);
 
   it('should call onClick prop when clicked', () => {
@@ -17,7 +17,7 @@ describe('Button: Component', () => {
   });
 
   it('should pass native HTML props directly to the button element', () => {
-    render({ type: 'submit' });
-    expect(screen.getByRole('button')).toHaveAttribute('type', 'submit');
+    render({ 'aria-label': 'some-label' });
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'some-label');
   });
 });

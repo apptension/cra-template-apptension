@@ -4,9 +4,7 @@ import { makeContextRenderer } from 'utils/testUtils';
 import { NotFoundComponent as NotFound } from '../notFound.component';
 
 describe('NotFound: Component', () => {
-  const defaultProps = {};
-
-  const component = props => <NotFound {...defaultProps} {...props} />;
+  const component = () => <NotFound />;
   const render = makeContextRenderer(component);
 
   it('should render correctly', () => {

@@ -8,7 +8,7 @@ import { GlobalStyle } from '../theme/global';
 import messages from './app.messages';
 import theme from '../theme/theme';
 
-interface AppComponentProps {
+export interface AppComponentProps {
   language: string;
   children?: ReactNode;
 }

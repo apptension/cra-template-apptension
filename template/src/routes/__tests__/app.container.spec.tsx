@@ -1,11 +1,12 @@
 import React from 'react';
-import { makePropsRenderer, PLACEHOLDER_CONTENT } from 'utils/testUtils';
+import { AppContainerProps } from 'react-hot-loader';
 import { DEFAULT_LOCALE, LOCALES } from '../../i18n';
 import initializeFonts from '../../theme/initializeFontFace';
 import { store as mockStore } from '../../../fixtures/store';
 import { localesActions } from '../../modules/locales';
 import { startupActions } from '../../modules/startup';
 import { AppContainer } from '../app.container';
+import { makePropsRenderer, PLACEHOLDER_CONTENT } from '../../shared/utils/testUtils';
 
 const mockDispatch = jest.fn();
 const mockParams = jest.fn();
@@ -19,7 +20,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('react-redux', () => ({
-  useSelector: selector => selector(mockStore),
+  useSelector: (selector: (state: any) => any) => selector(mockStore),
   useDispatch: () => mockDispatch,
 }));
 
@@ -34,7 +35,7 @@ jest.mock('../../theme/theme', () => ({
 }));
 
 describe('App: Container', () => {
-  const component = props => <AppContainer {...defaultProps} {...props} />;
+  const component = (props: Partial<AppContainerProps>) => <AppContainer {...defaultProps} {...props} />;
   const render = makePropsRenderer(component);
 
   afterEach(() => {

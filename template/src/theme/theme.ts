@@ -45,7 +45,19 @@ export const zIndex = {
   [ZIndex.OVERLAY]: 10,
 };
 
-export default {
+type ThemeModule<T extends string | number> = string | number | Function | Record<T, any>;
+
+export interface Theme {
+  color?: ThemeModule<Color>;
+  font?: ThemeModule<Font>;
+  border?: ThemeModule<Border>;
+  shadow?: ThemeModule<Shadow>;
+  size?: ThemeModule<Size>;
+  zIndex?: ThemeModule<ZIndex>;
+  activeBreakpoint?: ThemeModule<Breakpoint>;
+}
+
+const theme: Theme = {
   color,
   font,
   border,
@@ -54,3 +66,5 @@ export default {
   zIndex,
   activeBreakpoint,
 };
+
+export default theme;
