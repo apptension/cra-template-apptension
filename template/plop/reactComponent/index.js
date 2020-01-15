@@ -38,11 +38,11 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, 'stories.hbs'),
     }, {
       type: 'add',
-      path: `${componentDirectory}/__tests__/{{ camelCase name }}.component.spec.ts`,
+      path: `${componentDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
       data: {
         testUtilsPath: path.relative(
-          path.join(componentDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.ts'),
+          path.join(componentDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.tsx'),
           path.join(projectPathAbsolute, 'src/shared/utils/testUtils')
         ),
       }
