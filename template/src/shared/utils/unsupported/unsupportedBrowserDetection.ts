@@ -16,13 +16,9 @@ interface BrowserRequirement {
   minos?: string;
 }
 
-type BrowserCheckResults = {
-  [K in RequirementType]: boolean;
-};
+type BrowserCheckResults = Record<RequirementType, boolean>;
 
-type BrowserConfig = {
-  [K in Platform]: BrowserRequirement[];
-};
+type BrowserConfig = Record<Platform, BrowserRequirement[]>;
 
 const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
   desktop: [

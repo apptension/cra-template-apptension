@@ -14,6 +14,6 @@ initStoryshots({
     const storyElement = story.render(context);
     const filename = paramCase(story.kind);
     const { container } = render(storyElement);
-    expect(container).toMatchSpecificSnapshot(`./__snapshots__/${filename}.snap`);
+    expect(container).toMatchSpecificSnapshot(`./__snapshots__/${filename}.snapshot`);
   },
 });
