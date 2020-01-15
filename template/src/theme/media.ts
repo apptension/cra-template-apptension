@@ -8,7 +8,7 @@ export enum Breakpoint {
   DESKTOP_FULL = 'desktopFull',
 }
 
-export const sizes: { [key in Breakpoint]: number } = {
+export const sizes: Record<Breakpoint, number> = {
   [Breakpoint.DESKTOP_FULL]: 1920,
   [Breakpoint.DESKTOP_WIDE]: 1440,
   [Breakpoint.DESKTOP]: 1280,
