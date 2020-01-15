@@ -32,26 +32,31 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, 'selectors.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.redux.spec.js',
+      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.redux.spec.ts',
       templateFile: path.join(templatesPath, '__tests__/redux.spec.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.sagas.spec.js',
+      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.sagas.spec.ts',
       templateFile: path.join(templatesPath, '__tests__/sagas.spec.hbs'),
     }, {
       type: 'add',
-      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.selectors.spec.js',
+      path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.selectors.spec.ts',
       templateFile: path.join(templatesPath, '__tests__/selectors.spec.hbs'),
     }, {
       type: 'modify',
       path: 'src/modules/reducers.ts',
-      pattern: /(\/\/<-- IMPORT MODULE REDUCER -->)/g,
-      template: 'import { reducer as {{ camelCase name }}Reducer } from \'./{{ camelCase name }}/{{ camelCase name }}.redux\';\n$1',
+      pattern: /(\/\/<-- IMPORT MODULE REDUX -->)/g,
+      template: 'import { reducer as {{ camelCase name }}Reducer, {{ pascalCase name }}State } from \'./{{ camelCase name }}/{{ camelCase name }}.redux\';\n$1',
     }, {
       type: 'modify',
       path: 'src/modules/reducers.ts',
       pattern: /(\/\/<-- INJECT MODULE REDUCER -->)/g,
       template: '{{ camelCase name }}: {{ camelCase name }}Reducer,\n    $1',
+    },  {
+      type: 'modify',
+      path: 'src/modules/reducers.ts',
+      pattern: /(\/\/<-- INJECT MODULE STATE TYPE -->)/g,
+      template: '{{ camelCase name }}: {{ pascalCase name }}State;\n  $1',
     }, {
       type: 'modify',
       path: 'src/modules/sagas.ts',
@@ -62,6 +67,16 @@ module.exports = (plop) => {
       path: 'src/modules/sagas.ts',
       pattern: /(\/\/<-- INJECT MODULE SAGA -->)/g,
       template: 'fork(watch{{ pascalCase name }}),\n      $1',
+    }, {
+      type: 'modify',
+      path: 'src/shared/utils/testUtils.tsx',
+      pattern: /(\/\/<-- IMPORT MODULE STATE -->)/g,
+      template: 'import { {{ constantCase name }}_INITIAL_STATE } from \'../../modules/{{ camelCase name }}\';\n$1',
+    }, {
+      type: 'modify',
+      path: 'src/shared/utils/testUtils.tsx',
+      pattern: /(\/\/<-- INJECT MODULE STATE -->)/g,
+      template: '{{ camelCase name }}: {{ constantCase name }}_INITIAL_STATE,\n  $1',
     }],
   });
 };

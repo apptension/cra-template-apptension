@@ -1,9 +1,7 @@
-import { actionCreator, createImmutableReducer } from '../helpers';
+import { createImmutableReducer } from '../helpers';
 
-const createAction = actionCreator('STARTUP');
+export type StartupState = {};
 
-export const startup = createAction<void>('startup');
-
-const INITIAL_STATE = {};
+export const INITIAL_STATE: StartupState = {};
 
 export const reducer = createImmutableReducer(INITIAL_STATE, {});

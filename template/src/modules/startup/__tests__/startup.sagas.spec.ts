@@ -1,7 +1,7 @@
 import { expectSaga } from 'redux-saga-test-plan';
 
 import { watchStartup } from '../startup.sagas';
-import { startup } from '../startup.redux';
+import { startupActions } from '..';
 
 describe('Startup: sagas', () => {
   const defaultState = {};
@@ -9,7 +9,7 @@ describe('Startup: sagas', () => {
   it('should run successfully', async () => {
     await expectSaga(watchStartup)
       .withState(defaultState)
-      .dispatch(startup())
+      .dispatch(startupActions.startup())
       .silentRun();
   });
 });

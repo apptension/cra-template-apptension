@@ -1,10 +1,12 @@
 import { {{ camelCase name }}Selectors } from '..';
-import { INITIAL_STATE } from '../{{ camelCase name }}.redux';
+import { prepareState } from '../../../shared/utils/testUtils';
 
 describe('{{ pascalCase name }}: selectors', () => {
-  const defaultState = {
-    {{ camelCase name }}: INITIAL_STATE,
-  };
+  const defaultState = prepareState(state => {
+    state.{{ camelCase name }} = {
+      jokes: null,
+    };
+  });
 
   describe('select{{ pascalCase name }}Domain', () => {
     it('should select a domain', () => {

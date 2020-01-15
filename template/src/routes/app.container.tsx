@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LOCALE } from '../i18n';
-import { selectLocalesLanguage, setLanguage } from '../modules/locales';
+import { localesActions, localesSelectors } from '../modules/locales';
 import initializeFontFace from '../theme/initializeFontFace';
-import { startup } from '../modules/startup';
+import { startupActions } from '../modules/startup';
 import { AppComponent } from './app.component';
 
 interface AppContainerProps {
@@ -14,17 +14,17 @@ interface AppContainerProps {
 }
 
 export const AppContainer = ({ children }: AppContainerProps) => {
-  const language = useSelector(selectLocalesLanguage);
+  const language = useSelector(localesSelectors.selectLocalesLanguage);
   const dispatch = useDispatch();
   const { lang } = useParams();
 
   useEffect(() => {
-    dispatch(startup());
+    dispatch(startupActions.startup());
     initializeFontFace();
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setLanguage(lang || DEFAULT_LOCALE));
+    dispatch(localesActions.setLanguage(lang || DEFAULT_LOCALE));
   }, [lang, dispatch]);
 
   if (!language) {
