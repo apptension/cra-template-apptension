@@ -3,7 +3,11 @@ const path = require('path');
 const templatesPath = path.join(__dirname, 'templates');
 
 module.exports = (plop) => {
-  const containerDirectory = 'src/{{ directory }}/{{ camelCase name }}';
+  const componentDirectory = 'src/{{ directory }}/{{ camelCase name }}';
+
+  const projectPathAbsolute = plop.getDestBasePath();
+  const componentDirectoryAbsolute = path.join(projectPathAbsolute, componentDirectory);
+
   plop.setGenerator('component', {
     description: 'Generate a React component',
     prompts: [{
@@ -14,28 +18,34 @@ module.exports = (plop) => {
       type: 'directory',
       name: 'directory',
       basePath: 'src',
-      message: 'Container\'s directory:',
+      message: 'Component\'s directory:',
     }],
     actions: [{
       type: 'add',
-      path: `${containerDirectory}/index.ts`,
+      path: `${componentDirectory}/index.ts`,
       templateFile: path.join(templatesPath, 'index.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.component.tsx`,
+      path: `${componentDirectory}/{{ camelCase name }}.component.tsx`,
       templateFile: path.join(templatesPath, 'component.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.styles.ts`,
+      path: `${componentDirectory}/{{ camelCase name }}.styles.ts`,
       templateFile: path.join(templatesPath, 'styles.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.stories.tsx`,
+      path: `${componentDirectory}/{{ camelCase name }}.stories.tsx`,
       templateFile: path.join(templatesPath, 'stories.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
+      path: `${componentDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
+      data: {
+        testUtilsPath: path.relative(
+          path.join(componentDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.tsx'),
+          path.join(projectPathAbsolute, 'src/shared/utils/testUtils')
+        ),
+      }
     }],
   });
 };
