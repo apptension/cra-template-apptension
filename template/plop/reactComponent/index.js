@@ -34,7 +34,7 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, 'stories.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.ts`,
+      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
     }],
   });

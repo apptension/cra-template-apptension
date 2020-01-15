@@ -1,12 +1,12 @@
 import React from 'react';
 import { makePropsRenderer } from 'utils/testUtils';
 
-import { {{ pascalCase name }} } from '..';
+import { {{ pascalCase name }}Component as {{ pascalCase name }}, {{ pascalCase name }}ComponentProps } from '../{{ camelCase name }}.component';
 
 describe('{{ pascalCase name }}: Component', () => {
-  const defaultProps = {};
+  const defaultProps: {{ pascalCase name }}ComponentProps = {};
 
-  const component = props => <{{ pascalCase name }} {...defaultProps} {...props} />;
+  const component = (props: Partial<{{ pascalCase name }}ComponentProps>) => <{{ pascalCase name }} {...defaultProps} {...props} />;
   const render = makePropsRenderer(component);
 
   it('should render correctly', () => {

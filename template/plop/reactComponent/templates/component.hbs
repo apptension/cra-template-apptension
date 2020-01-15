@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 
 import { Container } from './{{ camelCase name }}.styles';
 
-interface {{ pascalCase name }}ComponentProps {
+export interface {{ pascalCase name }}ComponentProps {
   children?: ReactNode;
 }
 
-export const {{ pascalCase name }}Component: FC<{{ pascalCase name }}ComponentProps = ({ children }) => {
-  return <Container>
-    <h1>{{ pascalCase name }} component</h1>
-    {children}
-  </Container>;
+export const {{ pascalCase name }}Component: FC<{{ pascalCase name }}ComponentProps> = ({ children }) => {
+  return (
+    <Container>
+      <h1>{{ pascalCase name }} component</h1>
+      {children}
+    </Container>
+  );
 };
 
 {{ pascalCase name }}Component.propTypes = {
