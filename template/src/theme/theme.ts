@@ -45,7 +45,7 @@ export const zIndex = {
   [ZIndex.OVERLAY]: 10,
 };
 
-export default {
+const theme = {
   color,
   font,
   border,
@@ -54,3 +54,5 @@ export default {
   zIndex,
   activeBreakpoint,
 };
+
+export default theme;

@@ -87,7 +87,8 @@ export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactEle
     wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
   });
 
-export const makePropsRenderer = (component: React.FC) => (props = {}) => render(component(props));
+export const makePropsRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (props?: T) =>
+  render(component(props ?? {}));
 
 export const prepareState = (stateSetter: (draftState: GlobalState) => void) =>
   produce(defaultGlobalState, stateSetter);

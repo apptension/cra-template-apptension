@@ -1,28 +1,23 @@
-import React, { FC, MouseEventHandler, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { empty } from 'ramda';
 
 import { Container } from './button.styles';
 import { ButtonType } from './button.constants';
 
-interface ButtonComponentProps {
-  children?: ReactNode;
-  className?: string;
-  disabled?: boolean;
+export interface ButtonComponentProps extends React.HTMLAttributes<HTMLElement> {
   mode?: ButtonType;
-  onClick?: MouseEventHandler;
 }
 
 export const ButtonComponent: FC<ButtonComponentProps> = ({
   children,
   className,
-  disabled,
   mode = ButtonType.PRIMARY,
   onClick = empty,
   ...other
 }) => (
-  <ThemeProvider theme={{ mode, disabled }}>
-    <Container onClick={onClick} className={className} disabled={disabled} {...other}>
+  <ThemeProvider theme={{ mode }}>
+    <Container onClick={onClick} className={className} {...other}>
       {children}
     </Container>
   </ThemeProvider>

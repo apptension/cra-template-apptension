@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Select } from './languageSwitcher.styles';
 
-interface LanguageSwitcherProps {
+export interface LanguageSwitcherProps {
   language: string;
   locales: string[];
   handleChange?: React.ChangeEventHandler;

@@ -1,4 +1,4 @@
-import UnsupportedBrowserDetection from '../unsupportedBrowserDetection';
+import UnsupportedBrowserDetection, { BrowserConfig } from '../unsupportedBrowserDetection';
 
 /* eslint-disable max-len*/
 const CHROME_UA =
@@ -9,12 +9,13 @@ const FB_UA =
   'Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/28.0.0.20.16;]';
 /* eslint-enable max-len*/
 
-function setUserAgent(userAgent) {
+function setUserAgent(userAgent: string) {
+  // @ts-ignore
   navigator.__defineGetter__('userAgent', () => userAgent);
 }
 
 describe('Utils: UnsupportedBrowserDetection Class', () => {
-  const config = {
+  const config: BrowserConfig = {
     desktop: [
       {
         browser: 'firefox',
@@ -77,8 +78,13 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
     ],
   };
 
-  const component = ({ config, isInAppBrowserSupported }) =>
-    new UnsupportedBrowserDetection(config, isInAppBrowserSupported);
+  const checkSupport = ({
+    config,
+    isInAppBrowserSupported,
+  }: {
+    config: BrowserConfig;
+    isInAppBrowserSupported?: boolean;
+  }) => new UnsupportedBrowserDetection(config, isInAppBrowserSupported);
 
   beforeEach(() => {
     document.documentElement.className = '';
@@ -88,7 +94,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
     it('should return true for supported browser', () => {
       setUserAgent(CHROME_UA);
 
-      const detector = component({ config });
+      const detector = checkSupport({ config });
 
       expect(detector.isSupported()).toBe(true);
     });
@@ -96,7 +102,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
     it('should return false for unsupported browser', () => {
       setUserAgent(IE_UA);
 
-      const detector = component({ config });
+      const detector = checkSupport({ config });
 
       expect(detector.isSupported()).toBe(false);
     });
@@ -104,7 +110,7 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
     it('should return true when is in-app browser and isInAppBrowserSupported equals true', () => {
       setUserAgent(FB_UA);
 
-      const detector = component({ config, isInAppBrowserSupported: true });
+      const detector = checkSupport({ config, isInAppBrowserSupported: true });
 
       expect(detector.isSupported()).toBe(true);
     });
@@ -112,14 +118,14 @@ describe('Utils: UnsupportedBrowserDetection Class', () => {
     it('should return false when is in-app browser and isInAppBrowserSupported equals false', () => {
       setUserAgent(FB_UA);
 
-      const detector = component({ config, isInAppBrowserSupported: false });
+      const detector = checkSupport({ config, isInAppBrowserSupported: false });
 
       expect(detector.isSupported()).toBe(false);
     });
 
     it('should return true for crawler bots', () => {
       setUserAgent(CRAWLER_UA);
-      const detector = component({ config });
+      const detector = checkSupport({ config });
       expect(detector.isSupported()).toBe(true);
     });
   });

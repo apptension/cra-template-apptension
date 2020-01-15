@@ -18,7 +18,7 @@ interface BrowserRequirement {
 
 type BrowserCheckResults = Record<RequirementType, boolean>;
 
-type BrowserConfig = Record<Platform, BrowserRequirement[]>;
+export type BrowserConfig = Record<Platform, BrowserRequirement[]>;
 
 const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
   desktop: [
