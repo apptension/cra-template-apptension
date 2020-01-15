@@ -6,18 +6,16 @@ import { Theme } from './theme';
 
 type ThemeGetter<T = string> = (propName: T) => (theme: Theme) => string;
 
+const themeGetter = <T>(path: string[]) => compose(fromTheme, concat(path), ensureArray) as ThemeGetter<T>;
 const ensureArray = ifElse(Array.isArray, identity, flip(append)([]));
 
 export const fromTheme = compose(path, concat(['theme']), ensureArray);
-
-export const themeColor = compose(fromTheme, concat(['color']), ensureArray) as ThemeGetter<Color>;
-
-export const themeBorder = compose(fromTheme, concat(['border']), ensureArray) as ThemeGetter<Border>;
-
-export const themeShadow = compose(fromTheme, concat(['shadow']), ensureArray) as ThemeGetter<Shadow>;
-
-export const themeZIndex = compose(fromTheme, concat(['zIndex']), ensureArray) as ThemeGetter<ZIndex>;
-
+export const themeColor = themeGetter<Color>(['color']);
+export const themeBorder = themeGetter<Border>(['border']);
+export const themeShadow = themeGetter<Shadow>(['shadow']);
+export const themeZIndex = themeGetter<ZIndex>(['zIndex']);
+export const themeFont = themeGetter<Font>(['font']);
+export const themeSize = themeGetter<Size>(['size']);
 export const themeColorWithOpacity = (colorId: Color, alpha: number) =>
   compose(
     value =>
@@ -26,10 +24,6 @@ export const themeColorWithOpacity = (colorId: Color, alpha: number) =>
         .string(),
     themeColor(colorId)
   );
-
-export const themeFont = compose(fromTheme, concat(['font']), ensureArray) as ThemeGetter<Font>;
-
-export const themeSize = compose(fromTheme, concat(['size']), ensureArray) as ThemeGetter<Size>;
 
 export const styleWhenTrue = curry((propName, string) =>
   compose(renderWhenTrue(always(string)), pathEq(['theme', propName], true))

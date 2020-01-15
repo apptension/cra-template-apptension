@@ -45,19 +45,19 @@ export const zIndex = {
   [ZIndex.OVERLAY]: 10,
 };
 
-type ThemeModule<T extends string | number> = string | number | Function | Record<T, any>;
+export type ThemeMap<T extends string | number> = Record<T, any>;
 
 export interface Theme {
-  color?: ThemeModule<Color>;
-  font?: ThemeModule<Font>;
-  border?: ThemeModule<Border>;
-  shadow?: ThemeModule<Shadow>;
-  size?: ThemeModule<Size>;
-  zIndex?: ThemeModule<ZIndex>;
-  activeBreakpoint?: ThemeModule<Breakpoint>;
+  color?: ThemeMap<Color>;
+  font?: ThemeMap<Font>;
+  border?: ThemeMap<Border>;
+  shadow?: ThemeMap<Shadow>;
+  size?: ThemeMap<Size>;
+  zIndex?: ThemeMap<ZIndex>;
+  activeBreakpoint?: Breakpoint;
 }
 
-const theme: Theme = {
+const theme = {
   color,
   font,
   border,
