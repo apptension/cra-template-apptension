@@ -1,4 +1,3 @@
-import React from 'react';
 import { paramCase } from 'param-case';
 import initStoryshots from '@storybook/addon-storyshots';
 import { addSerializer } from 'jest-specific-snapshot';

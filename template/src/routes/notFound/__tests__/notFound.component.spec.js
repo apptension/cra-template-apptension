@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { NotFoundComponent as NotFound } from '../notFound.component';
 import { makeContextRenderer } from 'utils/testUtils';
+import { NotFoundComponent as NotFound } from '../notFound.component';
 
 describe('NotFound: Component', () => {
   const defaultProps = {};

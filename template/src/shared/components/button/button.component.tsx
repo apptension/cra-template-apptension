@@ -1,5 +1,4 @@
 import React, { ReactNode, MouseEventHandler, FC } from 'react';
-import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { empty } from 'ramda';
 
@@ -28,14 +27,6 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
     </Container>
   </ThemeProvider>
 );
-
-ButtonComponent.propTypes = {
-  children: PropTypes.any,
-  className: PropTypes.any,
-  disabled: PropTypes.bool,
-  mode: PropTypes.oneOf(BUTTON_TYPES),
-  onClick: PropTypes.func,
-};
 
 ButtonComponent.defaultProps = {
   mode: BUTTON_TYPE_PRIMARY,
