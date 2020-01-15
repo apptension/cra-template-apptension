@@ -1,5 +1,5 @@
 import React from 'react';
-import { makePropsRenderer } from 'utils/testUtils';
+import { makeContextRenderer } from 'utils/testUtils';
 
 import { {{ pascalCase name }}Component as {{ pascalCase name }}, {{ pascalCase name }}ComponentProps } from '../{{ camelCase name }}.component';
 
@@ -7,7 +7,7 @@ describe('{{ pascalCase name }}: Component', () => {
   const defaultProps: {{ pascalCase name }}ComponentProps = {};
 
   const component = (props: Partial<{{ pascalCase name }}ComponentProps>) => <{{ pascalCase name }} {...defaultProps} {...props} />;
-  const render = makePropsRenderer(component);
+  const render = makeContextRenderer(component);
 
   it('should render correctly', () => {
     const { container } = render();
