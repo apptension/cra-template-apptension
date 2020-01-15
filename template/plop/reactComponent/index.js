@@ -18,23 +18,23 @@ module.exports = (plop) => {
     }],
     actions: [{
       type: 'add',
-      path: `${containerDirectory}/index.js`,
+      path: `${containerDirectory}/index.ts`,
       templateFile: path.join(templatesPath, 'index.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.component.js`,
+      path: `${containerDirectory}/{{ camelCase name }}.component.tsx`,
       templateFile: path.join(templatesPath, 'component.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.styles.js`,
+      path: `${containerDirectory}/{{ camelCase name }}.styles.ts`,
       templateFile: path.join(templatesPath, 'styles.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.stories.js`,
+      path: `${containerDirectory}/{{ camelCase name }}.stories.tsx`,
       templateFile: path.join(templatesPath, 'stories.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.js`,
+      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
     }],
   });

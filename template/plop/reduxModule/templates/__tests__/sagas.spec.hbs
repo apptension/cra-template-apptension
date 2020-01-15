@@ -1,18 +1,21 @@
 import { expectSaga } from 'redux-saga-test-plan';
 
 import { watch{{ pascalCase name }} } from '../{{ camelCase name }}.sagas';
-import { {{ pascalCase name }}Actions, {{ pascalCase name }}Types } from '../{{ camelCase name }}.redux';
+import { {{ camelCase name }}Actions } from '..';
+import { mockApi } from '../../../shared/utils/mockApi';
 
 describe('{{ pascalCase name }}: sagas', () => {
   const defaultState = {};
 
   it('should implement a test', async () => {
-    await expectSaga(watchStartup)
-      .withState(defaultState)
-      .put({{ pascalCase name }}Actions.noop())
-      .dispatch(StartupActions.startup())
-      .silentRun();
+    const data = { status: 'OK' };
 
-    expect(sagaTester.getCalledActions()).to.deep.equal([{{ pascalCase name }}Actions.noop()]);
+    mockApi.get('/').reply(200, data);
+
+    await expectSaga(watch{{ pascalCase name }})
+      .withState(defaultState)
+      .put({{ camelCase name }}Actions.fetch{{ pascalCase name }}Success(data))
+      .dispatch({{ camelCase name }}Actions.fetch{{ pascalCase name }}())
+      .silentRun();
   });
 });

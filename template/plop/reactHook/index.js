@@ -18,15 +18,15 @@ module.exports = (plop) => {
     }],
     actions: [{
       type: 'add',
-      path: `${containerDirectory}/index.js`,
+      path: `${containerDirectory}/index.ts`,
       templateFile: path.join(templatesPath, 'index.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/{{ camelCase name }}.hook.js`,
+      path: `${containerDirectory}/{{ camelCase name }}.hook.ts`,
       templateFile: path.join(templatesPath, 'hook.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/__tests__/{{ camelCase name }}.hook.spec.js`,
+      path: `${containerDirectory}/__tests__/{{ camelCase name }}.hook.spec.ts`,
       templateFile: path.join(templatesPath, '__tests__/hook.spec.hbs'),
     }],
   });

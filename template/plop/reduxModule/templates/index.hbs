@@ -1,3 +1,5 @@
-export { {{ pascalCase name }}Types, {{ pascalCase name }}Actions } from './{{ camelCase name }}.redux';
+import * as {{ camelCase name }}Selectors from './{{ camelCase name }}.selectors';
+import * as {{ camelCase name }}Actions from './{{ camelCase name }}.actions';
 
-export * from './{{ camelCase name }}.selectors';
+export { INITIAL_STATE as {{ constantCase name }}_INITIAL_STATE } from './{{ camelCase name }}.redux';
+export { {{ camelCase name }}Actions, {{ camelCase name }}Selectors };

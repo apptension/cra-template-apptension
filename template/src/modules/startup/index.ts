@@ -1,2 +1,5 @@
-export * from './startup.redux';
-export * from './startup.selectors';
+import * as startupActions from './startup.actions';
+import * as startupSelectors from './startup.selectors';
+
+export { INITIAL_STATE as STARTUP_INITIAL_STATE } from './startup.redux';
+export { startupActions, startupSelectors };

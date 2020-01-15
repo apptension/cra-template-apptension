@@ -1,0 +1,6 @@
+import { actionCreator } from '../helpers';
+
+const createAction = actionCreator('{{ constantCase name }}');
+
+export const fetch{{ pascalCase name }} = createAction<void>('FETCH_{{ constantCase name }}');
+export const fetch{{ pascalCase name }}Success = createAction<any>('FETCH_{{ constantCase name }}_SUCCESS');

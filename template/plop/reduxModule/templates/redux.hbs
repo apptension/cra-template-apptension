@@ -1,11 +1,25 @@
-import { actionCreator, createImmutableReducer } from '../helpers';
+import { createImmutableReducer, ReduxAction } from '../helpers';
+import { {{ camelCase name }}Actions } from '.';
 
-const createAction = actionCreator('{{ constantCase name }}');
+export interface {{ pascalCase name }}State {
+  {{ camelCase name }}: any;
+}
 
-export const noop = createAction('NOOP');
+export const INITIAL_STATE: {{ pascalCase name }}State = {
+  {{ camelCase name }}: null,
+};
 
-const INITIAL_STATE = {};
+const handleFetch{{ pascalCase name }} = (state: {{ pascalCase name }}State) => {
+  state.{{ camelCase name }} = null;
+};
 
-const HANDLERS = {};
+const handleFetch{{ pascalCase name }}Success = (state: {{ pascalCase name }}State, { payload }: ReduxAction<any>) => {
+  state.{{ camelCase name }} = payload;
+};
+
+const HANDLERS = {
+  [{{ camelCase name }}Actions.fetch{{ pascalCase name }}.toString()]: handleFetch{{ pascalCase name }},
+  [{{ camelCase name }}Actions.fetch{{ pascalCase name }}Success.toString()]: handleFetch{{ pascalCase name }}Success,
+};
 
 export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);

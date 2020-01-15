@@ -1,11 +1,13 @@
-import { reducer as usersReducer, INITIAL_STATE } from '../users.redux';
+import { reducer as usersReducer } from '../users.redux';
 
 describe('Users: redux', () => {
-  const defaultState = INITIAL_STATE;
+  const defaultState = {
+    users: [],
+  };
 
   describe('reducer', () => {
     it('should return initial state', () => {
-      expect(usersReducer(undefined, {})).toEqual(defaultState);
+      expect(usersReducer(undefined, { type: 'unknown-action' })).toEqual(defaultState);
     });
 
     it('should return state on unknown action', () => {

@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { ReactNode, ReactElement, FC } from 'react';
 import PropTypes from 'prop-types';
 import { HelmetProvider } from 'react-helmet-async';
 import { render } from '@testing-library/react';
 import { createStore } from 'redux';
 import { identity } from 'ramda';
 import { Provider } from 'react-redux';
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, MemoryHistory } from 'history';
 import { Route, Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
-import { DEFAULT_LOCALE, translationMessages } from '../../i18n';
+import produce from 'immer';
+
+import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
 import { store as fixturesStore } from '../../../fixtures/store';
 import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
 import * as defaultTheme from '../../theme/theme';
+import { GlobalState } from '../../modules/reducers';
+import { LOCALES_INITIAL_STATE } from '../../modules/locales';
+import { STARTUP_INITIAL_STATE } from '../../modules/startup';
+import { USERS_INITIAL_STATE } from '../../modules/users';
+//<-- IMPORT MODULE STATE -->
+
+const defaultGlobalState: GlobalState = {
+  locales: LOCALES_INITIAL_STATE,
+  startup: STARTUP_INITIAL_STATE,
+  users: USERS_INITIAL_STATE,
+  //<-- INJECT MODULE STATE -->
+};
 
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
 
@@ -24,11 +38,27 @@ export const spiedHistory = (route = '/') => {
   };
 };
 
-export const ProvidersWrapper = ({ children, context = {} }) => {
+interface ContextData {
+  router?: {
+    url?: string;
+    routePath?: string;
+    history?: MemoryHistory;
+  };
+  store?: GlobalState;
+  messages?: MessagesObject;
+  theme?: object;
+}
+
+interface ProvidersWrapperProps {
+  children: ReactNode;
+  context: ContextData;
+}
+
+export const ProvidersWrapper: FC<ProvidersWrapperProps> = ({ children, context = {} }) => {
   const { router = {}, store = fixturesStore, messages, theme = defaultTheme } = context;
   const { url = `/${DEFAULT_LOCALE}`, routePath = '/:lang/', history } = router;
 
-  const routerHistory = history ?? createMemoryHistory({ initialEntries: [url] });
+  const routerHistory: MemoryHistory = history ?? createMemoryHistory({ initialEntries: [url] });
 
   const intlProviderMockProps = {
     locale: DEFAULT_LOCALE,
@@ -62,9 +92,15 @@ ProvidersWrapper.propTypes = {
   }),
 };
 
-export const makeContextRenderer = component => (props = {}, context = {}) =>
-  render(component(props), {
+export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (
+  props?: T,
+  context?: ContextData
+) =>
+  render(component(props ?? {}), {
     wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
   });
 
-export const makePropsRenderer = component => (props = {}) => render(component(props));
+export const makePropsRenderer = (component: React.FC) => (props = {}) => render(component(props));
+
+export const prepareState = (stateSetter: (draftState: GlobalState) => void) =>
+  produce(defaultGlobalState, stateSetter);

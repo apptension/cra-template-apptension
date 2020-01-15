@@ -3,8 +3,8 @@ import { makePropsRenderer, PLACEHOLDER_CONTENT } from 'utils/testUtils';
 import { DEFAULT_LOCALE, LOCALES } from '../../i18n';
 import initializeFonts from '../../theme/initializeFontFace';
 import { store as mockStore } from '../../../fixtures/store';
-import { setLanguage } from '../../modules/locales';
-import { startup } from '../../modules/startup';
+import { localesActions } from '../../modules/locales';
+import { startupActions } from '../../modules/startup';
 import { AppContainer } from '../app.container';
 
 const mockDispatch = jest.fn();
@@ -44,13 +44,13 @@ describe('App: Container', () => {
   it('should set proper language based on url', () => {
     mockParams.mockReturnValue({ lang: 'pl' });
     render();
-    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(LOCALES.POLISH));
+    expect(mockDispatch).toHaveBeenCalledWith(localesActions.setLanguage(LOCALES.POLISH));
   });
 
   it('should set default language language is not matched', () => {
     mockParams.mockReturnValue({ lang: null });
     render();
-    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(DEFAULT_LOCALE));
+    expect(mockDispatch).toHaveBeenCalledWith(localesActions.setLanguage(DEFAULT_LOCALE));
   });
 
   it('should update language when url changes', () => {
@@ -59,12 +59,12 @@ describe('App: Container', () => {
     mockDispatch.mockClear();
     mockParams.mockReturnValue({ lang: 'en' });
     render();
-    expect(mockDispatch).toHaveBeenCalledWith(setLanguage(LOCALES.ENGLISH));
+    expect(mockDispatch).toHaveBeenCalledWith(localesActions.setLanguage(LOCALES.ENGLISH));
   });
 
   it('should call startup on mount', () => {
     render();
-    expect(mockDispatch).toHaveBeenCalledWith(startup());
+    expect(mockDispatch).toHaveBeenCalledWith(startupActions.startup());
   });
 
   it('should initialize fonts on mount', () => {
