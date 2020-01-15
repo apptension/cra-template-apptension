@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
 
 import { Select } from './languageSwitcher.styles';
 
@@ -18,9 +17,3 @@ export const LanguageSwitcherComponent: FC<LanguageSwitcherProps> = ({ language,
     ))}
   </Select>
 );
-
-LanguageSwitcherComponent.propTypes = {
-  language: PropTypes.string.isRequired,
-  locales: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleChange: PropTypes.func.isRequired,
-};

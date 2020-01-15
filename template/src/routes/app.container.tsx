@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -37,8 +36,4 @@ export const AppContainer = ({ children }: AppContainerProps) => {
   };
 
   return <AppComponent {...componentProps} />;
-};
-
-AppContainer.propTypes = {
-  children: PropTypes.node,
 };

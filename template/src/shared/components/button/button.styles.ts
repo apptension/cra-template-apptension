@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
-import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SECONDARY } from './button.constants';
+import { ButtonType } from './button.constants';
 import { styleWhenTrue, themeBorder, themeColor, themeSize } from '../../../theme/getters';
 import { Border, Color, Size } from '../../../theme/theme.constants';
 
@@ -15,8 +15,8 @@ const secondaryButtonStyle = css`
 const disabledButtonStyle = css`
   background: ${themeColor(Color.DISABLED)};
   color: ${theme('mode', {
-    [BUTTON_TYPE_PRIMARY]: themeColor(Color.BLACK),
-    [BUTTON_TYPE_SECONDARY]: themeColor(Color.SECONDARY),
+    [ButtonType.PRIMARY]: themeColor(Color.BLACK),
+    [ButtonType.SECONDARY]: themeColor(Color.SECONDARY),
   })};
 `;
 
@@ -24,8 +24,8 @@ export const Container = styled.button`
   padding: ${themeSize(Size.CONTENT_VERTICAL_PADDING)}px ${themeSize(Size.CONTENT_HORIZONTAL_PADDING)}px;
   border: ${themeBorder(Border.REGULAR)};
   ${theme('mode', {
-    [BUTTON_TYPE_PRIMARY]: primaryButtonStyle,
-    [BUTTON_TYPE_SECONDARY]: secondaryButtonStyle,
+    [ButtonType.PRIMARY]: primaryButtonStyle,
+    [ButtonType.SECONDARY]: secondaryButtonStyle,
   })};
   ${styleWhenTrue('disabled', disabledButtonStyle)};
 `;
