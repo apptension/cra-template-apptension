@@ -1,13 +1,12 @@
-# Create React App Template (by Apptension) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/apptension/react-scripts-apptension/pulls)
-
-[create-react-app](https://github.com/facebook/create-react-app) scripts customised for Apptension projects.
+# Create React App Template (by Apptension) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/apptension/cra-template-apptension/pulls)  [![tests status](https://github.com/apptension/cra-template-apptension/workflows/Run%20Tests/badge.svg)](https://github.com/apptension/cra-template-apptension/actions)
+[create-react-app](https://github.com/facebook/create-react-app) template customised for Apptension projects.
 
 <br/>
 <div style="text-align:center"><img src="http://image.ibb.co/jhaXCn/logo_transitions_5.gif" /></div>
 
 ## Quick start
 
-1. Run create-react-app with Apptension's scripts:
+1. Run create-react-app with Apptension's template:
 
 **npx**
 
