@@ -13,7 +13,7 @@ const renderComponent = (props = {}) => {
 export default {
   title: 'Shared|Users',
   component: Users,
-  decorators: [withRedux(store), withRouter()]
-}
+  decorators: [withRedux(store), withRouter()],
+};
 
 export const Default = () => renderComponent();

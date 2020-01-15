@@ -1,4 +1,4 @@
-import { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
+import { css } from 'styled-components';
 import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 

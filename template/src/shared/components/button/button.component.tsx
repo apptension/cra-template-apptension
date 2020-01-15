@@ -14,10 +14,11 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
   className,
   mode = ButtonType.PRIMARY,
   onClick = empty,
+  disabled,
   ...other
 }) => (
-  <ThemeProvider theme={{ mode }}>
-    <Container onClick={onClick} className={className} {...other}>
+  <ThemeProvider theme={{ mode, disabled }}>
+    <Container onClick={onClick} className={className} disabled={disabled} {...other}>
       {children}
     </Container>
   </ThemeProvider>
