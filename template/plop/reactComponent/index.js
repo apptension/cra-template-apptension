@@ -4,6 +4,10 @@ const templatesPath = path.join(__dirname, 'templates');
 
 module.exports = (plop) => {
   const containerDirectory = 'src/{{ directory }}/{{ camelCase name }}';
+
+  const projectPathAbsolute = plop.getDestBasePath();
+  const containerDirectoryAbsolute = path.join(projectPathAbsolute, containerDirectory);
+
   plop.setGenerator('component', {
     description: 'Generate a React component',
     prompts: [{
@@ -34,8 +38,14 @@ module.exports = (plop) => {
       templateFile: path.join(templatesPath, 'stories.hbs'),
     }, {
       type: 'add',
-      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.tsx`,
+      path: `${containerDirectory}/__tests__/{{ camelCase name }}.component.spec.ts`,
       templateFile: path.join(templatesPath, '__tests__/component.spec.hbs'),
+      data: {
+        testUtilsPath: path.relative(
+          path.join(containerDirectoryAbsolute, '__tests__/{{ camelCase name }}.component.spec.ts'),
+          path.join(projectPathAbsolute, 'src/shared/utils/testUtils')
+        ),
+      }
     }],
   });
 };
