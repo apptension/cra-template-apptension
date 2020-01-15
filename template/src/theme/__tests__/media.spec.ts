@@ -6,8 +6,7 @@ describe('theme/media', () => {
 
     describe('when no breakpoint matches', () => {
       it('should return default value', () => {
-        // @ts-ignore
-        jest.spyOn(window, 'matchMedia').mockReturnValue({ matches: false });
+        jest.spyOn(window, 'matchMedia').mockReturnValue({ matches: false } as MediaQueryList);
         const val = getValue();
         expect(val).toBe(100);
       });
@@ -15,10 +14,9 @@ describe('theme/media', () => {
 
     describe('when specified breakpoint mathces', () => {
       it('should return provided breakpoint value', () => {
-        // @ts-ignore
         jest.spyOn(window, 'matchMedia').mockImplementation(query => {
           const size = query.replace(/[^0-9]+/gi, '');
-          return { matches: parseInt(size, 10) >= 1280 };
+          return { matches: parseInt(size, 10) >= 1280 } as MediaQueryList;
         });
         const val = getValue();
 
@@ -28,10 +26,9 @@ describe('theme/media', () => {
 
     describe('when lower than specified breakpoint matches', () => {
       it('should return provided breakpoint value', () => {
-        // @ts-ignore
         jest.spyOn(window, 'matchMedia').mockImplementation(query => {
           const size = query.replace(/[^0-9]+/gi, '');
-          return { matches: parseInt(size, 10) >= 768 };
+          return { matches: parseInt(size, 10) >= 768 } as MediaQueryList;
         });
 
         const val = getValue();
