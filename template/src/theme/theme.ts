@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
 import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
@@ -45,7 +45,19 @@ export const zIndex = {
   [ZIndex.OVERLAY]: 10,
 };
 
-const theme = {
+type ThemeModule<T extends string | number> = Function | Record<T, any>;
+
+export interface Theme {
+  color: ThemeModule<Color>;
+  font: ThemeModule<Font>;
+  border: ThemeModule<Border>;
+  shadow: ThemeModule<Shadow>;
+  size: ThemeModule<Size>;
+  zIndex: ThemeModule<ZIndex>;
+  activeBreakpoint: ThemeModule<Breakpoint>;
+}
+
+const theme: Theme = {
   color,
   font,
   border,
