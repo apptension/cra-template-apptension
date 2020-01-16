@@ -30,7 +30,7 @@ jobs:
         yarn plop hook test ./src/shared/components
     - name: Run tests with snapshots update
       run: |
-        cd temp
+        cd tmp
         CI=true yarn test -u
     - name: Build
       run: |
