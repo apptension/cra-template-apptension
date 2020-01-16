@@ -11,14 +11,24 @@ on:
     - master
 
 jobs:
-  build:
+  create_project:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
     - name: Generate project
       run: npx create-react-app tmp --template file:.
-    - name: Run tests
+    - name: Run tests on default project
       run: |
         cd tmp
         CI=true yarn test
+    - name: Use plop
+      run: |
+        cd tmp
+        yarn plop component testComponent /shared/components
+        yarn plop module testModule
+        yarn plop hook useTestHook /shared/components
+    - name: Run tests with snapshots update
+      run: |
+        cd tmp
+        CI=true yarn test -u
