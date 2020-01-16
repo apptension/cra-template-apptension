@@ -1,9 +1,10 @@
 import { reducer as usersReducer } from '../users.redux';
+import { prepareState } from '../../../shared/utils/testUtils';
 
 describe('Users: redux', () => {
-  const defaultState = {
-    users: [],
-  };
+  const defaultState = prepareState(state => {
+    state.users.users = [];
+  }).users;
 
   describe('reducer', () => {
     it('should return initial state', () => {

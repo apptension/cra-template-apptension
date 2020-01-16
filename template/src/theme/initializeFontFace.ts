@@ -26,7 +26,7 @@ function fontFace(
 }
 /* eslint-enable import/no-dynamic-require */
 
-const generateFontsString = (): string => [fontFace(fonts[Font.PRIMARY], 'OpenSans')].join('\n');
+const generateFontsString = (): string => [fontFace(fonts[Font.PRIMARY] as string, 'OpenSans')].join('\n');
 
 export default (): void => {
   const style = document.createElement('style');

@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Shared|Users Default 1`] = `
+.c0 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #42f272;
+}
+
 <div>
   <div
     class=""
   >
     <button
-      type="button"
+      class="c0"
     >
       Fetch users
     </button>

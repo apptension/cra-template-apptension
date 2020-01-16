@@ -1,10 +1,10 @@
 import color from 'color';
+import { DefaultTheme } from 'styled-components';
 import { append, compose, flip, identity, ifElse, concat, path, curry, pathEq, always } from 'ramda';
 import { renderWhenTrue } from '../shared/utils/rendering';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
-import { Theme } from './theme';
 
-type ThemeGetter<T = string> = (propName: T) => (theme: Theme) => string;
+type ThemeGetter<T = string> = (propName: T) => (props: { theme: DefaultTheme }) => string;
 
 const themeGetter = <T>(path: string[]) => compose(fromTheme, concat(path), ensureArray) as ThemeGetter<T>;
 const ensureArray = ifElse(Array.isArray, identity, flip(append)([]));

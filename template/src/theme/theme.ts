@@ -2,7 +2,11 @@ import { css } from 'styled-components';
 import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
-export const colors = {
+type Producer<T> = (...args: any[]) => T;
+export type ThemeMap<T extends string | number, V> = Record<T, V>;
+export type ThemeMapDef<T extends string | number, V = any> = Record<T, V | Producer<V>>;
+
+export const colors: ThemeMapDef<Color, string> = {
   [Color.WHITE]: '#ffffff',
   [Color.BLACK]: '#000000',
   [Color.BORDER]: '#80809B',
@@ -12,27 +16,27 @@ export const colors = {
   [Color.ERROR]: '#fa7265',
 };
 
-export const fonts = {
+export const fonts: ThemeMapDef<Font, string> = {
   [Font.PRIMARY]: 'OpenSans',
 };
 
-export const borders = {
+export const borders: ThemeMapDef<Border, string> = {
   [Border.REGULAR]: `1px solid ${colors[Color.BORDER]}`,
 };
 
-export const shadows = {
+export const shadows: ThemeMapDef<Shadow> = {
   [Shadow.PRIMARY]: css`
     box-shadow: 10px 10px 0 rgba(0, 0, 55, 0.1);
   `,
 };
 
-export const sizes = {
+export const sizes: ThemeMapDef<Size, number> = {
   [Size.HEADER]: 80,
   [Size.CONTENT_HORIZONTAL_PADDING]: responsiveValue(16, { [Breakpoint.TABLET]: 24 }),
   [Size.CONTENT_VERTICAL_PADDING]: responsiveValue(8, { [Breakpoint.TABLET]: 16 }),
 };
 
-export const activeBreakpoint = responsiveValue(Breakpoint.MOBILE, {
+export const activeBreakpoint: () => Breakpoint = responsiveValue(Breakpoint.MOBILE, {
   [Breakpoint.DESKTOP_FULL]: Breakpoint.DESKTOP_FULL,
   [Breakpoint.DESKTOP_WIDE]: Breakpoint.DESKTOP_WIDE,
   [Breakpoint.DESKTOP]: Breakpoint.DESKTOP,
@@ -44,18 +48,6 @@ export const zIndexes = {
   [ZIndex.HEADER]: 5,
   [ZIndex.OVERLAY]: 10,
 };
-
-export type ThemeMap<T extends string | number> = Record<T, any>;
-
-export interface Theme {
-  colors?: ThemeMap<Color>;
-  fonts?: ThemeMap<Font>;
-  borders?: ThemeMap<Border>;
-  shadows?: ThemeMap<Shadow>;
-  sizes?: ThemeMap<Size>;
-  zIndexes?: ThemeMap<ZIndex>;
-  activeBreakpoint?: Breakpoint;
-}
 
 const theme = {
   colors,
