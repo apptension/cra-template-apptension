@@ -11,14 +11,24 @@ on:
     - master
 
 jobs:
-  build:
+  create_project:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
     - name: Generate project
       run: npx create-react-app tmp --template file:.
+    - name: Use plop
+      run: |
+        cd tmp
+        yarn plop component test ./src/shared/components
+        yarn plop module test
+        yarn plop hook test ./src/shared/components
     - name: Run tests
       run: |
         cd tmp
         CI=true yarn test
+    - name: Build
+      run: |
+        cd tmp
+        yarn build
