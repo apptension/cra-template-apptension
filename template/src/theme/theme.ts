@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
-export const color = {
+export const colors = {
   [Color.WHITE]: '#ffffff',
   [Color.BLACK]: '#000000',
   [Color.BORDER]: '#80809B',
@@ -12,21 +12,21 @@ export const color = {
   [Color.ERROR]: '#fa7265',
 };
 
-export const font = {
+export const fonts = {
   [Font.PRIMARY]: 'OpenSans',
 };
 
-export const border = {
-  [Border.REGULAR]: `1px solid ${color[Color.BORDER]}`,
+export const borders = {
+  [Border.REGULAR]: `1px solid ${colors[Color.BORDER]}`,
 };
 
-export const shadow = {
+export const shadows = {
   [Shadow.PRIMARY]: css`
     box-shadow: 10px 10px 0 rgba(0, 0, 55, 0.1);
   `,
 };
 
-export const size = {
+export const sizes = {
   [Size.HEADER]: 80,
   [Size.CONTENT_HORIZONTAL_PADDING]: responsiveValue(16, { [Breakpoint.TABLET]: 24 }),
   [Size.CONTENT_VERTICAL_PADDING]: responsiveValue(8, { [Breakpoint.TABLET]: 16 }),
@@ -39,7 +39,7 @@ export const activeBreakpoint = responsiveValue(Breakpoint.MOBILE, {
   [Breakpoint.TABLET]: Breakpoint.TABLET,
 });
 
-export const zIndex = {
+export const zIndexes = {
   [ZIndex.CONTENT]: 0,
   [ZIndex.HEADER]: 5,
   [ZIndex.OVERLAY]: 10,
@@ -48,22 +48,22 @@ export const zIndex = {
 export type ThemeMap<T extends string | number> = Record<T, any>;
 
 export interface Theme {
-  color?: ThemeMap<Color>;
-  font?: ThemeMap<Font>;
-  border?: ThemeMap<Border>;
-  shadow?: ThemeMap<Shadow>;
-  size?: ThemeMap<Size>;
-  zIndex?: ThemeMap<ZIndex>;
+  colors?: ThemeMap<Color>;
+  fonts?: ThemeMap<Font>;
+  borders?: ThemeMap<Border>;
+  shadows?: ThemeMap<Shadow>;
+  sizes?: ThemeMap<Size>;
+  zIndexes?: ThemeMap<ZIndex>;
   activeBreakpoint?: Breakpoint;
 }
 
 const theme = {
-  color,
-  font,
-  border,
-  shadow,
-  size,
-  zIndex,
+  colors,
+  fonts,
+  borders,
+  shadows,
+  sizes,
+  zIndexes,
   activeBreakpoint,
 };
 

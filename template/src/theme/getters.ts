@@ -10,12 +10,12 @@ const themeGetter = <T>(path: string[]) => compose(fromTheme, concat(path), ensu
 const ensureArray = ifElse(Array.isArray, identity, flip(append)([]));
 
 export const fromTheme = compose(path, concat(['theme']), ensureArray);
-export const themeColor = themeGetter<Color>(['color']);
-export const themeBorder = themeGetter<Border>(['border']);
-export const themeShadow = themeGetter<Shadow>(['shadow']);
-export const themeZIndex = themeGetter<ZIndex>(['zIndex']);
-export const themeFont = themeGetter<Font>(['font']);
-export const themeSize = themeGetter<Size>(['size']);
+export const themeColor = themeGetter<Color>(['colors']);
+export const themeBorder = themeGetter<Border>(['borders']);
+export const themeShadow = themeGetter<Shadow>(['shadows']);
+export const themeZIndex = themeGetter<ZIndex>(['zIndexes']);
+export const themeFont = themeGetter<Font>(['fonts']);
+export const themeSize = themeGetter<Size>(['sizes']);
 export const themeColorWithOpacity = (colorId: Color, alpha: number) =>
   compose(
     value =>
