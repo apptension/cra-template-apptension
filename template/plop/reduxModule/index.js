@@ -66,7 +66,7 @@ module.exports = (plop) => {
       type: 'modify',
       path: 'src/modules/sagas.ts',
       pattern: /(\/\/<-- INJECT MODULE SAGA -->)/g,
-      template: 'fork(watch{{ pascalCase name }}),\n      $1',
+      template: 'fork(watch{{ pascalCase name }}),\n    $1',
     }, {
       type: 'modify',
       path: 'src/shared/utils/testUtils.tsx',
