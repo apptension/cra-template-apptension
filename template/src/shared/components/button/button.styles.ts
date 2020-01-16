@@ -3,6 +3,7 @@ import theme from 'styled-theming';
 import { ButtonType } from './button.constants';
 import { styleWhenTrue, themeBorder, themeColor, themeSize } from '../../../theme/getters';
 import { Border, Color, Size } from '../../../theme/theme.constants';
+import { ButtonTheme } from './button.component';
 
 const primaryButtonStyle = css`
   background: ${themeColor(Color.PRIMARY)};
@@ -27,5 +28,5 @@ export const Container = styled.button`
     [ButtonType.PRIMARY]: primaryButtonStyle,
     [ButtonType.SECONDARY]: secondaryButtonStyle,
   })};
-  ${styleWhenTrue('disabled', disabledButtonStyle)};
+  ${styleWhenTrue<ButtonTheme>(({ disabled }) => disabled, disabledButtonStyle)};
 `;

@@ -1,3 +1,4 @@
+import { DefaultTheme } from 'styled-components';
 import {
   fromTheme,
   styleWhenEquals,
@@ -11,6 +12,12 @@ import {
 import { Color, Font, Size, ZIndex } from '../theme.constants';
 
 describe('theme/getters', () => {
+  interface MockTheme extends DefaultTheme {
+    foo?: any;
+    testBool?: boolean;
+    testString?: string;
+  }
+
   const theme = {
     theme: {
       foo: 'bar',
@@ -27,7 +34,7 @@ describe('theme/getters', () => {
         [ZIndex.HEADER]: 5,
       },
     },
-  };
+  } as { theme: MockTheme };
 
   describe('fromTheme', () => {
     it('should return theme property', () => {
@@ -73,13 +80,16 @@ describe('theme/getters', () => {
   describe('styleWhenTrue', () => {
     it('should return styles when prop equals true', () => {
       const expectedStyles = 'styles-content';
-      const value = styleWhenTrue('test', expectedStyles)({ theme: { test: true } });
+      const value = styleWhenTrue<MockTheme>(({ testBool }) => testBool, expectedStyles)({ theme: { testBool: true } });
 
       expect(value).toEqual(expectedStyles);
     });
 
-    it('should return styles when prop equals true', () => {
-      const value = styleWhenTrue('test', 'styles-content')({ theme: { test: false } });
+    it('should return nothing when prop equals false', () => {
+      const value = styleWhenTrue<MockTheme>(
+        ({ testBool }) => testBool,
+        'styles-content'
+      )({ theme: { testBool: false } });
       expect(value).toBeNull();
     });
   });
@@ -88,19 +98,23 @@ describe('theme/getters', () => {
     it('should return styles when prop equals expected value', () => {
       const expectedStyles = 'styles-content';
       const expectedPropValue = 'prop-value';
-      const value = styleWhenEquals('test', expectedPropValue, expectedStyles)({ theme: { test: expectedPropValue } });
+      const value = styleWhenEquals<MockTheme>(
+        ({ testString }) => testString,
+        expectedPropValue,
+        expectedStyles
+      )({ theme: { testString: expectedPropValue } });
 
       expect(value).toEqual(expectedStyles);
     });
 
     it('should return null when prop doesnt equal expected value', () => {
       const expectedPropValue = 'prop-value';
-      const value = styleWhenEquals(
-        'test',
+      const value = styleWhenEquals<MockTheme>(
+        ({ testString }) => testString,
         expectedPropValue,
         'styles-content'
       )({
-        theme: { test: 'unexpected-value' },
+        theme: { testString: 'unexpected-value' },
       });
       expect(value).toBeNull();
     });

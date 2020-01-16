@@ -1,10 +1,10 @@
 import color from 'color';
-import { DefaultTheme } from 'styled-components';
-import { append, compose, flip, identity, ifElse, concat, path, curry, pathEq, always } from 'ramda';
+import { DefaultTheme, ThemeProps } from 'styled-components';
+import { append, compose, flip, identity, ifElse, concat, path, always } from 'ramda';
 import { renderWhenTrue } from '../shared/utils/rendering';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
-type ThemeGetter<T = string> = (propName: T) => (props: { theme: DefaultTheme }) => string;
+type ThemeGetter<P = string, T extends DefaultTheme = DefaultTheme> = (propName: P) => (props: { theme: T }) => string;
 
 const themeGetter = <T>(path: string[]) => compose(fromTheme, concat(path), ensureArray) as ThemeGetter<T>;
 const ensureArray = ifElse(Array.isArray, identity, flip(append)([]));
@@ -25,10 +25,15 @@ export const themeColorWithOpacity = (colorId: Color, alpha: number) =>
     themeColor(colorId)
   );
 
-export const styleWhenTrue = curry((propName, string) =>
-  compose(renderWhenTrue(always(string)), pathEq(['theme', propName], true))
-);
+type ThemeValueGetter<T extends DefaultTheme = DefaultTheme, V = any> = (theme: T) => V;
 
-export const styleWhenEquals = curry((propName, value, string) =>
-  compose(renderWhenTrue(always(string)), pathEq(['theme', propName], value))
-);
+export const styleWhenTrue = <T extends DefaultTheme = DefaultTheme>(
+  getThemeVal: ThemeValueGetter<T, boolean>,
+  styles: any
+) => compose(renderWhenTrue(always(styles)), ({ theme }: ThemeProps<T>) => getThemeVal(theme));
+
+export const styleWhenEquals = <T extends DefaultTheme = DefaultTheme>(
+  getThemeVal: ThemeValueGetter<T, any>,
+  expectedValue: any,
+  styles: any
+) => compose(renderWhenTrue(always(styles)), ({ theme }: ThemeProps<T>) => getThemeVal(theme) === expectedValue);
