@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Container } from './users.styles';
 import messages from './users.messages';
 import { User } from '../../../modules/users/users.redux';
+import { Button } from '../button';
 
 interface UsersComponentProps {
   users: User[];
@@ -13,9 +14,9 @@ interface UsersComponentProps {
 export const UsersComponent: FC<UsersComponentProps> = ({ users, fetchUsers }) => {
   return (
     <Container>
-      <button type="button" onClick={fetchUsers}>
+      <Button onClick={fetchUsers}>
         <FormattedMessage {...messages.fetchUsers} />
-      </button>
+      </Button>
 
       <ul>
         {users.map(user => (

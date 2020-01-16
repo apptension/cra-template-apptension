@@ -31,6 +31,12 @@ exports[`Home: Component should render correctly 1`] = `
   color: #000000;
 }
 
+.c3 {
+  padding: 8px 16px;
+  border: 1px solid #80809B;
+  background: #42f272;
+}
+
 <div
   class="c0"
 >
@@ -62,7 +68,7 @@ exports[`Home: Component should render correctly 1`] = `
     class=""
   >
     <button
-      type="button"
+      class="c3"
     >
       Fetch users
     </button>

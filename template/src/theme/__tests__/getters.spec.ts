@@ -14,16 +14,16 @@ describe('theme/getters', () => {
   const theme = {
     theme: {
       foo: 'bar',
-      color: {
+      colors: {
         [Color.BLACK]: '#000000',
       },
-      font: {
+      fonts: {
         [Font.PRIMARY]: 'primaryFont',
       },
-      size: {
+      sizes: {
         [Size.HEADER]: 'headerSize',
       },
-      zIndex: {
+      zIndexes: {
         [ZIndex.HEADER]: 5,
       },
     },
@@ -35,7 +35,7 @@ describe('theme/getters', () => {
     });
 
     it('should return deep property when path is provided', () => {
-      expect(fromTheme(['color', Color.BLACK])(theme)).toBe('#000000');
+      expect(fromTheme(['colors', Color.BLACK])(theme)).toBe('#000000');
     });
   });
 
