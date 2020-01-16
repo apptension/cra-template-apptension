@@ -25,9 +25,9 @@ jobs:
     - name: Use plop
       run: |
         cd tmp
-        yarn plop component test /shared/components
-        yarn plop module test
-        yarn plop hook test /shared/components
+        yarn plop component testComponent /shared/components
+        yarn plop module testModule
+        yarn plop hook useTestHook /shared/components
     - name: Run tests with snapshots update
       run: |
         cd tmp
