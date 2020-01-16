@@ -3,8 +3,20 @@ import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
 type Producer<T> = (...args: any[]) => T;
-export type ThemeMap<T extends string | number, V> = Record<T, V>;
+export type ThemeMap<T extends string | number, V = any> = Record<T, V>;
 export type ThemeMapDef<T extends string | number, V = any> = Record<T, V | Producer<V>>;
+
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    colors?: ThemeMap<Color, string>;
+    fonts?: ThemeMap<Font, string>;
+    borders?: ThemeMap<Border, string>;
+    shadows?: ThemeMap<Shadow>;
+    sizes?: ThemeMap<Size>;
+    zIndexes?: ThemeMap<ZIndex>;
+    activeBreakpoint?: Breakpoint;
+  }
+}
 
 export const colors: ThemeMapDef<Color, string> = {
   [Color.WHITE]: '#ffffff',
