@@ -32,7 +32,3 @@ jobs:
       run: |
         cd tmp
         CI=true yarn test -u
-    - name: Build
-      run: |
-        cd tmp
-        yarn build
