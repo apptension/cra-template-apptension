@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { screen, getNodeText } from '@testing-library/react';
-import { ResponsiveThemeProvider } from '../responsiveThemeProvider.component';
+import { ResponsiveThemeProvider, ResponsiveThemeProviderProps } from '../responsiveThemeProvider.component';
 import { makePropsRenderer } from '../../../utils/testUtils';
 
 const ThemeConsumer = () => {
   const theme = useContext(ThemeContext);
+  // @ts-ignore
   return <div data-testid="content">{theme.foo}</div>;
 };
 
@@ -17,7 +18,9 @@ describe('ResponsiveThemeProvider: Component', () => {
     },
   };
 
-  const component = props => <ResponsiveThemeProvider {...defaultProps} {...props} />;
+  const component = (props: Partial<ResponsiveThemeProviderProps>) => (
+    <ResponsiveThemeProvider {...defaultProps} {...props} />
+  );
   const render = makePropsRenderer(component);
 
   describe('theme only contains primitive types', () => {
