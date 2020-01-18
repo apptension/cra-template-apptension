@@ -1,4 +1,4 @@
 import { hot } from 'react-hot-loader/root';
-import { UsersContainer } from './users.container';
+import { UsersComponent } from './users.component';
 
-export const Users = hot(UsersContainer);
+export const Users = hot(UsersComponent);
