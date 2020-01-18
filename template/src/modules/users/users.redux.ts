@@ -1,4 +1,4 @@
-import { createImmutableReducer, ReduxAction } from '../helpers';
+import { actionHandler, createImmutableReducer, ReduxAction } from '../helpers';
 import { usersActions } from '.';
 
 export interface User {
@@ -25,8 +25,8 @@ const handleFetchUsersSuccess = (state: UsersState, { payload: users }: ReduxAct
 };
 
 const HANDLERS = {
-  [usersActions.fetchUsers.toString()]: handleFetchUsers,
-  [usersActions.fetchUsersSuccess.toString()]: handleFetchUsersSuccess,
+  ...actionHandler(usersActions.fetchUsers, handleFetchUsers),
+  ...actionHandler(usersActions.fetchUsersSuccess, handleFetchUsersSuccess),
 };
 
 export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);

@@ -1,4 +1,4 @@
-import { createImmutableReducer, ReduxAction } from '../helpers';
+import { actionHandler, createImmutableReducer, ReduxAction } from '../helpers';
 import { localesActions } from '.';
 
 export type LocalesState = {
@@ -14,7 +14,7 @@ const handleSetLanguage = (state: LocalesState, { payload }: ReduxAction<string>
 };
 
 const HANDLERS = {
-  [localesActions.setLanguage.toString()]: handleSetLanguage,
+  ...actionHandler(localesActions.setLanguage, handleSetLanguage),
 };
 
 export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);
