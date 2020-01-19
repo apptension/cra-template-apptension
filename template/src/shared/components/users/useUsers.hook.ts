@@ -1,19 +1,12 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { UsersComponent } from './users.component';
 import { usersActions, usersSelectors } from '../../../modules/users';
+import { User } from '../../../modules/users/users.redux';
 
-export const UsersContainer = ({ ...props }) => {
+export const useUsers = (): [User[], () => void] => {
   const dispatch = useDispatch();
 
   const users = useSelector(usersSelectors.selectUsers);
   const fetchUsers = () => dispatch(usersActions.fetchUsers());
 
-  const componentProps = {
-    users,
-    fetchUsers,
-  };
-
-  return <UsersComponent {...props} {...componentProps} />;
+  return [users, fetchUsers];
 };

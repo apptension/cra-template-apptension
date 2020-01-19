@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { hot } from 'react-hot-loader/root';
 
-import { AppContainer as App } from './app.container';
+import { AppComponent as App } from './app.component';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
 import { ROUTES } from './app.constants';
 import { asyncComponent } from '../shared/utils/asyncComponent';
