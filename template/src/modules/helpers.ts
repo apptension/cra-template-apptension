@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { map } from 'ramda';
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAction, createReducer, PayloadActionCreator } from '@reduxjs/toolkit';
 
 export interface ReduxAction<T> {
   type: string;
@@ -15,4 +15,13 @@ export const actionCreator = (prefix: string) => <T>(actionName: string) =>
 export const createImmutableReducer = <T>(initialState: T, reducers: { [key: string]: Reducer<T> }) => {
   // @ts-ignore
   return createReducer(initialState, map(produce, reducers));
+};
+
+export const actionHandler = <P, S>(
+  action: PayloadActionCreator<P>,
+  handler: (state: S, action: ReduxAction<P>) => void
+) => {
+  return {
+    [action.toString()]: handler,
+  };
 };
