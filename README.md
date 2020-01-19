@@ -44,7 +44,7 @@ Build complex logic through functional composition. For easier start with this l
 
 ### **_Redux_**
 
-Unidirectional data flow allows for change logging and time travel debugging. Used with **_Redux Sauce_**, **_Redux-Saga_**, **_Seamless immutable_**, **_Reselect_** and configured for **_Redux DevTools_** to speed up development.
+Unidirectional data flow allows for change logging and time travel debugging. Used with **_Redux-Saga_**, **_Immer_**, **_Reselect_** and configured for **_Redux DevTools_** to speed up development.
 
 ### **_React Router_**
 
@@ -84,6 +84,7 @@ Automated processes executed before git actions.
 | yarn plop module    | Generate Redux module (reducer, saga, selectors, action types, action creators, tests): |
 | yarn plop container | Generate Redux container and its react component in specified path:                     |
 | yarn plop component | Generate React class component or function component in specified path                  |
+| yarn plop hook      | Generate React custom hook in specified path                  |
 
 ## Files structure
 
@@ -221,7 +222,7 @@ Here's a curated list of packages that you should have knowledge of, before star
 ### Core
 
 - [ ] [React 16.8](https://facebook.github.io/react/)
-- [ ] [React Router 4](https://github.com/ReactTraining/react-router)
+- [ ] [React Router 5](https://github.com/ReactTraining/react-router)
 - [ ] [React Intl](https://github.com/yahoo/react-intl)
 - [ ] [React Helmet](https://github.com/nfl/react-helmet)
 - [ ] [Redux](http://redux.js.org/)
