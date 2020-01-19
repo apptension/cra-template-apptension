@@ -30,6 +30,10 @@ $ yarn start
 
 **_Note:_** Most features are covered by [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started) documentation so don't forget to check it out first!
 
+### **_Typescript_**
+
+Configured together with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) provides you with static types checking and helps with maintaining good code style.
+
 ### **_Storybook_**
 
 Check out live examples to understand Apptension stack workflow. Interactively develop and test components in isolated environment by running `yarn storybook`.
