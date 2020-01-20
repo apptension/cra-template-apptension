@@ -1,7 +1,7 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import responsiveTheme from '../../../theme/responsiveTheme';
-import { WindowListener } from '../windowListener/windowListener.component';
+import { useWindowListener } from '../../hooks/useWindowListener';
 
 const parseTheme = (theme: object): DefaultTheme => responsiveTheme(theme);
 
@@ -13,11 +13,7 @@ export interface ResponsiveThemeProviderProps {
 export const ResponsiveThemeProvider: FC<ResponsiveThemeProviderProps> = ({ theme: themeDefinition, children }) => {
   const [theme, setTheme] = useState(parseTheme(themeDefinition));
   const handleResize = () => setTheme(parseTheme(themeDefinition));
+  useWindowListener('resize', handleResize, { throttle: 200 });
 
-  return (
-    <Fragment>
-      <WindowListener eventType="resize" throttle={200} onEvent={handleResize} />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </Fragment>
-  );
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
