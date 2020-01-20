@@ -10,8 +10,23 @@ axios.defaults.adapter = require('axios/lib/adapters/http');
 
 nock.disableNetConnect();
 
-afterEach(() => {
+beforeEach(() => {
+  if (!nock.isActive()) {
+    nock.activate();
+  }
+});
+
+const nockCleanup = () => {
   nock.cleanAll();
+  nock.restore();
+};
+
+afterEach(() => {
+  if (!nock.isDone()) {
+    nockCleanup();
+    throw new Error('Not all nock interceptors were used!');
+  }
+  nockCleanup();
 });
 
 // @ts-ignore
