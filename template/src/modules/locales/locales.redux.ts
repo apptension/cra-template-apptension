@@ -1,4 +1,5 @@
-import { actionHandler, createImmutableReducer, ReduxAction } from '../helpers';
+import { createReducer } from '@reduxjs/toolkit';
+import { actionHandler, ReduxAction } from '../helpers';
 import { localesActions } from '.';
 
 export type LocalesState = {
@@ -17,4 +18,4 @@ const HANDLERS = {
   ...actionHandler(localesActions.setLanguage, handleSetLanguage),
 };
 
-export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);
+export const reducer = createReducer(INITIAL_STATE, HANDLERS);

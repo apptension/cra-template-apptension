@@ -1,4 +1,5 @@
-import { createImmutableReducer, ReduxAction } from '../helpers';
+import { createReducer } from '@reduxjs/toolkit';
+import { ReduxAction, actionHandler } from '../helpers';
 import { {{ camelCase name }}Actions } from '.';
 
 export interface {{ pascalCase name }}State {
@@ -18,8 +19,8 @@ const handleFetch{{ pascalCase name }}Success = (state: {{ pascalCase name }}Sta
 };
 
 const HANDLERS = {
-  [{{ camelCase name }}Actions.fetch{{ pascalCase name }}.toString()]: handleFetch{{ pascalCase name }},
-  [{{ camelCase name }}Actions.fetch{{ pascalCase name }}Success.toString()]: handleFetch{{ pascalCase name }}Success,
+  ...actionHandler({{ camelCase name }}Actions.fetch{{ pascalCase name }}, handleFetch{{ pascalCase name }}),
+  ...actionHandler({{ camelCase name }}Actions.fetch{{ pascalCase name }}Success, handleFetch{{ pascalCase name }}Success),
 };
 
-export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);
+export const reducer = createReducer(INITIAL_STATE, HANDLERS);

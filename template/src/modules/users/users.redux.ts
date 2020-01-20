@@ -1,4 +1,5 @@
-import { actionHandler, createImmutableReducer, ReduxAction } from '../helpers';
+import { createReducer } from '@reduxjs/toolkit';
+import { actionHandler, ReduxAction } from '../helpers';
 import { usersActions } from '.';
 
 export interface User {
@@ -29,4 +30,4 @@ const HANDLERS = {
   ...actionHandler(usersActions.fetchUsersSuccess, handleFetchUsersSuccess),
 };
 
-export const reducer = createImmutableReducer(INITIAL_STATE, HANDLERS);
+export const reducer = createReducer(INITIAL_STATE, HANDLERS);
