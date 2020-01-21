@@ -5,6 +5,7 @@
     "react",
     "create-react-app",
     "template",
+    "typescript",
     "Apptension"
   ],
   "description": "Template for Create React App made by Apptension",
