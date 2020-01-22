@@ -16,7 +16,7 @@ const languages = process.argv.slice(2);
 
 extractReactIntlMessages(
   languages,
-  './src/**/*.messages.js',
+  './src/**/*.messages.ts',
   './src/translations',
   {
     format: 'json',
