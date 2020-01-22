@@ -7,7 +7,7 @@ import { ResponsiveThemeProvider as ThemeProvider } from '../shared/components/r
 import { translationMessages } from '../i18n';
 import { GlobalStyle } from '../theme/global';
 import messages from './app.messages';
-import theme from '../theme/theme';
+import { theme } from '../theme/theme';
 import { localesSelectors } from '../modules/locales';
 import { useStartup } from './useStartup';
 import { useLanguageFromParams } from './useLanguageFromParams';

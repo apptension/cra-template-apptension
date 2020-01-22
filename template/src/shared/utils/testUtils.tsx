@@ -12,7 +12,7 @@ import produce from 'immer';
 import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
 import { store as fixturesStore } from '../../../fixtures/store';
 import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
-import * as defaultTheme from '../../theme/theme';
+import { theme as defaultTheme } from '../../theme/theme';
 import { GlobalState } from '../../modules/reducers';
 import { LOCALES_INITIAL_STATE } from '../../modules/locales';
 import { STARTUP_INITIAL_STATE } from '../../modules/startup';
@@ -26,6 +26,7 @@ const defaultGlobalState: GlobalState = {
   //<-- INJECT MODULE STATE -->
 };
 
+export const PLACEHOLDER_TEST_ID = 'content';
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
 
 export const spiedHistory = (route = '/') => {
