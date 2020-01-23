@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, DefaultTheme } from 'styled-components';
 import { Breakpoint, responsiveValue } from './media';
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 
@@ -48,7 +48,7 @@ export const sizes: ThemeMapDef<Size, number> = {
   [Size.CONTENT_VERTICAL_PADDING]: responsiveValue(8, { [Breakpoint.TABLET]: 16 }),
 };
 
-export const activeBreakpoint: () => Breakpoint = responsiveValue(Breakpoint.MOBILE, {
+export const activeBreakpoint: (props: { theme: DefaultTheme }) => Breakpoint = responsiveValue(Breakpoint.MOBILE, {
   [Breakpoint.DESKTOP_FULL]: Breakpoint.DESKTOP_FULL,
   [Breakpoint.DESKTOP_WIDE]: Breakpoint.DESKTOP_WIDE,
   [Breakpoint.DESKTOP]: Breakpoint.DESKTOP,
@@ -61,7 +61,7 @@ export const zIndexes = {
   [ZIndex.OVERLAY]: 10,
 };
 
-const theme = {
+export const theme = {
   colors,
   fonts,
   borders,
@@ -70,5 +70,3 @@ const theme = {
   zIndexes,
   activeBreakpoint,
 };
-
-export default theme;

@@ -16,7 +16,7 @@ export const sizes: Record<Breakpoint, number> = {
   [Breakpoint.MOBILE]: 320,
 };
 
-const sizesOrdered: Breakpoint[] = [
+export const sizesOrdered: Breakpoint[] = [
   Breakpoint.MOBILE,
   Breakpoint.TABLET,
   Breakpoint.DESKTOP,
