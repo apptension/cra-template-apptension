@@ -1,4 +1,5 @@
-import { css } from 'styled-components';
+import { BaseThemedCssFunction, css, DefaultTheme } from 'styled-components';
+import { complement, isNil } from 'ramda';
 
 export enum Breakpoint {
   MOBILE = 'mobile',
@@ -28,28 +29,27 @@ const getWindowWidth = () => window.innerWidth;
 
 export const getBreakpointMediaQuery = (breakpoint: Breakpoint) => `(min-width: ${sizes[breakpoint]}px)`;
 
-export const media = Object.keys(sizes).reduce((acc: any, label: string) => {
-  acc[label] = (...args: any[]) => css`
-    @media (min-width: ${sizes[label as Breakpoint]}px) {
-      // @ts-ignore
-      ${css(...args)}
+export const media = (breakpoint: Breakpoint, opts: { landscape?: boolean; retina?: boolean } = {}) => {
+  return ((...args: any[]) => {
+    const joinQuery = (...queries: string[]) => queries.filter(complement(isNil)).join(' and ');
+
+    const sizeQuery = `(min-width: ${sizes[breakpoint]}px)`;
+    const landscapeQuery = opts.landscape ? '(orientation: landscape)' : null;
+    const retinaQueries = opts.retina ? ['(-webkit-min-device-pixel-ratio: 2)', '(min-resolution: 192dpi)'] : null;
+
+    let query = '';
+    if (retinaQueries) {
+      query = retinaQueries.map(retinaQuery => joinQuery(sizeQuery, landscapeQuery, retinaQuery)).join(', ');
+    } else {
+      query = joinQuery(sizeQuery, landscapeQuery);
     }
-  `;
-  acc[`${label}Retina`] = (...args: any[]) => css`
-    @media (min-width: ${sizes[label as Breakpoint]}px) and (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi) {
-      // @ts-ignore
-      ${css(...args)}
-    }
-  `;
-  acc[`${label}Landscape`] = (...args: any[]) => css`
-    @media (min-width: ${sizes[label as Breakpoint]}px) and (orientation: landscape) {
-      // @ts-ignore
-      ${css(...args)}
-    }
-  `;
-  return acc;
-}, {});
+
+    // @ts-ignore
+    // @es-ignore
+    // prettier-ignore
+    return css`@media ${query} {${css(...args)}}`;
+  }) as BaseThemedCssFunction<DefaultTheme>;
+};
 
 export const isMobile = () => {
   const width = getWindowWidth();
