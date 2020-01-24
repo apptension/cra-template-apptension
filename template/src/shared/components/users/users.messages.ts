@@ -6,4 +6,8 @@ export default defineMessages({
     id: 'users.fetchUsers',
     defaultMessage: 'Fetch users',
   },
+  fetching: {
+    id: 'users.fetching',
+    defaultMessage: 'Fetching...',
+  },
 });

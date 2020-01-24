@@ -26,8 +26,8 @@ const handleFetchUsersSuccess = (state: UsersState, { payload: users }: ReduxAct
 };
 
 const HANDLERS = {
-  ...actionHandler(usersActions.fetchUsers, handleFetchUsers),
-  ...actionHandler(usersActions.fetchUsersSuccess, handleFetchUsersSuccess),
+  ...actionHandler(usersActions.fetchUsers.trigger, handleFetchUsers),
+  ...actionHandler(usersActions.fetchUsers.success, handleFetchUsersSuccess),
 };
 
 export const reducer = createReducer(INITIAL_STATE, HANDLERS);

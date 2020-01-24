@@ -13,8 +13,8 @@ describe('Users: sagas', () => {
 
     await expectSaga(watchUsers)
       .withState(defaultState)
-      .put(usersActions.fetchUsersSuccess(usersMock))
-      .dispatch(usersActions.fetchUsers())
+      .put(usersActions.fetchUsers.success(usersMock))
+      .dispatch(usersActions.fetchUsers.trigger)
       .silentRun();
   });
 });

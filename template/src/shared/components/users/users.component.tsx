@@ -7,12 +7,12 @@ import { Button } from '../button';
 import { useUsers } from './useUsers.hook';
 
 export const UsersComponent: FC = () => {
-  const [users, fetchUsers] = useUsers();
+  const [{ users, isFetching }, { fetchUsers }] = useUsers();
 
   return (
     <Container>
       <Button onClick={fetchUsers}>
-        <FormattedMessage {...messages.fetchUsers} />
+        <FormattedMessage {...(isFetching ? messages.fetching : messages.fetchUsers)} />
       </Button>
 
       <ul>

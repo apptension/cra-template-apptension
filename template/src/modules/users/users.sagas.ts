@@ -9,12 +9,13 @@ export const USERS_URL = '/users';
 function* fetchUsers() {
   try {
     const { data } = yield api.get(USERS_URL);
-    yield put(usersActions.fetchUsersSuccess(data));
+    yield put(usersActions.fetchUsers.success(data));
   } catch (error) {
+    yield put(usersActions.fetchUsers.error(error.message));
     reportError(error);
   }
 }
 
 export function* watchUsers() {
-  yield all([takeLatest(usersActions.fetchUsers, fetchUsers)]);
+  yield all([takeLatest(usersActions.fetchUsers.trigger, fetchUsers)]);
 }
