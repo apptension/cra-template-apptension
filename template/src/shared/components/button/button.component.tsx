@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { empty } from 'ramda';
 
@@ -14,14 +14,14 @@ export interface ButtonTheme extends DefaultTheme {
   disabled: boolean;
 }
 
-export const ButtonComponent: FC<ButtonComponentProps> = ({
+export const ButtonComponent = ({
   children,
   className,
   mode = ButtonType.PRIMARY,
   onClick = empty,
   disabled,
   ...other
-}) => (
+}: ButtonComponentProps) => (
   <ThemeProvider theme={{ mode, disabled } as ButtonTheme}>
     <Container onClick={onClick} className={className} disabled={disabled} {...other}>
       {children}

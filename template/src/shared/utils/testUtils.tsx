@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, FC } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { render } from '@testing-library/react';
 import { createStore } from 'redux';
@@ -54,7 +54,7 @@ interface ProvidersWrapperProps {
   context: ContextData;
 }
 
-export const ProvidersWrapper: FC<ProvidersWrapperProps> = ({ children, context = {} }) => {
+export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperProps) => {
   const { router = {}, store = fixturesStore, messages, theme = defaultTheme } = context;
   const { url = `/${DEFAULT_LOCALE}`, routePath = '/:lang/', history } = router;
 

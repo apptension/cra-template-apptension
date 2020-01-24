@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import responsiveTheme from '../../../theme/responsiveTheme';
 import { useWindowListener } from '../../hooks/useWindowListener';
@@ -10,7 +10,7 @@ export interface ResponsiveThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ResponsiveThemeProvider: FC<ResponsiveThemeProviderProps> = ({ theme: themeDefinition, children }) => {
+export const ResponsiveThemeProvider = ({ theme: themeDefinition, children }: ResponsiveThemeProviderProps) => {
   const [theme, setTheme] = useState(parseTheme(themeDefinition));
   const handleResize = () => setTheme(parseTheme(themeDefinition));
   useWindowListener('resize', handleResize, { throttle: 200 });

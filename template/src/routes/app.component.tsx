@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactNode } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ export interface AppComponentProps {
   children?: ReactNode;
 }
 
-export const AppComponent: FC<AppComponentProps> = ({ children }) => {
+export const AppComponent = ({ children }: AppComponentProps) => {
   useStartup();
   useLanguageFromParams();
 
