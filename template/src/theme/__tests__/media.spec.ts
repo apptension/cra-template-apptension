@@ -1,4 +1,4 @@
-import { responsiveValue } from '../media';
+import { Breakpoint, media, responsiveValue } from '../media';
 
 describe('theme/media', () => {
   describe('responsiveValue', () => {
@@ -33,6 +33,51 @@ describe('theme/media', () => {
 
         const val = getValue();
         expect(val).toBe(200);
+      });
+    });
+  });
+
+  describe('media()', () => {
+    const CSS_CONTENT = 'padding: 10px;';
+    const getMedia = (...args) => media(...args)`${CSS_CONTENT}`.join('');
+
+    describe('for specified breakpoint', () => {
+      it('should return correct css media query', () => {
+        expect(getMedia(Breakpoint.MOBILE)).toMatchSnapshot();
+        expect(getMedia(Breakpoint.TABLET)).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP)).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_WIDE)).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_FULL)).toMatchSnapshot();
+      });
+    });
+
+    describe('for specified retina breakpoint', () => {
+      it('should return correct css media query', () => {
+        expect(getMedia(Breakpoint.MOBILE, { retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.TABLET, { retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP, { retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_WIDE, { retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_FULL, { retina: true })).toMatchSnapshot();
+      });
+    });
+
+    describe('for specified landscape breakpoint', () => {
+      it('should return correct css media query', () => {
+        expect(getMedia(Breakpoint.MOBILE, { landscape: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.TABLET, { landscape: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP, { landscape: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_WIDE, { landscape: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_FULL, { landscape: true })).toMatchSnapshot();
+      });
+    });
+
+    describe('for specified retina landscape breakpoint', () => {
+      it('should return correct css media query', () => {
+        expect(getMedia(Breakpoint.MOBILE, { landscape: true, retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.TABLET, { landscape: true, retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP, { landscape: true, retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_WIDE, { landscape: true, retina: true })).toMatchSnapshot();
+        expect(getMedia(Breakpoint.DESKTOP_FULL, { landscape: true, retina: true })).toMatchSnapshot();
       });
     });
   });
