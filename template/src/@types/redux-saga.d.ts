@@ -35,5 +35,5 @@ declare module 'redux-saga/effects' {
   export const takeLeading: EffectHandlerBinding;
   export const takeLatest: EffectHandlerBinding;
   export const takeEvery: EffectHandlerBinding;
-  export const take: EffectHandlerBinding;
+  export const take: (actionCreator: PayloadActionCreator<P>) => any;
 }
