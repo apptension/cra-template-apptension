@@ -22,13 +22,17 @@ jobs:
       run: |
         cd tmp
         CI=true yarn test
+    - name: Build storybook
+      run: |
+        cd tmp
+        yarn build-storybook
     - name: Use plop
       run: |
         cd tmp
         yarn plop component testComponent /shared/components
         yarn plop module testModule
         yarn plop hook useTestHook /shared/components
-    - name: Run tests with snapshots update
+    - name: Run tests on created plop components (with snapshots update)
       run: |
         cd tmp
         CI=true yarn test -u
