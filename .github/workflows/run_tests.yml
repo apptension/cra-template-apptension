@@ -22,10 +22,6 @@ jobs:
       run: |
         cd tmp
         CI=true yarn test
-    - name: Build storybook
-      run: |
-        cd tmp
-        yarn build-storybook
     - name: Use plop
       run: |
         cd tmp
