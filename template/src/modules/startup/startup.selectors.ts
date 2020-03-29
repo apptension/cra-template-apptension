@@ -1,3 +1,3 @@
-import { prop } from 'ramda';
+import { GlobalState } from '../reducers';
 
-export const selectStartupDomain = prop<string, any>('startup');
+export const selectStartupDomain = (state: GlobalState) => state.startup;

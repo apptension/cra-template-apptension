@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Select } from './languageSwitcher.styles';
 import { useLanguageRouter } from './useLanguageRouter.hook';
 
-export const LanguageSwitcherComponent: FC = () => {
+export const LanguageSwitcherComponent = () => {
   const [{ language, locales }, changeLanguage] = useLanguageRouter();
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => changeLanguage(e.target.value);
 
   return (
-    <Select value={language} onChange={handleChange}>
+    <Select value={language || ''} onChange={handleChange}>
       {locales.map(locale => (
         <option key={locale} value={locale}>
           {locale}

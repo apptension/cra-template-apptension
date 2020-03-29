@@ -30,8 +30,8 @@ const getWindowWidth = () => window.innerWidth;
 export const getBreakpointMediaQuery = (breakpoint: Breakpoint) => `(min-width: ${sizes[breakpoint]}px)`;
 
 export const media = (breakpoint: Breakpoint, opts: { landscape?: boolean; retina?: boolean } = {}) => {
-  return ((...args: any[]) => {
-    const joinQuery = (...queries: string[]) => queries.filter(complement(isNil)).join(' and ');
+  return ((styleTemplate: TemplateStringsArray) => {
+    const joinQuery = (...queries: (string | null)[]) => queries.filter(complement(isNil)).join(' and ');
 
     const sizeQuery = `(min-width: ${sizes[breakpoint]}px)`;
     const landscapeQuery = opts.landscape ? '(orientation: landscape)' : null;
@@ -44,10 +44,11 @@ export const media = (breakpoint: Breakpoint, opts: { landscape?: boolean; retin
       query = joinQuery(sizeQuery, landscapeQuery);
     }
 
-    // @ts-ignore
-    // @es-ignore
-    // prettier-ignore
-    return css`@media ${query} {${css(...args)}}`;
+    return css`
+      @media ${query} {
+        ${css(styleTemplate)}
+      }
+    `;
   }) as BaseThemedCssFunction<DefaultTheme>;
 };
 

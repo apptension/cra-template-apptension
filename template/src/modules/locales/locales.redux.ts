@@ -3,7 +3,7 @@ import { actionHandler, ReduxAction } from '../helpers';
 import { localesActions } from '.';
 
 export type LocalesState = {
-  language: string;
+  language: string | null;
 };
 
 export const INITIAL_STATE: LocalesState = {

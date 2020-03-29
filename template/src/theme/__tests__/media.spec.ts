@@ -39,7 +39,7 @@ describe('theme/media', () => {
 
   describe('media()', () => {
     const CSS_CONTENT = 'padding: 10px;';
-    const getMedia = (...args) => media(...args)`${CSS_CONTENT}`.join('');
+    const getMedia = (...args: Parameters<typeof media>) => media(...args)`${CSS_CONTENT}`.join('');
 
     describe('for specified breakpoint', () => {
       it('should return correct css media query', () => {

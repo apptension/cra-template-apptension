@@ -1,5 +1,11 @@
 import axios from 'axios';
 
-export default axios.create({
-  baseURL: process.env.REACT_APP_BASE_API_URL,
+const baseUrl = process.env.REACT_APP_BASE_API_URL;
+
+if (!baseUrl) {
+  throw new Error('REACT_APP_BASE_API_URL env is missing');
+}
+
+export const api = axios.create({
+  baseURL: baseUrl,
 });

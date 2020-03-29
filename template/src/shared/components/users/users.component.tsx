@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Container } from './users.styles';
@@ -6,7 +6,7 @@ import messages from './users.messages';
 import { Button } from '../button';
 import { useUsers } from './useUsers.hook';
 
-export const UsersComponent: FC = () => {
+export const UsersComponent = () => {
   const [users, fetchUsers] = useUsers();
 
   return (

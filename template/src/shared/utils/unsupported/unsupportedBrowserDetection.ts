@@ -124,7 +124,11 @@ export default class UnsupportedBrowserDetection {
     return type as Platform;
   }
 
-  compareVersions(a: BrowserVersion, b: string) {
+  compareVersions(a: BrowserVersion | undefined, b: string | undefined) {
+    if (!a || !b) {
+      return false;
+    }
+
     if (typeof a === 'string' || (a as any) instanceof String) {
       return semverCompare(a as string, b) <= 0;
     }
@@ -141,7 +145,7 @@ export default class UnsupportedBrowserDetection {
       return this.isInAppBrowserSupported;
     }
 
-    const { version: browserVersion } = this.browser;
+    const { version: browserVersion = '' } = this.browser;
 
     return this.supportedBrowsersConfig[this.deviceType].some((options: BrowserRequirement) => {
       const { os, minos, browser, minversion, versions } = options;
@@ -150,9 +154,9 @@ export default class UnsupportedBrowserDetection {
         : parseInt(browserVersion, 10);
 
       const checked: BrowserCheckResults = {
-        os: os === this.os.name.toLowerCase(),
+        os: os === this.os.name?.toLowerCase(),
         minos: this.compareVersions(minos, this.os.version),
-        browser: browser === this.browser.name.toLowerCase(),
+        browser: browser === this.browser.name?.toLowerCase(),
         minversion: this.compareVersions(minversion, browserVersion),
         versions: versions ? versions.indexOf(parsedVersion) >= 0 : false,
       };

@@ -1,8 +1,8 @@
 import { all, put, takeLatest } from 'redux-saga/effects';
 
-import reportError from '../../shared/utils/reportError';
+import { reportError } from '../../shared/utils/reportError';
 import { {{ camelCase name }}Actions } from '.';
-import api from '../../shared/services/api';
+import { api } from '../../shared/services/api';
 
 function* fetch{{ pascalCase name }}() {
   try {

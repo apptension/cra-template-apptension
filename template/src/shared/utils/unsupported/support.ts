@@ -23,15 +23,16 @@ export const setUnsupportedClasses = () => {
 
     const translation = translationMessages[DEFAULT_LOCALE];
 
-    const unsupportedPageElement: HTMLElement = document.querySelector('.unsupported-page');
-    const appElement: HTMLElement = document.querySelector('#app');
+    const unsupportedPageElement = document.querySelector<HTMLElement>('.unsupported-page');
+    const headline = unsupportedPageElement?.querySelector<HTMLElement>('h1');
+    const appElement = document.querySelector<HTMLElement>('#app');
 
-    unsupportedPageElement.style.display = 'block';
-    appElement.style.display = 'none';
+    if (unsupportedPageElement && headline && appElement) {
+      unsupportedPageElement.style.display = 'block';
+      appElement.style.display = 'none';
 
-    const headline = unsupportedPageElement.querySelector('h1');
-
-    headline.innerText = translation[messages.title.id];
-    document.title = translation[messages.pageTitle.id];
+      headline.innerText = translation[messages.title.defaultMessage];
+      document.title = translation[messages.pageTitle.defaultMessage];
+    }
   }
 };

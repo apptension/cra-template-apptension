@@ -8,7 +8,7 @@ import { Container, Logo } from './home.styles';
 import { H1 } from '../../theme/typography';
 import { Users } from '../../shared/components/users';
 
-export const HomeComponent: React.FC = () => {
+export const HomeComponent = () => {
   const { formatMessage } = useIntl();
 
   return (
