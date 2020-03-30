@@ -22,6 +22,14 @@ jobs:
       run: |
         cd tmp
         CI=true yarn test
+    - name: Run linter checks
+      run: |
+        cd tmp
+        yarn lint
+    - name: Build project
+      run: |
+        cd tmp
+        yarn build
     - name: Build storybook
       run: |
         cd tmp
