@@ -1,12 +1,8 @@
 import { prop } from 'ramda';
 import { createSelector } from '@reduxjs/toolkit';
 
-import { LocalesState } from './locales.redux';
 import { GlobalState } from '../reducers';
 
-const selectLocalesDomain = prop<string, any>('locales');
+const selectLocalesDomain = (state: GlobalState) => state.locales;
 
-export const selectLocalesLanguage = createSelector<GlobalState, LocalesState, string>(
-  selectLocalesDomain,
-  prop('language')
-);
+export const selectLocalesLanguage = createSelector(selectLocalesDomain, prop('language'));

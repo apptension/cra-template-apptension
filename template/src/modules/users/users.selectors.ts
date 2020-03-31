@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { prop } from 'ramda';
 
-import { User, UsersState } from './users.redux';
+import { GlobalState } from '../reducers';
 
-export const selectUsersDomain = prop<string, any>('users');
+export const selectUsersDomain = (state: GlobalState) => state.users;
 
-export const selectUsers = createSelector<any, UsersState, User[]>(selectUsersDomain, prop('users'));
+export const selectUsers = createSelector(selectUsersDomain, prop('users'));

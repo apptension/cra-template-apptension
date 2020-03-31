@@ -1,7 +1,7 @@
-import 'styled-components'
+import 'styled-components';
+
 import { Border, Color, Font, Shadow, Size, ZIndex } from './theme.constants';
 import { Breakpoint } from './media';
-import { DefaultTheme } from 'styled-components';
 import { ThemeMap } from './theme';
 
 declare module 'styled-components' {

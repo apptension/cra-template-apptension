@@ -25,7 +25,7 @@ describe('Locales: redux', () => {
 
   describe('setLanguage', () => {
     it('should return correct type', () => {
-      expect(localesActions.setLanguage().type).toEqual(localesActions.setLanguage.toString());
+      expect(localesActions.setLanguage('en').type).toEqual(localesActions.setLanguage.toString());
     });
 
     it('should return proper payload', () => {

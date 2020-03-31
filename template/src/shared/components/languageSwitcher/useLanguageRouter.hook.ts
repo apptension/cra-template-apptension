@@ -4,7 +4,7 @@ import { localesSelectors } from '../../../modules/locales';
 import { appLocales } from '../../../i18n';
 
 interface LocaleData {
-  language: string;
+  language: string | null;
   locales: string[];
 }
 

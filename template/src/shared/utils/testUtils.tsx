@@ -13,7 +13,7 @@ import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n'
 import { store as fixturesStore } from '../../../fixtures/store';
 import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
 import { theme as defaultTheme } from '../../theme/theme';
-import { GlobalState } from '../../modules/reducers';
+import createReducer, { GlobalState } from '../../modules/reducers';
 import { LOCALES_INITIAL_STATE } from '../../modules/locales';
 import { STARTUP_INITIAL_STATE } from '../../modules/startup';
 import { USERS_INITIAL_STATE } from '../../modules/users';
@@ -51,7 +51,7 @@ interface ContextData {
 
 interface ProvidersWrapperProps {
   children: ReactNode;
-  context: ContextData;
+  context?: ContextData;
 }
 
 export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperProps) => {
@@ -70,7 +70,7 @@ export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperPro
       <ResponsiveThemeProvider theme={theme}>
         <HelmetProvider>
           <IntlProvider {...intlProviderMockProps}>
-            <Provider store={createStore(identity, store)}>
+            <Provider store={createStore(createReducer(), produce(store, identity))}>
               <Route path={routePath}>{children}</Route>
             </Provider>
           </IntlProvider>

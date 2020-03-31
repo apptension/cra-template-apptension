@@ -1,7 +1,7 @@
 import { all, put, takeLatest } from 'redux-saga/effects';
 
-import reportError from '../../shared/utils/reportError';
-import api from '../../shared/services/api';
+import { reportError } from '../../shared/utils/reportError';
+import { api } from '../../shared/services/api';
 import { usersActions } from '.';
 
 export const USERS_URL = '/users';

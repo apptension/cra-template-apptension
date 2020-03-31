@@ -14,7 +14,7 @@ describe('LanguageSwitcher: Component', () => {
     render({}, { router: { history, routePath: '/:lang/some/custom/url' } });
 
     const event = { target: { value: 'pl' } };
-    fireEvent.change(screen.getByRole('listbox'), event);
+    fireEvent.change(screen.getByRole('combobox'), event);
 
     expect(pushSpy).toHaveBeenCalledTimes(1);
     expect(pushSpy).toHaveBeenCalledWith('/pl/some/custom/url');
