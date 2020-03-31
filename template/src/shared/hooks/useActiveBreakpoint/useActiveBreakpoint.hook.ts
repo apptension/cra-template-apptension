@@ -5,5 +5,5 @@ import { Breakpoint } from '../../../theme/media';
 
 export const useActiveBreakpoint = (): Breakpoint => {
   const theme = useContext(ThemeContext);
-  return theme.activeBreakpoint || Breakpoint.DESKTOP;
+  return theme.activeBreakpoint ?? Breakpoint.DESKTOP;
 };
