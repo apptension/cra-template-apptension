@@ -32,7 +32,7 @@ export const AppComponent = ({ children }: AppComponentProps) => {
         <ThemeProvider theme={theme}>
           <Fragment>
             <FormattedMessage {...messages.pageTitle}>
-              {pageTitle => <Helmet titleTemplate={`%s - ${pageTitle}`} defaultTitle={pageTitle} />}
+              {(pageTitle: string) => <Helmet titleTemplate={`%s - ${pageTitle}`} defaultTitle={pageTitle} />}
             </FormattedMessage>
 
             <GlobalStyle />
