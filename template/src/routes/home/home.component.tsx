@@ -2,21 +2,25 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import messages from './home.messages';
 import { LanguageSwitcher } from '../../shared/components/languageSwitcher';
-import { Container, Logo } from './home.styles';
 import { H1 } from '../../theme/typography';
 import { Users } from '../../shared/components/users';
+import { Container, Logo } from './home.styles';
 
-export const HomeComponent = () => {
-  const { formatMessage } = useIntl();
+export const Home = () => {
+  const intl = useIntl();
 
   return (
     <Container>
-      <Helmet title={formatMessage(messages.pageTitle)} />
+      <Helmet
+        title={intl.formatMessage({
+          defaultMessage: 'Homepage',
+          description: 'Home / page title',
+        })}
+      />
 
       <H1>
-        <FormattedMessage {...messages.welcome} />
+        <FormattedMessage defaultMessage="Hello world!" description="Home / title" />
       </H1>
 
       <Logo />

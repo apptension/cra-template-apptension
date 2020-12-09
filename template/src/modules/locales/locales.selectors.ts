@@ -1,7 +1,7 @@
 import { prop } from 'ramda';
 import { createSelector } from '@reduxjs/toolkit';
 
-import { GlobalState } from '../reducers';
+import { GlobalState } from '../../config/reducers';
 
 const selectLocalesDomain = (state: GlobalState) => state.locales;
 

@@ -1,4 +1,3 @@
-import 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -13,7 +12,7 @@ import { Router } from 'react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import 'normalize.css/normalize.css';
 import './theme/global';
-import configureStore from './modules/store';
+import configureStore from './config/store';
 import browserHistory from './shared/utils/history';
 import UnsupportedBrowserDetection from './shared/utils/unsupported/unsupportedBrowserDetection';
 import { setUnsupportedClasses } from './shared/utils/unsupported/support';
@@ -39,23 +38,6 @@ openSansObserver.load().then(
 const initialState = {};
 const store = configureStore(initialState);
 
-if (process.env.NODE_ENV === 'development') {
-  // @ts-ignore
-  if (!window.__REDUX_DEVTOOLS_EXTENSION__) {
-    const DevToolsComponent = require('./shared/utils/devtools.component').default;
-    const devToolsRoot = window.document.createElement('div');
-
-    window.document.body.appendChild(devToolsRoot);
-
-    ReactDOM.render(
-      <Provider store={store}>
-        <DevToolsComponent />
-      </Provider>,
-      devToolsRoot
-    );
-  }
-}
-
 const render = (): void => {
   const NextApp = require('./routes').default;
 
@@ -78,13 +60,13 @@ const initApp = async (): Promise<void> => {
 
   // Chunked polyfill for browsers without Intl support
   if (!window.Intl) {
-    new Promise(resolve => {
+    new Promise((resolve) => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       resolve(require('intl'));
     })
       .then(() => Promise.all([require('intl/locale-data/jsonp/en.js'), require('intl/locale-data/jsonp/pl.js')]))
       .then(() => render())
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   } else {

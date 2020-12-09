@@ -1,22 +1,21 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Container } from './users.styles';
-import messages from './users.messages';
 import { Button } from '../button';
+import { Container } from './users.styles';
 import { useUsers } from './useUsers.hook';
 
-export const UsersComponent = () => {
+export const Users = () => {
   const [users, fetchUsers] = useUsers();
 
   return (
     <Container>
       <Button onClick={fetchUsers}>
-        <FormattedMessage {...messages.fetchUsers} />
+        <FormattedMessage defaultMessage="Fetch users" description="Users / fetch button" />
       </Button>
 
       <ul>
-        {users.map(user => (
+        {users.map((user) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>

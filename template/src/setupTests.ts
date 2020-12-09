@@ -3,41 +3,36 @@ import 'regenerator-runtime/runtime';
 import '@testing-library/jest-dom/extend-expect';
 import 'isomorphic-fetch';
 import 'jest-styled-components';
-import nock from 'nock';
 import axios from 'axios';
+import MockDate from 'mockdate';
+
+import './mocks/reactIntl';
+import { server } from './mocks/server';
 
 axios.defaults.adapter = require('axios/lib/adapters/http');
 
-nock.disableNetConnect();
+MockDate.set('2020-11-22');
 
-beforeEach(() => {
-  if (!nock.isActive()) {
-    nock.activate();
-  }
+jest.disableAutomock();
+
+beforeAll(() => {
+  server.listen({
+    onUnhandledRequest(req) {
+      console.error('Found an unhandled %s request to %s', req.method, req.url.href);
+    },
+  });
 });
 
-const nockCleanup = () => {
-  nock.cleanAll();
-  nock.restore();
-};
+afterEach(() => server.resetHandlers());
 
-afterEach(() => {
-  if (!nock.isDone()) {
-    nockCleanup();
-    throw new Error('Not all nock interceptors were used!');
-  }
-  nockCleanup();
-});
+afterAll(() => server.close());
 
-// @ts-ignore
 window.matchMedia =
   window.matchMedia ||
-  function() {
+  function () {
     return {
       matches: false,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      addListener: function() {},
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      removeListener: function() {},
+      addListener: Function.prototype,
+      removeListener: Function.prototype,
     };
   };

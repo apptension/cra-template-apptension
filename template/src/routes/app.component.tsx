@@ -1,13 +1,10 @@
 import React, { Fragment, ReactNode } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { IntlProvider, FormattedMessage } from 'react-intl';
+import { FormattedMessage, IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { ResponsiveThemeProvider as ThemeProvider } from '../shared/components/responsiveThemeProvider';
 import { translationMessages } from '../i18n';
 import { GlobalStyle } from '../theme/global';
-import messages from './app.messages';
-import { theme } from '../theme/theme';
 import { localesSelectors } from '../modules/locales';
 import { useStartup } from './useStartup';
 import { useLanguageFromParams } from './useLanguageFromParams';
@@ -29,16 +26,14 @@ export const AppComponent = ({ children }: AppComponentProps) => {
   return (
     <IntlProvider key={language} locale={language} messages={translationMessages[language]}>
       <HelmetProvider>
-        <ThemeProvider theme={theme}>
-          <Fragment>
-            <FormattedMessage {...messages.pageTitle}>
-              {(pageTitle: string) => <Helmet titleTemplate={`%s - ${pageTitle}`} defaultTitle={pageTitle} />}
-            </FormattedMessage>
+        <Fragment>
+          <FormattedMessage defaultMessage="Apptension Boilerplate" description="App / Page title">
+            {(pageTitle: string) => <Helmet titleTemplate={`%s - ${pageTitle}`} defaultTitle={pageTitle} />}
+          </FormattedMessage>
 
-            <GlobalStyle />
-            {React.Children.only(children)}
-          </Fragment>
-        </ThemeProvider>
+          <GlobalStyle />
+          {React.Children.only(children)}
+        </Fragment>
       </HelmetProvider>
     </IntlProvider>
   );

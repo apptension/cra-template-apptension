@@ -1,30 +1,28 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { empty } from 'ramda';
 
 import { Container } from './button.styles';
-import { ButtonType } from './button.constants';
+import { ButtonTheme, ButtonVariant } from './button.types';
 
-export interface ButtonComponentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  mode?: ButtonType;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant;
 }
 
-export interface ButtonTheme extends DefaultTheme {
-  mode: ButtonType;
-  disabled: boolean;
-}
-
-export const ButtonComponent = ({
+export const Button = ({
   children,
   className,
-  mode = ButtonType.PRIMARY,
+  disabled = false,
+  variant = ButtonVariant.PRIMARY,
   onClick = empty,
-  disabled,
   ...other
-}: ButtonComponentProps) => (
-  <ThemeProvider theme={{ mode, disabled } as ButtonTheme}>
-    <Container onClick={onClick} className={className} disabled={disabled} {...other}>
-      {children}
-    </Container>
-  </ThemeProvider>
-);
+}: ButtonProps) => {
+  const theme: ButtonTheme = { variant, isDisabled: disabled };
+  return (
+    <ThemeProvider theme={theme}>
+      <Container onClick={onClick} className={className} disabled={disabled} {...other}>
+        {children}
+      </Container>
+    </ThemeProvider>
+  );
+};

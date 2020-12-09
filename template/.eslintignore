@@ -4,3 +4,5 @@ plop/*
 build/*
 plopfile.js
 setupTests.js
+node_modules/**/*
+

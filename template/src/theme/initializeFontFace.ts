@@ -1,6 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-import { fonts } from './theme';
-import { Font } from './theme.constants';
+import { fontFamily } from './font';
 
 function fontFace(
   name: string,
@@ -26,7 +25,7 @@ function fontFace(
 }
 /* eslint-enable import/no-dynamic-require */
 
-const generateFontsString = (): string => [fontFace(fonts[Font.PRIMARY] as string, 'OpenSans')].join('\n');
+const generateFontsString = (): string => [fontFace(fontFamily.primary, 'OpenSans')].join('\n');
 
 export default (): void => {
   const style = document.createElement('style');

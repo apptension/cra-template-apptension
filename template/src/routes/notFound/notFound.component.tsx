@@ -2,19 +2,23 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import messages from './notFound.messages';
-import { Container } from './notFound.styles';
 import { H1 } from '../../theme/typography';
+import { Container } from './notFound.styles';
 
-export const NotFoundComponent = () => {
-  const { formatMessage } = useIntl();
+export const NotFound = () => {
+  const intl = useIntl();
 
   return (
     <Container>
-      <Helmet title={formatMessage(messages.pageTitle)} />
+      <Helmet
+        title={intl.formatMessage({
+          defaultMessage: 'Not found',
+          description: 'Not found / page title',
+        })}
+      />
 
       <H1>
-        <FormattedMessage {...messages.title} />
+        <FormattedMessage defaultMessage="Error: 404" description="Not found / error message" />
       </H1>
     </Container>
   );

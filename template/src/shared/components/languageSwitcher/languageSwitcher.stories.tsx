@@ -1,18 +1,18 @@
 import React from 'react';
-import { withRouter, withRedux } from '../../../../.storybook/decorators';
+import { Story } from '@storybook/react';
 
-import { store } from '../../../../fixtures/store';
+import { withRouter } from '../../../../.storybook/decorators';
+
+import { store } from '../../../fixtures/store';
+import { withRedux } from '../../utils/storybook';
 import { LanguageSwitcher } from '.';
 
-const renderComponent = (props = {}) => {
-  const defaultProps = {};
-
-  return <LanguageSwitcher {...defaultProps} {...props} />;
-};
+const Template: Story = (args) => <LanguageSwitcher {...args} />;
 
 export default {
-  title: 'Shared|LanguageSwitcher',
+  title: 'Shared/LanguageSwitcher',
   decorators: [withRedux(store), withRouter()],
 };
 
-export const Default = () => renderComponent();
+export const Default = Template.bind({});
+Default.args = {};

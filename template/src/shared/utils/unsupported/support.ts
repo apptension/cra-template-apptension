@@ -7,7 +7,6 @@ require('es5-shim/es5-sham');
 import UnsupportedBrowserDetection from './unsupportedBrowserDetection';
 //eslint-disable-next-line import/first
 //eslint-disable-next-line import/first
-import messages from './support.messages';
 
 const detection = new UnsupportedBrowserDetection();
 
@@ -31,8 +30,8 @@ export const setUnsupportedClasses = () => {
       unsupportedPageElement.style.display = 'block';
       appElement.style.display = 'none';
 
-      headline.innerText = translation[messages.title.defaultMessage];
-      document.title = translation[messages.pageTitle.defaultMessage];
+      headline.innerText = 'Unsupported Browser';
+      document.title = 'Unsupported Browser';
     }
   }
 };

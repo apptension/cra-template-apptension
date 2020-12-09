@@ -1,12 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
-import { Font } from './theme.constants';
-import { themeFont } from './getters';
+
+import { fontFamily } from './font';
 
 export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
-    font-family: ${themeFont(Font.PRIMARY)};
+    font-family: ${fontFamily.primary};
   }
+
   *, *:before, *:after {
     box-sizing: inherit;
   }

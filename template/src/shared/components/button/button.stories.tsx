@@ -1,44 +1,39 @@
 import React from 'react';
+import { Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 
-import { ButtonComponent } from './button.component';
-import { ButtonType } from './button.constants';
+import { Button, ButtonProps } from './button.component';
+import { ButtonVariant } from './button.types';
 
-const knobs = {
-  disabled: (defaultValue: boolean) => boolean('disabled', defaultValue),
-  mode: (defaultValue: ButtonType) => select('mode', [ButtonType.PRIMARY, ButtonType.SECONDARY], defaultValue),
-};
-
-const renderComponent = (props = {}) => {
-  const defaultProps = {
-    children: 'Press me',
-    onClick: action('Clicked me'),
-    disabled: knobs.disabled(false),
-    mode: knobs.mode(ButtonType.PRIMARY),
-  };
-
-  return <ButtonComponent {...defaultProps} {...props} />;
-};
+const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export default {
-  title: 'Shared|Button',
-  decorators: [withKnobs],
+  title: 'Shared/Button',
+  component: Button,
 };
 
-export const Primary = () => renderComponent();
-export const PrimaryDisabled = () =>
-  renderComponent({
-    disabled: knobs.disabled(true),
-  });
+export const Primary = Template.bind({});
+Primary.args = {
+  children: 'Press me',
+  onClick: action('Clicked me'),
+  disabled: false,
+  variant: ButtonVariant.PRIMARY,
+};
 
-export const Secondary = () =>
-  renderComponent({
-    mode: knobs.mode(ButtonType.SECONDARY),
-  });
+export const PrimaryDisabled = Template.bind({});
+PrimaryDisabled.args = {
+  ...Primary.args,
+  disabled: true,
+};
 
-export const SecondaryDisabled = () =>
-  renderComponent({
-    mode: knobs.mode(ButtonType.SECONDARY),
-    disabled: knobs.disabled(true),
-  });
+export const Secondary = Template.bind({});
+Secondary.args = {
+  ...Primary.args,
+  variant: ButtonVariant.SECONDARY,
+};
+
+export const SecondaryDisabled = Template.bind({});
+Secondary.args = {
+  ...Secondary.args,
+  disabled: true,
+};

@@ -1,19 +1,18 @@
 import React from 'react';
+import { Story } from '@storybook/react';
 
-import { withRedux, withRouter } from '../../../../.storybook/decorators';
-import { store } from '../../../../fixtures/store';
-import { Users } from '.';
+import { withRouter } from '../../../../.storybook/decorators';
+import { withRedux } from '../../utils/storybook';
+import { store } from '../../../fixtures/store';
+import { Users } from './users.component';
 
-const renderComponent = (props = {}) => {
-  const defaultProps = {};
-
-  return <Users {...defaultProps} {...props} />;
-};
+const Template: Story = (args) => <Users {...args} />;
 
 export default {
-  title: 'Shared|Users',
+  title: 'Shared/Users',
   component: Users,
   decorators: [withRedux(store), withRouter()],
 };
 
-export const Default = () => renderComponent();
+export const Default = Template.bind({});
+Default.args = {};

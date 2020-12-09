@@ -10,10 +10,8 @@ import { IntlProvider } from 'react-intl';
 import produce from 'immer';
 
 import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
-import { store as fixturesStore } from '../../../fixtures/store';
-import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
-import { theme as defaultTheme } from '../../theme/theme';
-import createReducer, { GlobalState } from '../../modules/reducers';
+import { store as fixturesStore } from '../../fixtures/store';
+import createReducer, { GlobalState } from '../../config/reducers';
 import { LOCALES_INITIAL_STATE } from '../../modules/locales';
 import { STARTUP_INITIAL_STATE } from '../../modules/startup';
 import { USERS_INITIAL_STATE } from '../../modules/users';
@@ -46,7 +44,6 @@ interface ContextData {
   };
   store?: GlobalState;
   messages?: MessagesObject;
-  theme?: object;
 }
 
 interface ProvidersWrapperProps {
@@ -55,7 +52,7 @@ interface ProvidersWrapperProps {
 }
 
 export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperProps) => {
-  const { router = {}, store = fixturesStore, messages, theme = defaultTheme } = context;
+  const { router = {}, store = fixturesStore, messages } = context;
   const { url = `/${DEFAULT_LOCALE}`, routePath = '/:lang/', history } = router;
 
   const routerHistory: MemoryHistory = history ?? createMemoryHistory({ initialEntries: [url] });
@@ -67,15 +64,13 @@ export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperPro
 
   return (
     <Router history={routerHistory}>
-      <ResponsiveThemeProvider theme={theme}>
-        <HelmetProvider>
-          <IntlProvider {...intlProviderMockProps}>
-            <Provider store={createStore(createReducer(), produce(store, identity))}>
-              <Route path={routePath}>{children}</Route>
-            </Provider>
-          </IntlProvider>
-        </HelmetProvider>
-      </ResponsiveThemeProvider>
+      <HelmetProvider>
+        <IntlProvider {...intlProviderMockProps}>
+          <Provider store={createStore(createReducer(), produce(store, identity))}>
+            <Route path={routePath}>{children}</Route>
+          </Provider>
+        </IntlProvider>
+      </HelmetProvider>
     </Router>
   );
 };

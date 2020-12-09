@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
-import { hot } from 'react-hot-loader/root';
 
 import { AppComponent as App } from './app.component';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
@@ -30,7 +29,7 @@ const MatchedLanguageComponent = () => {
   );
 };
 
-export default hot(() => {
+export default () => {
   return (
     <Switch>
       <Route exact path="/">
@@ -48,4 +47,4 @@ export default hot(() => {
       </IntlProvider>
     </Switch>
   );
-});
+};
