@@ -1,15 +1,18 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 
 import { reportError } from '../../shared/utils/reportError';
-import { {{ camelCase name }}Actions } from '.';
+import { PromiseAction, resolvePromiseAction, rejectPromiseAction } from '../../shared/utils/reduxSagaPromise';
 import { api } from '../../shared/services/api';
+import * as {{ camelCase name }}Actions from './{{ camelCase name }}.actions';
+import { Fetch{{ pascalCase name }}SuccessPayload } from './{{ camelCase name }}.types';
 
-function* fetch{{ pascalCase name }}() {
+function* fetch{{ pascalCase name }}(action: PromiseAction<void, Fetch{{ pascalCase name }}SuccessPayload>) {
   try {
     const { data } = yield api.get('/');
-    yield put({{ camelCase name }}Actions.fetch{{ pascalCase name }}Success(data));
+    yield resolvePromiseAction(action, data);
   } catch (error) {
     reportError(error);
+    yield rejectPromiseAction(action, error);
   }
 }
 

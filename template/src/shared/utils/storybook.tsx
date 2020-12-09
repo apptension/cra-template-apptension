@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createReducer, Reducer } from '@reduxjs/toolkit';
 import { Story } from '@storybook/react';
 
-import { store } from '../../fixtures/store';
+import { store } from '../../mocks/store';
 import { GlobalState } from '../../config/reducers';
 
 export const withRedux = (initialState: GlobalState = store, reducer: Reducer | null = null) => (

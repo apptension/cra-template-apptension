@@ -1,15 +1,17 @@
-import { usersSelectors } from '..';
-import { usersMock } from '../../../../fixtures/users';
-import { prepareState } from '../../../shared/utils/testUtils';
+import { times } from 'ramda';
+
+import { prepareState } from '../../../mocks/store';
+import { userFactory } from '../../../mocks/factories';
+import * as selectors from '../users.selectors';
 
 describe('Users: selectors', () => {
-  const defaultState = prepareState(state => {
+  const defaultState = prepareState((state) => {
     state.startup = {};
   });
 
   describe('selectUsersDomain', () => {
     it('should select a domain', () => {
-      expect(usersSelectors.selectUsersDomain(defaultState)).toEqual(defaultState.users);
+      expect(selectors.selectUsersDomain(defaultState)).toEqual(defaultState.users);
     });
   });
 
@@ -18,10 +20,10 @@ describe('Users: selectors', () => {
       const state = {
         ...defaultState,
         users: {
-          users: usersMock,
+          users: times(() => userFactory(), 3),
         },
       };
-      expect(usersSelectors.selectUsers(state)).toEqual(state.users.users);
+      expect(selectors.selectUsers(state)).toEqual(state.users.users);
     });
   });
 });

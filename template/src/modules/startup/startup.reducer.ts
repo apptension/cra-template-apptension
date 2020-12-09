@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-export type StartupState = {};
+import { StartupState } from './startup.types';
 
 export const INITIAL_STATE: StartupState = {};
 

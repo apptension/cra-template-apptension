@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react';
 
 import { Container } from './{{ camelCase name }}.styles';
 
-export interface {{ pascalCase name }}ComponentProps {
+export interface {{ pascalCase name }}Props {
   children?: ReactNode;
 }
 
-export const {{ pascalCase name }}Component = ({ children }: {{ pascalCase name }}ComponentProps) => {
+export const {{ pascalCase name }} = ({ children }: {{ pascalCase name }}Props) => {
   return (
     <Container>
       <h1>{{ pascalCase name }} component</h1>

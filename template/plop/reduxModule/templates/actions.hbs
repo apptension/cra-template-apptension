@@ -1,6 +1,6 @@
 import { actionCreator } from '../helpers';
+import { Fetch{{ pascalCase name }}SuccessPayload } from './{{ camelCase name }}.types';
 
-const createAction = actionCreator('{{ constantCase name }}');
+const { createPromiseAction } = actionCreator('{{ constantCase name }}');
 
-export const fetch{{ pascalCase name }} = createAction<void>('FETCH_{{ constantCase name }}');
-export const fetch{{ pascalCase name }}Success = createAction<any>('FETCH_{{ constantCase name }}_SUCCESS');
+export const fetch{{ pascalCase name }} = createPromiseAction<void, Fetch{{ pascalCase name }}SuccessPayload>('FETCH');

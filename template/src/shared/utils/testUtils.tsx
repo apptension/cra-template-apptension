@@ -10,19 +10,8 @@ import { IntlProvider } from 'react-intl';
 import produce from 'immer';
 
 import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
-import { store as fixturesStore } from '../../fixtures/store';
+import { store, store as fixturesStore } from '../../mocks/store';
 import createReducer, { GlobalState } from '../../config/reducers';
-import { LOCALES_INITIAL_STATE } from '../../modules/locales';
-import { STARTUP_INITIAL_STATE } from '../../modules/startup';
-import { USERS_INITIAL_STATE } from '../../modules/users';
-//<-- IMPORT MODULE STATE -->
-
-const defaultGlobalState: GlobalState = {
-  locales: LOCALES_INITIAL_STATE,
-  startup: STARTUP_INITIAL_STATE,
-  users: USERS_INITIAL_STATE,
-  //<-- INJECT MODULE STATE -->
-};
 
 export const PLACEHOLDER_TEST_ID = 'content';
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
@@ -85,6 +74,3 @@ export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactEle
 
 export const makePropsRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (props?: T) =>
   render(component(props ?? {}));
-
-export const prepareState = (stateSetter: (draftState: GlobalState) => void) =>
-  produce(defaultGlobalState, stateSetter);

@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
 
-import { reducer as localesReducer, LocalesState } from '../modules/locales/locales.redux';
-import { reducer as startupReducer, StartupState } from '../modules/startup/startup.redux';
-import { reducer as usersReducer, UsersState } from '../modules/users/users.redux';
-//<-- IMPORT MODULE REDUX -->
+import { reducer as localesReducer } from '../modules/locales/locales.reducer';
+import { LocalesState } from '../modules/locales/locales.types';
+import { reducer as startupReducer } from '../modules/startup/startup.reducer';
+import { StartupState } from '../modules/startup/startup.types';
+import { reducer as usersReducer } from '../modules/users/users.reducer';
+import { UsersState } from '../modules/users/users.types';
+//<-- IMPORT MODULE REDUCER -->
 
 export type GlobalState = {
   locales: LocalesState;

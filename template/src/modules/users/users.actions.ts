@@ -1,7 +1,6 @@
 import { actionCreator } from '../helpers';
-import { User } from './users.redux';
+import { User } from './users.types';
 
-const createAction = actionCreator('USERS');
+const { createPromiseAction } = actionCreator('USERS');
 
-export const fetchUsers = createAction<void>('FETCH_USERS');
-export const fetchUsersSuccess = createAction<User[]>('FETCH_USERS_SUCCESS');
+export const fetchUsers = createPromiseAction<void, User[]>('FETCH_USERS');

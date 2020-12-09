@@ -1,8 +1,8 @@
 import { selectStartupDomain } from '../startup.selectors';
-import { prepareState } from '../../../shared/utils/testUtils';
+import { prepareState } from '../../../mocks/store';
 
 describe('Startup: selectors', () => {
-  const defaultState = prepareState(state => {
+  const defaultState = prepareState((state) => {
     state.startup = {};
   });
 

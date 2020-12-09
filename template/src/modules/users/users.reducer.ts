@@ -1,17 +1,7 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 
-import * as usersActions from './users.actions';
-
-export interface User {
-  id: string;
-  login: string;
-  name: string;
-  email: string;
-}
-
-export interface UsersState {
-  users: User[];
-}
+import { User, UsersState } from './users.types';
+import * as actions from './users.actions';
 
 export const INITIAL_STATE: UsersState = {
   users: [],
@@ -26,6 +16,6 @@ const handleFetchUsersSuccess = (state: UsersState, { payload }: PayloadAction<U
 };
 
 export const reducer = createReducer(INITIAL_STATE, (builder) => {
-  builder.addCase(usersActions.fetchUsers, handleFetchUsers);
-  builder.addCase(usersActions.fetchUsersSuccess, handleFetchUsersSuccess);
+  builder.addCase(actions.fetchUsers, handleFetchUsers);
+  builder.addCase(actions.fetchUsers.resolved, handleFetchUsersSuccess);
 });

@@ -1,27 +1,16 @@
 import React from 'react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 
-import { {{ pascalCase name }}Component as {{ pascalCase name }} } from './{{ camelCase name }}.component';
+import { {{ pascalCase name }}, {{ pascalCase name }}Props } from './{{ camelCase name }}.component';
 
-const knobs = {
-  children: (defaultValue: string) => text('children', defaultValue),
-};
-
-const renderComponent = (props = {}) => {
-  const defaultProps = {
-    children: knobs.children('text'),
-  };
-
-  return <{{ pascalCase name }} {...defaultProps} {...props} />;
+const Template: Story<{{ pascalCase name }}Props> = (args) => {
+  return <{{ pascalCase name }} {...args} />;
 };
 
 export default {
   title: '{{ pascalCase name }}',
-  decorators: [withKnobs],
+  component: {{ pascalCase name }},
 };
 
-export const Default = () => renderComponent();
-export const DifferentTitle = () =>
-  renderComponent({
-    children: knobs.children('text 2'),
-  });
+export const Default = Template.bind({});
+Default.args = { children: 'text' };
