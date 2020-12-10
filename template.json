@@ -69,7 +69,7 @@
       "react-redux": "7.2.2",
       "react-router": "^5",
       "react-router-dom": "^5",
-      "react-scripts": "apptension/react-scripts-apptension#v4.0.3",
+      "react-scripts": "npm:@apptension/react-scripts",
       "redux": "^4.0.1",
       "redux-saga": "^1.0.2",
       "redux-saga-test-plan": "4.0.0-rc.3",
