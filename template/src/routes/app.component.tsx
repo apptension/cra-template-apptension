@@ -1,4 +1,5 @@
 import React, { Fragment, ReactNode } from 'react';
+import '../theme/styled.d';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { FormattedMessage, IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
@@ -6,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { translationMessages } from '../i18n';
 import { GlobalStyle } from '../theme/global';
 import { localesSelectors } from '../modules/locales';
+import { ResponsiveThemeProvider } from '../shared/components/responsiveThemeProvider';
 import { useStartup } from './useStartup';
 import { useLanguageFromParams } from './useLanguageFromParams';
 
@@ -32,7 +34,9 @@ export const AppComponent = ({ children }: AppComponentProps) => {
           </FormattedMessage>
 
           <GlobalStyle />
-          {React.Children.only(children)}
+          <ResponsiveThemeProvider>
+            {React.Children.only(children)}
+          </ResponsiveThemeProvider>
         </Fragment>
       </HelmetProvider>
     </IntlProvider>

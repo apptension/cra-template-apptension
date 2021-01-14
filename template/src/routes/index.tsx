@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 
-import { AppComponent as App } from './app.component';
 import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
-import { ROUTES } from './app.constants';
 import { asyncComponent } from '../shared/utils/asyncComponent';
+import { AppComponent as App } from './app.component';
+import { ROUTES } from './app.constants';
 //<-- IMPORT ROUTE -->
 
 const Home = asyncComponent(() => import('./home'), 'Home');

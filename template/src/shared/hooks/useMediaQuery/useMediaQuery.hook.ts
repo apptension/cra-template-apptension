@@ -1,6 +1,6 @@
 import { isNil } from 'ramda';
+import { useTheme } from 'styled-components';
 import { Breakpoint, sizesOrdered } from '../../../theme/media';
-import { useActiveBreakpoint } from '../useActiveBreakpoint';
 
 export interface BreakpointQuery {
   below?: Breakpoint;
@@ -19,7 +19,7 @@ interface QueryResult {
  * useMediaQuery({matches=[Breakpoint.DESKTOP, Breakpoint.MOBILE]}); => true for desktop and mobile, false otherwise
  **/
 export const useMediaQuery = ({ above, below, matches }: BreakpointQuery): QueryResult => {
-  const activeBreakpoint = useActiveBreakpoint();
+  const activeBreakpoint: Breakpoint = useTheme().activeBreakpoint ?? Breakpoint.MOBILE;
 
   const arrayToMatch = Array.isArray(matches) ? matches : [matches];
   const matchesExplicitProp = isNil(matches) || arrayToMatch.includes(activeBreakpoint);

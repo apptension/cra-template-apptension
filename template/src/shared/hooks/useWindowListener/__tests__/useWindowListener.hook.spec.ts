@@ -9,16 +9,15 @@ const defaultOptions = {
   foo: 'bar',
 };
 
-const defaultArgs: [string, Function, object] = [
+const defaultArgs: [string, (...args: any) => void, Record<string, unknown>] = [
   'scroll',
   empty,
   {
-    throttle: 100,
+    throttle: 0,
     ...defaultOptions,
   },
 ];
 
-// @ts-ignore
 const render = (args = defaultArgs) => renderHook(() => useWindowListener(...args));
 
 describe('useWindowListener: Hook', () => {
@@ -28,8 +27,8 @@ describe('useWindowListener: Hook', () => {
   const removeEventListenerSpy = jest.spyOn(global.window, 'removeEventListener');
 
   afterEach(() => {
-    addEventListenerSpy.mockClear();
-    removeEventListenerSpy.mockClear();
+    addEventListenerSpy.mockReset();
+    removeEventListenerSpy.mockReset();
   });
 
   it('should return nothing', () => {
@@ -39,7 +38,7 @@ describe('useWindowListener: Hook', () => {
 
   it('should call addEventListener with proper eventType on mount', () => {
     render();
-    expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function), defaultOptions);
+    expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', defaultArgs[1], defaultOptions);
   });
 
   it('should call removeEventListener with proper eventType on unmount', () => {
@@ -50,13 +49,13 @@ describe('useWindowListener: Hook', () => {
 
   describe('when no throttling is provided', () => {
     it('should call addEventListener with provided function on mount', () => {
-      const onEvent = (): void => null;
+      const onEvent = (): void => undefined;
       render([defaultArgs[0], onEvent, { throttle: 0, ...defaultOptions }]);
       expect(addEventListenerSpy).toHaveBeenCalledWith('scroll', onEvent, defaultOptions);
     });
 
     it('should call removeEventListener with provided function on mount', () => {
-      const onEvent = (): void => null;
+      const onEvent = (): void => undefined;
       const el = render([defaultArgs[0], onEvent, { throttle: 0, ...defaultOptions }]);
       el.unmount();
       expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', onEvent, defaultOptions);
@@ -65,8 +64,8 @@ describe('useWindowListener: Hook', () => {
 
   describe('when throttle is provided', () => {
     it('should call throttle on given function', () => {
-      const onEvent = (): void => null;
-      render([defaultArgs[0], onEvent, defaultArgs[2]]);
+      const onEvent = (): void => undefined;
+      render([defaultArgs[0], onEvent, { throttle: 100, ...defaultOptions }]);
       expect(throttle).toHaveBeenCalledWith(onEvent, 100, expect.anything());
     });
   });

@@ -72,8 +72,7 @@ export function* rejectPromiseAction<P = void, A = void, B = void>(action: Promi
 
 const isTriggerAction = (action: PayloadAction<any, string, any>) => !!action.meta?.promise?.resolveAction;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const promiseMiddleware: Middleware<{}, GlobalState> = (store) => (next) => (
+export const promiseMiddleware: Middleware<unknown, GlobalState> = (store) => (next) => (
   action: PayloadAction<any, string, any>
 ) => {
   if (isTriggerAction(action)) {

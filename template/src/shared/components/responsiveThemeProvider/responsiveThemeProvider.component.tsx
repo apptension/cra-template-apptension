@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
-import responsiveTheme from '../../../theme/responsiveTheme';
+import { ThemeProvider } from 'styled-components';
 import { useWindowListener } from '../../hooks/useWindowListener';
-
-const parseTheme = (theme: object): DefaultTheme => responsiveTheme(theme);
+import { getActiveBreakpoint } from '../../../theme/media';
 
 export interface ResponsiveThemeProviderProps {
-  theme: object;
   children: React.ReactNode;
 }
 
-export const ResponsiveThemeProvider = ({ theme: themeDefinition, children }: ResponsiveThemeProviderProps) => {
-  const [theme, setTheme] = useState(parseTheme(themeDefinition));
-  const handleResize = () => setTheme(parseTheme(themeDefinition));
+export const ResponsiveThemeProvider = ({ children }: ResponsiveThemeProviderProps) => {
+  const getTheme = () => ({ activeBreakpoint: getActiveBreakpoint() });
+
+  const [theme, setTheme] = useState(getTheme());
+  const handleResize = () => setTheme(getTheme());
   useWindowListener('resize', handleResize, { throttle: 200 });
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

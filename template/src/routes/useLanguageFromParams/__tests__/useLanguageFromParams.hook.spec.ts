@@ -2,12 +2,13 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useLanguageFromParams } from '../useLanguageFromParams.hook';
 import { localesActions } from '../../../modules/locales';
 import { DEFAULT_LOCALE, LOCALES } from '../../../i18n';
-import { store as mockStore } from '../../../../fixtures/store';
+import { store } from '../../../mocks/store';
 
 const render = () => renderHook(() => useLanguageFromParams());
 
 const mockDispatch = jest.fn();
 const mockParams = jest.fn();
+const mockStore = store;
 
 jest.mock('react-router-dom', () => ({
   useParams: () => mockParams(),

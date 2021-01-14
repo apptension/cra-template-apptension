@@ -1,45 +1,35 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
+import React from 'react';
+import { useTheme } from 'styled-components';
 import { screen, getNodeText } from '@testing-library/react';
 import { ResponsiveThemeProvider, ResponsiveThemeProviderProps } from '../responsiveThemeProvider.component';
 import { makePropsRenderer } from '../../../utils/testUtils';
+import { Breakpoint, getActiveBreakpoint } from '../../../../theme/media';
+
+jest.mock('../../../../theme/media');
 
 const ThemeConsumer = () => {
-  const theme = useContext(ThemeContext);
-  // @ts-ignore
-  return <div data-testid="content">{theme.foo}</div>;
+  const theme = useTheme();
+  return <div data-testid="content">{theme.activeBreakpoint}</div>;
 };
 
 describe('ResponsiveThemeProvider: Component', () => {
   const defaultProps = {
     children: <ThemeConsumer />,
-    theme: {
-      foo: 'bar',
-    },
   };
+
+  beforeEach(() => {
+    getActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP);
+  })
 
   const component = (props: Partial<ResponsiveThemeProviderProps>) => (
     <ResponsiveThemeProvider {...defaultProps} {...props} />
   );
+
   const render = makePropsRenderer(component);
 
-  describe('theme only contains primitive types', () => {
-    it('should use theme in child elements', () => {
-      render();
-      const content = screen.getByTestId('content');
-      expect(getNodeText(content)).toEqual('bar');
-    });
-  });
-
-  describe('theme contains functions', () => {
-    const theme = {
-      foo: () => 100,
-    };
-
-    it('should pass function result to theme', () => {
-      render({ theme });
-      const content = screen.getByTestId('content');
-      expect(getNodeText(content)).toEqual('100');
-    });
+  it('should pass theme to child elements', () => {
+    render();
+    const content = screen.getByTestId('content');
+    expect(getNodeText(content)).toEqual(Breakpoint.DESKTOP);
   });
 });

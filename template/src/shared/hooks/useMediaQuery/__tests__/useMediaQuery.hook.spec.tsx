@@ -1,31 +1,33 @@
 import { renderHook } from '@testing-library/react-hooks';
+import React from 'react';
 import { BreakpointQuery, useMediaQuery } from '../useMediaQuery.hook';
-import { useActiveBreakpoint } from '../../useActiveBreakpoint';
-import { Breakpoint } from '../../../../theme/media';
+import { Breakpoint, getActiveBreakpoint } from '../../../../theme/media';
+import { ResponsiveThemeProvider } from '../../../components/responsiveThemeProvider';
 
-jest.mock('../../useActiveBreakpoint');
+jest.mock('../../../../theme/media', () => ({
+  ...jest.requireActual<NodeModule>('../../../../theme/media'),
+  getActiveBreakpoint: jest.fn()
+}));
 
-const render = (query: BreakpointQuery = {}) => renderHook(() => useMediaQuery(query));
+const render = (query: BreakpointQuery = {}) => renderHook(() => useMediaQuery(query), {
+  wrapper: ({ children }) => <ResponsiveThemeProvider>{children}</ResponsiveThemeProvider>,
+});
 
 describe('useMediaQuery: Hook', () => {
-  beforeEach(() => {
-    useActiveBreakpoint.mockReset();
-  });
-
   it('should return true if no query defined', () => {
     const { result } = render();
     expect(result.current).toEqual({ matches: true });
   });
 
   describe('when matches props is specified', () => {
-    it("should return false when given breakPoint name doesn't match current breakPoint", () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
+    it('should return false when given breakPoint name doesn\'t match current breakPoint', () => {
+      getActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
       const { result } = render({ matches: Breakpoint.MOBILE });
       expect(result.current).toEqual({ matches: false });
     });
 
     it('should return true when given breakPoint name matches current breakPoint', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.MOBILE);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.MOBILE);
       const { result } = render({ matches: Breakpoint.MOBILE });
       expect(result.current).toEqual({ matches: true });
     });
@@ -33,19 +35,19 @@ describe('useMediaQuery: Hook', () => {
 
   describe('when below prop is specified', () => {
     it('should return true if active breakpoint is smaller', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
       const { result } = render({ below: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: true });
     });
 
     it('should return true if active breakpoint is equal', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP);
       const { result } = render({ below: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: true });
     });
 
     it('should return false if active breakpoint larger', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP_FULL);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP_FULL);
       const { result } = render({ below: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: false });
     });
@@ -53,19 +55,19 @@ describe('useMediaQuery: Hook', () => {
 
   describe('when above prop is specified', () => {
     it('should return false if active breakpoint is smaller', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.TABLET);
       const { result } = render({ above: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: false });
     });
 
     it('should return true if active breakpoint is equal', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP);
       const { result } = render({ above: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: true });
     });
 
     it('should return true if active breakpoint is larger', () => {
-      useActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP_FULL);
+      getActiveBreakpoint.mockReturnValue(Breakpoint.DESKTOP_FULL);
       const { result } = render({ above: Breakpoint.DESKTOP });
       expect(result.current).toEqual({ matches: true });
     });

@@ -1,5 +1,5 @@
 import { BaseThemedCssFunction, css, DefaultTheme } from 'styled-components';
-import { complement, isNil } from 'ramda';
+import { complement, isNil, reverse } from 'ramda';
 
 export enum Breakpoint {
   MOBILE = 'mobile',
@@ -17,13 +17,13 @@ export const sizes: Record<Breakpoint, number> = {
   [Breakpoint.MOBILE]: 320,
 };
 
-export const sizesOrdered: Breakpoint[] = [
+export const sizesOrdered = [
   Breakpoint.MOBILE,
   Breakpoint.TABLET,
   Breakpoint.DESKTOP,
   Breakpoint.DESKTOP_WIDE,
   Breakpoint.DESKTOP_FULL,
-];
+] as const;
 
 const getWindowWidth = () => window.innerWidth;
 
@@ -67,12 +67,27 @@ export const isDesktop = () => {
   return width >= sizes[Breakpoint.DESKTOP];
 };
 
-export const responsiveValue = <T>(defaultValue: T, config: { [key: string]: T } = {}) => () => {
-  let match = defaultValue;
+export const getActiveBreakpoint = () => {
+  let breakpoint: Breakpoint = Breakpoint.MOBILE;
+  const config: Record<Breakpoint, Breakpoint> = {
+    [Breakpoint.DESKTOP_FULL]: Breakpoint.DESKTOP_FULL,
+    [Breakpoint.DESKTOP_WIDE]: Breakpoint.DESKTOP_WIDE,
+    [Breakpoint.DESKTOP]: Breakpoint.DESKTOP,
+    [Breakpoint.TABLET]: Breakpoint.TABLET,
+    [Breakpoint.MOBILE]: Breakpoint.MOBILE,
+  };
+
   sizesOrdered.forEach(size => {
     if (config[size] && window.matchMedia(getBreakpointMediaQuery(size)).matches) {
-      match = config[size];
+      breakpoint = config[size];
     }
   });
-  return match;
+
+  return breakpoint;
+};
+
+export const responsiveValue = <Value>(defaultValue: Value, config: Partial<Record<Breakpoint, Value>> = {}) => ({ theme }: { theme: DefaultTheme }) => {
+  const matchesCurrentBreakpoint = (breakpoint: Breakpoint) => sizesOrdered.indexOf(breakpoint) <= sizesOrdered.indexOf(theme.activeBreakpoint ?? Breakpoint.MOBILE);
+  const matchingBreakpoint = reverse(sizesOrdered).find(size => config[size] && matchesCurrentBreakpoint(size));
+  return matchingBreakpoint ? config[matchingBreakpoint] : defaultValue;
 };
