@@ -3,7 +3,7 @@
     "scripts": {
       "extract-intl": "formatjs extract 'src/**/!(*.d).(js|jsx|ts|tsx)' --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
       "lint": "yarn run lint:js && yarn run lint:css",
-      "lint:css": "stylelint './src/**/*.js'",
+      "lint:css": "stylelint './src/**/*.ts'",
       "lint:js": "eslint .",
       "storybook": "start-storybook --port 5000",
       "build-storybook": "node ./scripts/build-storybook.js"

@@ -19,9 +19,6 @@ export const setUnsupportedClasses = () => {
 
   if (!detection.isSupported()) {
     document.documentElement.className += ' unsupported';
-
-    const translation = translationMessages[DEFAULT_LOCALE];
-
     const unsupportedPageElement = document.querySelector<HTMLElement>('.unsupported-page');
     const headline = unsupportedPageElement?.querySelector<HTMLElement>('h1');
     const appElement = document.querySelector<HTMLElement>('#app');

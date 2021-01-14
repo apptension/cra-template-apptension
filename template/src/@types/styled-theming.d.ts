@@ -19,8 +19,8 @@ declare module 'styled-theming' {
       [key: string]: ThemeMap;
     }
 
-    type ThemeSet = (props: object) => string;
-    type VariantSet = (props: object) => string;
+    type ThemeSet = (props: Record<string, any>) => string;
+    type VariantSet = (props: Record<string, any>) => string;
 
     function variants(name: string, prop: string, values: VariantMap): VariantSet;
   }

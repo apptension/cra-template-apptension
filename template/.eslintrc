@@ -23,6 +23,7 @@
       "files": "*.{ts,tsx}",
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "import/no-anonymous-default-export": "off",
         "@typescript-eslint/no-explicit-any": "off"

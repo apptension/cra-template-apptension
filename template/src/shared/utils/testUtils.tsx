@@ -10,7 +10,7 @@ import { IntlProvider } from 'react-intl';
 import produce from 'immer';
 
 import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
-import { store, store as fixturesStore } from '../../mocks/store';
+import { store as fixturesStore } from '../../mocks/store';
 import createReducer, { GlobalState } from '../../config/reducers';
 
 export const PLACEHOLDER_TEST_ID = 'content';
@@ -64,7 +64,7 @@ export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperPro
   );
 };
 
-export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (
+export const makeContextRenderer = <T, _>(component: (props: T | Record<string, never>) => ReactElement) => (
   props?: T,
   context?: ContextData
 ) =>
@@ -72,5 +72,5 @@ export const makeContextRenderer = <T, _>(component: (props: T | {}) => ReactEle
     wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
   });
 
-export const makePropsRenderer = <T, _>(component: (props: T | {}) => ReactElement) => (props?: T) =>
+export const makePropsRenderer = <T, _>(component: (props: T | Record<string, never>) => ReactElement) => (props?: T) =>
   render(component(props ?? {}));
