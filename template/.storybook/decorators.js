@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
+import { ResponsiveThemeProvider } from '../src/shared/components/responsiveThemeProvider';
 export { default as withRouter } from 'storybook-react-router';
 
 import { GlobalStyle } from '../src/theme/global';
@@ -8,12 +8,12 @@ import { DEFAULT_LOCALE, translationMessages } from '../src/i18n';
 import initializeFontFace from '../src/theme/initializeFontFace';
 
 export const withTheme = (theme) => (story) => (
-  <ThemeProvider theme={theme}>
+  <ResponsiveThemeProvider>
     <>
       <GlobalStyle />
       {story()}
     </>
-  </ThemeProvider>
+  </ResponsiveThemeProvider>
 );
 
 export const withIntl = (story) => (

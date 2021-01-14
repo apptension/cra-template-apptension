@@ -30,6 +30,11 @@ module.exports = (plop) => {
       },
       {
         type: 'add',
+        path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.selectors.ts',
+        templateFile: path.join(templatesPath, 'selectors.hbs'),
+      },
+      {
+        type: 'add',
         path: 'src/modules/{{ camelCase name }}/{{ camelCase name }}.types.ts',
         templateFile: path.join(templatesPath, 'types.hbs'),
       },
@@ -47,6 +52,16 @@ module.exports = (plop) => {
         type: 'add',
         path: 'src/modules/{{ camelCase name }}/__tests__/{{ camelCase name }}.sagas.spec.ts',
         templateFile: path.join(templatesPath, '__tests__/sagas.spec.hbs'),
+      },
+      {
+        type: 'add',
+        path: 'src/shared/services/api/{{ camelCase name }}/index.ts',
+        templateFile: path.join(templatesPath, 'api/index.hbs'),
+      },
+      {
+        type: 'add',
+        path: 'src/shared/services/api/{{ camelCase name }}/types.ts',
+        templateFile: path.join(templatesPath, 'api/types.hbs'),
       },
       {
         type: 'modify',
@@ -85,6 +100,12 @@ module.exports = (plop) => {
         path: 'src/mocks/store.ts',
         pattern: /(\/\/<-- IMPORT MODULE STATE -->)/g,
         template: "import { {{ constantCase name }}_INITIAL_STATE } from '../modules/{{ camelCase name }}';\n$1",
+      },
+      {
+        type: 'modify',
+        path: 'src/shared/services/api/index.ts',
+        pattern: /(\/\/<-- IMPORT MODULE API -->)/g,
+        template: "export * as {{ camelCase name }} from './{{ camelCase name }}';\n$1",
       },
       {
         type: 'modify',
