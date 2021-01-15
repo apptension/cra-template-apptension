@@ -8,7 +8,7 @@ import { Fetch{{ pascalCase name }}SuccessPayload } from './{{ camelCase name }}
 
 function* fetch{{ pascalCase name }}(action: PromiseAction<void, Fetch{{ pascalCase name }}SuccessPayload>) {
   try {
-    const { data } = yield {{ camelCase name }}.list();
+    const data = yield {{ camelCase name }}.list();
     yield resolvePromiseAction(action, data);
   } catch (error) {
     reportError(error);

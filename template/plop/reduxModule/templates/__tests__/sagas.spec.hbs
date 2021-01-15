@@ -2,19 +2,14 @@ import { expectSaga } from 'redux-saga-test-plan';
 
 import { watch{{ pascalCase name }} } from '../{{ camelCase name }}.sagas';
 import { {{ camelCase name }}Actions } from '..';
-import { mockApi } from '../../../shared/utils/mockApi';
 
 describe('{{ pascalCase name }}: sagas', () => {
   const defaultState = {};
 
   it('should implement a test', async () => {
-    const data = { status: 'OK' };
-
-    mockApi.get('/').reply(200, data);
-
     await expectSaga(watch{{ pascalCase name }})
       .withState(defaultState)
-      .put({{ camelCase name }}Actions.fetch{{ pascalCase name }}Success(data))
+      .put({{ camelCase name }}Actions.fetch{{ pascalCase name }}.resolved([]))
       .dispatch({{ camelCase name }}Actions.fetch{{ pascalCase name }}())
       .silentRun();
   });

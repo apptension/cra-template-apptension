@@ -60,6 +60,11 @@ module.exports = (plop) => {
       },
       {
         type: 'add',
+        path: 'src/mocks/server/handlers/{{ camelCase name }}.ts',
+        templateFile: path.join(templatesPath, 'api/mock.hbs'),
+      },
+      {
+        type: 'add',
         path: 'src/shared/services/api/{{ camelCase name }}/types.ts',
         templateFile: path.join(templatesPath, 'api/types.hbs'),
       },
@@ -106,6 +111,12 @@ module.exports = (plop) => {
         path: 'src/shared/services/api/index.ts',
         pattern: /(\/\/<-- IMPORT MODULE API -->)/g,
         template: "export * as {{ camelCase name }} from './{{ camelCase name }}';\n$1",
+      },
+      {
+        type: 'modify',
+        path: 'src/mocks/server/handlers/index.ts',
+        pattern: /(\/\/<-- IMPORT API MODULE MOCK -->)/g,
+        template: "export * from './{{ camelCase name }}';\n$1",
       },
       {
         type: 'modify',
