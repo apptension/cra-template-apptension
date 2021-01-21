@@ -19,8 +19,9 @@ export interface PromiseActionMeta<A, B> {
   };
 }
 
-export interface PromiseActionCreatorWithPayload<P, A, B> extends ActionCreatorWithPayload<P> {
+export interface PromiseActionCreatorWithPayload<P, A, B> {
   (payload: P): PayloadAction<P, string, PromiseActionMeta<A, B>>;
+  type: string;
   trigger: ActionCreatorWithPreparedPayload<[P], PreparePromiseAction<P, A, B>>;
   resolved: ActionCreatorWithPayload<A>;
   rejected: ActionCreatorWithPayload<B>;
