@@ -2,5 +2,6 @@
   "id": 1,
   "login": "user1",
   "name": "User One",
+  "displayName": "One",
   "email": "user-one@apptension.com"
 }
