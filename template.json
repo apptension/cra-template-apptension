@@ -38,7 +38,7 @@
       "@types/ua-parser-js": "^0.7.33",
       "axios": "^0.18.0",
       "axios-case-converter": "^0.6.0",
-      "babel-loader": "8.1.0",
+      "babel-loader": "8.2.0",
       "core-js": "^3.6.2",
       "es5-shim": "^4.5.12",
       "eslint-config-prettier": "^6.15.0",
