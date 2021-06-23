@@ -2,14 +2,15 @@
 
 exports[`Home: Component should render correctly 1`] = `
 .c1 {
-  font-family: OpenSans;
-  font-weight: bold;
-  color: #000000;
+  font-family: OpenSans,Helvetica,Arial,sans-serif;
+  font-weight: 600;
+  font-size: 39px;
+  line-height: 43px;
 }
 
 .c3 {
-  padding: 8px 16px;
-  border: 1px solid #80809B;
+  padding: 8pxpx 16pxpx;
+  border: 1px solid #0B0B0E;
   color: #42f272;
 }
 

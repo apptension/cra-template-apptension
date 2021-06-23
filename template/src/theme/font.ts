@@ -1,7 +1,10 @@
+export const mainFontName = 'OpenSans';
+
 export const fontFamily = {
-  primary: 'OpenSans',
+  primary: `${mainFontName},Helvetica,Arial,sans-serif`,
 };
 
 export const fontWeight = {
-  bold: 'bold',
+  regular: '400',
+  bold: '600',
 };

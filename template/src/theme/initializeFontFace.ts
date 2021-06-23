@@ -3,21 +3,16 @@ import { fontFamily } from './font';
 
 function fontFace(
   name: string,
-  src: string,
+  files: { src: string; format: string }[],
   fontWeight = 'normal',
-  fontStyle = 'normal',
-  extensions = ['woff2', 'woff', 'ttf'],
-  formats = ['woff2', 'woff', 'truetype']
+  fontStyle = 'normal'
 ): string {
-  const sources = extensions
-    .map((ext, index) => `url(${require('../fonts/' + src + `.${ext}`)}) format("${formats[index]}")`)
-    .join(',');
+  const sources = files.map(({ src, format }, index) => `url(${src}) format("${format}")`).join(',');
 
   return `
     @font-face{
         font-family: "${name}";
         src: ${sources};
-
         font-weight: ${fontWeight};
         font-style: ${fontStyle};
     }
@@ -25,7 +20,9 @@ function fontFace(
 }
 /* eslint-enable import/no-dynamic-require */
 
-const generateFontsString = (): string => [fontFace(fontFamily.primary, 'OpenSans')].join('\n');
+const generateFontsString = (): string => [
+  fontFace(fontFamily.primary, [{ src: 'OpenSans', format: 'woff' }])
+].join('\n');
 
 export default (): void => {
   const style = document.createElement('style');

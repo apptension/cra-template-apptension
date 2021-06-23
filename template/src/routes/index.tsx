@@ -6,6 +6,7 @@ import { DEFAULT_LOCALE, appLocales, translationMessages } from '../i18n';
 import { asyncComponent } from '../shared/utils/asyncComponent';
 import { AppComponent as App } from './app.component';
 import { ROUTES } from './app.constants';
+import { useRouterScrollToTop } from '../shared/hooks/useRouterScrollToTop';
 //<-- IMPORT ROUTE -->
 
 const Home = asyncComponent(() => import('./home'), 'Home');
@@ -13,6 +14,8 @@ const NotFound = asyncComponent(() => import('./notFound'), 'NotFound');
 
 const MatchedLanguageComponent = () => {
   const match = useRouteMatch();
+  useRouterScrollToTop();
+
   return (
     <App>
       <Switch>

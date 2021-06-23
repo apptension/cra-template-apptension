@@ -2,9 +2,10 @@
 
 exports[`NotFound: Component should render correctly 1`] = `
 .c0 {
-  font-family: OpenSans;
-  font-weight: bold;
-  color: #000000;
+  font-family: OpenSans,Helvetica,Arial,sans-serif;
+  font-weight: 600;
+  font-size: 39px;
+  line-height: 43px;
 }
 
 <div>
