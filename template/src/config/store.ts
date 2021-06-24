@@ -10,12 +10,16 @@ export default function (initialState = {}): Store {
 
   const middlewares = [promiseMiddleware, sagaMiddleware];
 
+  const defaultMiddlewareOptions = {
+    serializableCheck: {
+      ignoredActionPaths: ['meta.promise'],
+    },
+  };
+
   const store = configureStore({
     reducer: createReducer(),
     preloadedState: initialState,
-    middleware: getDefaultMiddleware({
-      serializableCheck: false
-    }).concat(middlewares),
+    middleware: getDefaultMiddleware(defaultMiddlewareOptions).concat(middlewares),
   });
 
   sagaMiddleware.run(rootSaga);
