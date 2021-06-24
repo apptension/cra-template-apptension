@@ -13,7 +13,9 @@ export default function (initialState = {}): Store {
   const store = configureStore({
     reducer: createReducer(),
     preloadedState: initialState,
-    middleware: getDefaultMiddleware().concat(middlewares),
+    middleware: getDefaultMiddleware({
+      serializableCheck: false
+    }).concat(middlewares),
   });
 
   sagaMiddleware.run(rootSaga);
