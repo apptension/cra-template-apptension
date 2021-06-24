@@ -1,12 +1,17 @@
 import axios from 'axios';
 import applyCaseMiddleware from 'axios-case-converter';
+import { validateStatus } from './helpers';
 
-const baseUrl = process.env.REACT_APP_BASE_API_URL;
+const baseUrl = process.env.REACT_APP_BASE_API_URL || '/api';
 
 if (!baseUrl) {
   throw new Error('REACT_APP_BASE_API_URL env is missing');
 }
 
-export const client = applyCaseMiddleware(axios.create({
-  baseURL: baseUrl,
-}));
+export const client = applyCaseMiddleware(
+  axios.create({
+    baseURL: baseUrl,
+    withCredentials: true,
+    validateStatus,
+  })
+);

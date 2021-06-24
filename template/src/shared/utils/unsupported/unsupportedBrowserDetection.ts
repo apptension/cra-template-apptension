@@ -35,6 +35,9 @@ const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
       minversion: 45,
     },
     {
+      browser: 'chrome headless',
+    },
+    {
       browser: 'edge',
     },
     {
@@ -42,6 +45,9 @@ const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
       minos: '10.10.0',
       browser: 'safari',
       minversion: 8,
+    },
+    {
+      browser: 'opera',
     },
   ],
   tablet: [
@@ -56,11 +62,17 @@ const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
       browser: 'chrome',
     },
     {
+      browser: 'chrome headless',
+    },
+    {
       browser: 'ie',
       versions: [11, 'edge'],
     },
     {
       browser: 'edge',
+    },
+    {
+      browser: 'opera',
     },
   ],
   mobile: [
@@ -75,10 +87,16 @@ const DEFAULT_SUPPORTED_BROWSERS_CONFIG: BrowserConfig = {
       browser: 'chrome',
     },
     {
+      browser: 'chrome headless',
+    },
+    {
       os: 'android',
       minos: '5.0',
       browser: 'chrome',
       minversion: 50,
+    },
+    {
+      browser: 'opera',
     },
   ],
 };
@@ -99,7 +117,7 @@ export default class UnsupportedBrowserDetection {
 
   get isCrawler() {
     return ['Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot', 'Baiduspider', 'YandexBot'].some(
-      crawlerName => this.ua.indexOf(crawlerName) > -1
+      (crawlerName) => this.ua.indexOf(crawlerName) > -1
     );
   }
 

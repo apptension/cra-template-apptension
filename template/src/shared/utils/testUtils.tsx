@@ -7,32 +7,33 @@ import { Provider } from 'react-redux';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { Route, Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
-import produce from 'immer';
+import { produce } from 'immer';
 
-import { DEFAULT_LOCALE, translationMessages, MessagesObject } from '../../i18n';
+import { DEFAULT_LOCALE, translationMessages, TranslationMessages } from '../../i18n';
 import { store as fixturesStore } from '../../mocks/store';
 import createReducer, { GlobalState } from '../../config/reducers';
+import { ResponsiveThemeProvider } from '../components/responsiveThemeProvider';
 
 export const PLACEHOLDER_TEST_ID = 'content';
 export const PLACEHOLDER_CONTENT = <span data-testid="content">content</span>;
 
-export const spiedHistory = (route = '/') => {
+export const spiedHistory = (route = `/${DEFAULT_LOCALE}`) => {
   const history = createMemoryHistory({ initialEntries: [route] });
-  const pushSpy = jest.spyOn(history, 'push');
+  history.push = jest.fn();
   return {
     history,
-    pushSpy,
+    pushSpy: history.push as jest.Mock,
   };
 };
 
-interface ContextData {
+export interface ContextData {
   router?: {
     url?: string;
     routePath?: string;
     history?: MemoryHistory;
   };
   store?: GlobalState;
-  messages?: MessagesObject;
+  messages?: TranslationMessages;
 }
 
 interface ProvidersWrapperProps {
@@ -54,23 +55,25 @@ export const ProvidersWrapper = ({ children, context = {} }: ProvidersWrapperPro
   return (
     <Router history={routerHistory}>
       <HelmetProvider>
-        <IntlProvider {...intlProviderMockProps}>
-          <Provider store={createStore(createReducer(), produce(store, identity))}>
-            <Route path={routePath}>{children}</Route>
-          </Provider>
-        </IntlProvider>
+        <ResponsiveThemeProvider>
+          <IntlProvider {...intlProviderMockProps}>
+            <Provider store={createStore(createReducer(), produce(store, identity))}>
+              <Route path={routePath}>{children}</Route>
+            </Provider>
+          </IntlProvider>
+        </ResponsiveThemeProvider>
       </HelmetProvider>
     </Router>
   );
 };
 
-export const makeContextRenderer = <T, _>(component: (props: T | Record<string, never>) => ReactElement) => (
-  props?: T,
-  context?: ContextData
-) =>
-  render(component(props ?? {}), {
-    wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
-  });
+export function makeContextRenderer<T>(component: (props: T | Record<string, never>) => ReactElement) {
+  return (props?: T, context?: ContextData) =>
+    render(component(props ?? {}), {
+      wrapper: ({ children }) => <ProvidersWrapper context={context}>{children}</ProvidersWrapper>,
+    });
+}
 
-export const makePropsRenderer = <T, _>(component: (props: T | Record<string, never>) => ReactElement) => (props?: T) =>
-  render(component(props ?? {}));
+export function makePropsRenderer<T>(component: (props: T | Record<string, never>) => ReactElement) {
+  return (props?: T) => render(component(props ?? {}));
+}
